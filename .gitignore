@@ -1,0 +1,9 @@
+# ignore images
+*.jpg
+*.JPG
+*.JPEG
+*.jpeg
+
+# ignore model weights
+*.pkl
+*.pth
