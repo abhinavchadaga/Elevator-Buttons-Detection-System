@@ -2,10 +2,11 @@ import json
 from typing import List, Tuple
 import math
 import os
+from copy import deepcopy
 
 import numpy as np
 from tqdm import tqdm
-from skimage.draw import ellipse_perimeter, circle_perimeter
+from skimage.draw import ellipse_perimeter, circle_perimeter, polygon
 import cv2
 
 from detectron2.structures import BoxMode
@@ -23,12 +24,14 @@ def generate_bbox(px: List[int], py: List[int]) -> List[int]:
 
     Returns:
         List[int]: list of length 4 with location of topleft and bottom right points of
-                   bounding box
+            bounding box
     """
     return [np.min(px), np.min(py), np.max(px), np.max(py)]
 
 
-def generate_gt_mask_coords(region: dict) -> Tuple[List[int], List[int]]:
+def generate_gt_mask_coords(
+    region: dict, im_height: int, im_width: int
+) -> Tuple[List[int], List[int]]:
     """generate list of x coordinates (px) and y coordinates (py) for ground truth mask
     region format:
     {
@@ -45,11 +48,11 @@ def generate_gt_mask_coords(region: dict) -> Tuple[List[int], List[int]]:
 
     Args:
         region (dict): dictionary of information for one single mask in an image.
-                       Format described above
+            Format described above
 
     Returns:
         Tuple[List[int], List[int]]: list of x coordinates, list of y coordinates of
-                                     perimeter of segmentation mask
+            perimeter of segmentation mask
     """
     s_attr = region["shape_attributes"]
     shape_type = s_attr["name"]
@@ -92,10 +95,34 @@ def generate_gt_mask_coords(region: dict) -> Tuple[List[int], List[int]]:
         py = rr[sorted_by_angle]
         px = cc[sorted_by_angle]
 
+    px = np.clip(px, 0, im_width - 1)
+    py = np.clip(py, 0, im_height - 1)
     return px, py
 
 
-def elevator_dict_to_d2_dict(img_dir: str, img_dict: dict, img_id: int) -> dict:
+def generate_gt_mask_opaque(
+    region: dict, im_height: int, im_width: int
+) -> Tuple[List[int], List[int]]:
+    """Convert a perimeter mask used for Detectron2 into an opaque mask for
+
+
+    Args:
+        region (dict): same format as region for generate_gt_mask_coords
+
+    Returns:
+        Tuple[List[int], List[int]]: pixel coordinates of polygon. Can be used to index
+            directly into an array i.e img[rr, cc] = 1
+    """
+    px, py = generate_gt_mask_coords(
+        region=region, im_height=im_height, im_width=im_width
+    )
+    rr, cc = polygon(r=py, c=px)
+    return rr, cc
+
+
+def elevator_dict_to_d2_dict(
+    img_dir: str, img_dict: dict, img_id: int, skip_no_pairs=False
+) -> dict:
     """Convert an image dict from VGG annotation file into a single standard Detectron2
     dataset dict.
 
@@ -125,7 +152,10 @@ def elevator_dict_to_d2_dict(img_dir: str, img_dict: dict, img_id: int) -> dict:
 
     annos = list()
     for r in img_dict["regions"]:
-        px, py = generate_gt_mask_coords(region=r)
+        pair = r["region_attributes"].get("pair")
+        if skip_no_pairs and (pair is None or pair == ""):
+            continue
+        px, py = generate_gt_mask_coords(region=r, im_height=height, im_width=width)
         poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
         poly = [p for x in poly for p in x]
         bbox = generate_bbox(px=px, py=py)
@@ -159,7 +189,7 @@ def random_split_mixed_set(
     assert sum(split_ratio) == 1
 
     # open the annotations file
-    with open(os.path.join(img_dir, "mixed_annotations.json")) as f:
+    with open(os.path.join(img_dir, "annotations.json")) as f:
         img_dicts: dict = json.load(f)
 
     im_paths = [os.path.join(img_dir, fname) for fname in img_dicts]
@@ -171,10 +201,18 @@ def random_split_mixed_set(
     valset_size = int(len(im_paths) * split_ratio[1])
     datasets = np.array_split(im_paths, [trainset_size, trainset_size + valset_size])
     datasets = [list(d) for d in datasets]
+    # write split out to a text file later viewing
+    with open("data/generated_splits/mixed.txt", "w") as f:
+        for name, ds in zip(["train", "val", "test"], datasets):
+            for im_path in ds:
+                f.write(f"{im_path},{name}\n")
+
     return datasets
 
 
-def get_mixed_set_dicts(im_paths: List[str]) -> List[dict]:
+def get_mixed_set_dicts(
+    im_paths: List[str], skip_no_pairs=False, disable_tqdm=True
+) -> List[dict]:
     """from a list of paths to images, generate the dataset
 
     Args:
@@ -185,17 +223,72 @@ def get_mixed_set_dicts(im_paths: List[str]) -> List[dict]:
     """
     img_dir = os.path.dirname(im_paths[0])
     # open the annotations file
-    with open(os.path.join(img_dir, "mixed_annotations.json")) as f:
+    with open(os.path.join(img_dir, "annotations.json")) as f:
         img_dicts: dict = json.load(f)
 
     dataset_dicts = []
     # add dicts to appropriate dataset
-    for i in tqdm(range(len(im_paths)), desc="loading images"):
-        fname = im_paths[i].split("/")[-1]
+    for i in tqdm(range(len(im_paths)), desc="loading images", disable=disable_tqdm):
+        fname = os.path.basename(im_paths[i])
         img_dict = img_dicts[fname]
-        d = elevator_dict_to_d2_dict(img_dir=img_dir, img_dict=img_dict, img_id=i)
+        d = elevator_dict_to_d2_dict(
+            img_dir=img_dir, img_dict=img_dict, img_id=i, skip_no_pairs=skip_no_pairs
+        )
         dataset_dicts.append(d)
     return dataset_dicts
+
+
+def generate_missed_detections_data(dataset: str) -> None:
+    with open(os.path.join("data/generated_splits", f"{dataset}.txt")) as f:
+        im_paths = f.readlines()
+
+    with open(os.path.join("data/panels", dataset, "annotations.json")) as f:
+        annos = json.load(f)
+
+    gts = {}
+    spl = []
+    i = 0
+    save_dir = os.path.join("data/missed_detections", dataset)
+    os.makedirs(save_dir, exist_ok=True)
+
+    for l in tqdm(im_paths, desc="panel images"):
+        im_path, ds = l.split(",")
+        filename = os.path.basename(im_path)
+        img_dict = annos[filename]
+        im = cv2.imread(im_path)
+        height, width = im.shape[:2]
+        all_regions = np.zeros_like(im, dtype=np.uint8)
+        for r in img_dict["regions"]:
+            pair = r["region_attributes"].get("pair")
+            if pair is None or pair == "":
+                # skip features with no paired button or label
+                continue
+            rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
+            _class = r["region_attributes"]["category_id"]
+            # green for label, blue for button
+            all_regions[rr, cc] = [0, 255, 0] if _class == "label" else [0, 0, 255]
+
+        for r in img_dict["regions"]:
+            pair = r["region_attributes"].get("pair")
+            if pair is None or pair == "":
+                # same as before
+                continue
+            rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
+            minus_one = all_regions.copy()
+            minus_one[rr, cc] = [0, 0, 0]
+            gts[f"{i}.jpg"] = deepcopy(r)
+            save_path = os.path.join(
+                save_dir, f"{i}_{os.path.splitext(filename)[0]}.jpg"
+            )
+            cv2.imwrite(save_path, minus_one[:, :, ::-1])
+            spl.append(f"{save_path},{ds}")
+            i += 1
+
+    with open(os.path.join(save_dir, "gt.json"), "w") as f:
+        json.dump(gts, f)
+
+    with open(os.path.join(save_dir, "split.txt"), "w") as f:
+        f.writelines(spl)
 
 
 # def get_elevator_dicts(buildings: List[str]) -> List[dict]:
@@ -247,12 +340,5 @@ def get_mixed_set_dicts(im_paths: List[str]) -> List[dict]:
 
 
 if __name__ == "__main__":
-    img_paths = random_split_mixed_set("data/panels/mixed")
-    for name, paths in zip(["train", "val", "test"], img_paths):
-        DatasetCatalog.register(
-            name=f"mixed_{name}",
-            func=lambda im_paths=paths: get_mixed_set_dicts(im_paths=im_paths),
-        )
-
-    trainset: List[dict] = DatasetCatalog.get("mixed_train")
-    print(len(trainset))
+    generate_missed_detections_data("mixed")
+    print("done")

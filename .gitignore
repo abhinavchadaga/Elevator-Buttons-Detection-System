@@ -7,3 +7,9 @@
 # ignore model weights
 *.pkl
 *.pth
+
+# ignore output directories
+models/
+
+# ignore pycache
+__pycache__/*
