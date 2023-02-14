@@ -2,8 +2,6 @@ import argparse
 import logging
 import math
 import os
-from collections import OrderedDict
-import sys
 import time
 import datetime
 from typing import List
@@ -14,7 +12,6 @@ import torch
 from detectron2 import model_zoo
 import detectron2.utils.comm as comm
 from detectron2.utils.logger import log_every_n_seconds
-from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.config import get_cfg
 from detectron2.data import (
     DatasetCatalog,
@@ -25,17 +22,14 @@ from detectron2.engine import (
     DefaultTrainer,
     default_argument_parser,
     default_setup,
-    hooks,
     launch,
 )
-
+from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.engine.hooks import EvalHook, BestCheckpointer
-
 from detectron2.evaluation import (
     COCOEvaluator,
     verify_results,
 )
-from detectron2.modeling import GeneralizedRCNNWithTTA
 
 import coco_loaders
 import custom_datasets
@@ -70,7 +64,12 @@ def custom_args(epilog=None):
     parser.add_argument(
         "--eval_period", type=int, default=2, help="number of epochs to eval after"
     )
-    parser.add_argument("--score_thresh", type=float)
+    parser.add_argument(
+        "--path_to_weights",
+        type=str,
+        help="path to trained weights, use this for eval only",
+    )
+    parser.add_argument("--score_thresh", type=float, default=0.7)
     parser.add_argument("--output_dir", type=str, default="./output")
     parser.add_argument(
         "--seed", type=int, default=10, help="seed for shuffling dataset splits"
@@ -305,8 +304,12 @@ def setup(args):
         trainset_len=len(datasets[0]), batch_size=args.batch_size
     )
 
-    # start from pretrained weights
-    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(model_cfg)
+    # start from pretrained weights or fine tuned weights if supplied
+    cfg.MODEL.WEIGHTS = (
+        model_zoo.get_checkpoint_url(model_cfg)
+        if not args.path_to_weights
+        else args.path_to_weights
+    )
 
     # LOAD DATASETS and adjust ROI HEADS to match num classes
     cfg.DATASETS.TRAIN = (f"{args.dataset}_train",)
@@ -334,10 +337,21 @@ def setup(args):
 
 def main(args):
     cfg = setup(args)
+    if args.eval_only:
+        model = Trainer.build_model(cfg)
+        DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
+            cfg.MODEL.WEIGHTS, resume=args.resume
+        )
+        results = Trainer.test(cfg, model)
+        print(results)
+        return
 
+    # train model
     trainer = Trainer(cfg)
     trainer.resume_or_load(resume=args.resume)
-    return trainer.train()
+    trainer.train()
+    print(trainer.test(cfg, trainer.model))
+    return
 
 
 if __name__ == "__main__":
