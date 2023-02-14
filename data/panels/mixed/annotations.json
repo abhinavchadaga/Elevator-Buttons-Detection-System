@@ -25816,47 +25816,6 @@
                     "category_id": "button",
                     "pair": ""
                 }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        1140,
-                        1145,
-                        1148,
-                        1149,
-                        1147,
-                        1145,
-                        1140,
-                        883,
-                        878,
-                        877,
-                        876,
-                        874,
-                        877,
-                        882
-                    ],
-                    "all_points_y": [
-                        2075,
-                        2077,
-                        2080,
-                        2084,
-                        2139,
-                        2143,
-                        2147,
-                        2139,
-                        2136,
-                        2132,
-                        2126,
-                        2075,
-                        2071,
-                        2068
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "WHEN FLASHING HELP IS ON WAY"
-                }
             }
         ],
         "file_attributes": {
