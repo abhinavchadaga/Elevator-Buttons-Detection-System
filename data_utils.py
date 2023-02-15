@@ -12,7 +12,7 @@ from skimage.draw import ellipse_perimeter, circle_perimeter, polygon
 import cv2
 
 from detectron2.structures import BoxMode
-from custom_datasets import CLASSES
+from elevator_datasets import CLASSES
 
 
 def generate_bbox(px: List[int], py: List[int]) -> List[int]:
@@ -194,7 +194,7 @@ def read_split_file(fpath: str) -> List[List[str]]:
 
 def random_split_mixed_set(
     img_dir: str, split_ratio: Tuple[float, float, float], seed: int
-) -> List[List[str]]:
+) -> None:
     """Randomly split the data for the mixed elevators set.
 
     Args:

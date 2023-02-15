@@ -8,17 +8,19 @@
             "name": "Debug train_net.py",
             "type": "python",
             "request": "launch",
-            "program": "train_net.py",
+            "program": "yacs_train_net.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
                 "--dataset",
                 "mixed",
                 "--arch",
-                "mask_rcnn",
+                "cascade_mask_rcnn",
                 "--eval-only",
-                "--resume",
-                "True"
+                "--path_to_weights",
+                "models/cascade_mask_rcnn_mixed/model_best.pth",
+                "--score_thresh",
+                "0.7"
             ]
         }
     ]

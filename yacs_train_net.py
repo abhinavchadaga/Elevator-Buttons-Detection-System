@@ -1,10 +1,8 @@
-import argparse
 import logging
 import math
 import os
 import time
 import datetime
-from typing import List
 
 import numpy as np
 import torch
@@ -16,6 +14,10 @@ from detectron2.config import get_cfg
 from detectron2.data import (
     DatasetCatalog,
     MetadataCatalog,
+    DatasetMapper,
+    get_detection_dataset_dicts,
+    build_detection_train_loader,
+    build_detection_test_loader,
 )
 import detectron2.data.transforms as T
 from detectron2.engine import (
@@ -24,15 +26,10 @@ from detectron2.engine import (
     default_setup,
     launch,
 )
-from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.engine.hooks import EvalHook, BestCheckpointer
-from detectron2.evaluation import (
-    COCOEvaluator,
-    verify_results,
-)
 
 import coco_loaders
-import custom_datasets
+import elevator_datasets
 from data_utils import (
     generate_missed_detections_data,
     random_split_mixed_set,
@@ -43,12 +40,12 @@ from data_utils import (
 
 def custom_args(epilog=None):
     parser = default_argument_parser(epilog=epilog)
+    parser.add_argument("--dataset", "-d", type=str, help="dataset to use")
     parser.add_argument(
         "--arch", type=str, choices=["mask_rcnn", "cascade_mask_rcnn"], required=True
     )
-    parser.add_argument("--dataset", "-d", type=str, help="dataset to use")
     parser.add_argument(
-        "--epochs", type=int, help="num epochs to train for", default=50
+        "--epochs", type=int, help="num epochs to train for", default=100
     )
     parser.add_argument(
         "--batch_size", "-b", type=int, default=2, help="images per batch"
@@ -135,58 +132,35 @@ def validation_loop(model: torch.nn, dataloader: torch.utils.data.DataLoader) ->
     return {"validation_loss": val_loss}
 
 
-def build_evaluator(cfg, dataset_name, output_folder=None):
-    """
-    Create evaluator(s) for a given dataset.
-    This uses the special metadata "evaluator_type" associated with each builtin dataset.
-    For your own dataset, you can simply create an evaluator manually in your
-    script and do not have to worry about the hacky if-else logic here.
-    """
-    if output_folder is None:
-        output_folder = os.path.join(cfg.OUTPUT_DIR, "inference")
-
-    evaluator_type = MetadataCatalog.get(dataset_name).evaluator_type
-    if evaluator_type == "coco":
-        return COCOEvaluator(
-            dataset_name=dataset_name,
-            output_dir=output_folder,
-            use_fast_impl=False,
-            allow_cached_coco=False,
-        )
-    else:
-        raise NotImplementedError(
-            f"No Evaluator for {dataset_name} with the type {evaluator_type}"
-        )
-
-
 class Trainer(DefaultTrainer):
     """ """
 
     @classmethod
-    def build_evaluator(cls, cfg, dataset_name, output_folder=None):
-        return build_evaluator(cfg, dataset_name, output_folder)
-
-    @classmethod
     def build_train_loader(cls, cfg):
         dataloader_type = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).dataloader_type
-        if dataloader_type == "coco":
+        if dataloader_type == "default":
+            return build_detection_train_loader(
+                cfg,
+                mapper=DatasetMapper(cfg, is_train=True),
+            )
+        elif dataloader_type == "coco":
             return coco_loaders.build_coco_train_loader(cfg=cfg)
         else:
             raise NotImplementedError("unsupported dataloader type")
 
     @classmethod
     def build_validation_loader(cls, cfg):
-        dataloader_style = MetadataCatalog.get(cfg.DATASETS.VAL[0]).dataloader_type
-        if dataloader_style == "coco":
+        dataset_name = cfg.DATASETS.VAL[0]
+        dataloader_style = MetadataCatalog.get(dataset_name).dataloader_type
+        if dataloader_style == "default":
+            return build_detection_test_loader(
+                dataset=get_detection_dataset_dicts(
+                    names=dataset_name, filter_empty=False
+                ),
+                mapper=DatasetMapper(cfg, is_train=True),
+            )
+        elif dataloader_style == "coco":
             return coco_loaders.build_coco_val_loader(cfg=cfg)
-        else:
-            raise NotImplementedError("unsupported dataloader type")
-
-    @classmethod
-    def build_test_loader(cls, cfg, dataset_name):
-        dataloader_style = MetadataCatalog.get(cfg.DATASETS.TEST[0]).dataloader_type
-        if dataloader_style == "coco":
-            return coco_loaders.build_coco_test_loader(cfg=cfg)
         else:
             raise NotImplementedError("unsupported dataloader type")
 
@@ -212,7 +186,7 @@ class Trainer(DefaultTrainer):
                         self.model,
                         self.build_validation_loader(self.cfg),
                     ),
-                    eval_after_train=False,
+                    eval_after_train=True,
                 ),
                 BestCheckpointer(
                     eval_period=self.cfg.TEST.EVAL_PERIOD,
@@ -223,26 +197,6 @@ class Trainer(DefaultTrainer):
             ]
         )
         return hooks
-
-
-def register_dataset_splits(
-    datasets: List[List[str]],
-    classes: List[str],
-    dataloader_type: str,
-    evaluator_type: str,
-):
-    for category, paths in zip(["train", "val", "test"], datasets):
-        DatasetCatalog.register(
-            name=f"mixed_{category}",
-            func=lambda im_paths=paths: register_dataset(
-                im_paths=im_paths, skip_no_pairs=True
-            ),
-        )
-        MetadataCatalog.get(f"mixed_{category}").set(
-            thing_classes=classes,
-            dataloader_type=dataloader_type,
-            evaluator_type=evaluator_type,
-        )
 
 
 def iters_per_epoch(trainset_len: int, batch_size: int):
@@ -261,44 +215,47 @@ def setup(args):
     )
     cfg.merge_from_file(model_zoo.get_config_file(model_cfg))
 
-    # LOAD DATASET
+    # split data and generate it if necessary
     if args.dataset == "mixed":
         random_split_mixed_set(
-            img_dir=custom_datasets.MIXED_SRC,
-            split_ratio=custom_datasets.MIXED_SPLIT_RATIO,
+            img_dir=elevator_datasets.MIXED_SRC,
+            split_ratio=elevator_datasets.MIXED_SPLIT_RATIO,
             seed=args.seed,
         )
-        datasets = read_split_file(fpath=custom_datasets.MIXED_SPLIT_FILE_PATH)
-        register_dataset_splits(
-            datasets=datasets,
-            classes=list(custom_datasets.CLASSES.keys()),
-            dataloader_type="coco",
-            evaluator_type="coco",
-        )
+        datasets = read_split_file(fpath=elevator_datasets.MIXED_SPLIT_FILE_PATH)
+        dataloader_type = "coco"
     elif args.dataset == "md_mixed":
-        if not os.path.exists(custom_datasets.MIXED_SPLIT_FILE_PATH):
+        if not os.path.exists(elevator_datasets.MIXED_SPLIT_FILE_PATH):
             random_split_mixed_set(
-                img_dir=custom_datasets.MIXED_SRC,
-                split_ratio=custom_datasets.MIXED_SPLIT_RATIO,
+                img_dir=elevator_datasets.MIXED_SRC,
+                split_ratio=elevator_datasets.MIXED_SPLIT_RATIO,
                 seed=args.seed,
             )
-        if not os.path.exists(custom_datasets.MD_MIXED_SRC):
+        if not os.path.exists(elevator_datasets.MD_MIXED_SRC):
             log_every_n_seconds(
                 logging.INFO, f"generating missed detections mixed dataset..."
             )
             generate_missed_detections_data(
                 dataset_name="mixed", skip_no_pairs=args.skip_no_pairs
             )
-
-        datasets = read_split_file(custom_datasets.MD_MIXED_SPLIT_FILE_PATH)
-        register_dataset_splits(
-            datasets=datasets,
-            classes=list(custom_datasets.CLASSES.keys()),
-            dataloader_type="default",
-            evaluator_type="coco",
-        )
+        datasets = read_split_file(fpath=elevator_datasets.MD_MIXED_SPLIT_FILE_PATH)
+        dataloader_type = "default"
     else:
         raise NotImplementedError("Unsupported Dataset")
+
+    # register datasets
+    for category, paths in zip(["train", "val", "test"], datasets):
+        DatasetCatalog.register(
+            name=f"{args.dataset}_{category}",
+            func=lambda im_paths=paths: register_dataset(
+                im_paths=im_paths, skip_no_pairs=args.skip_no_pairs
+            ),
+        )
+        MetadataCatalog.get(f"{args.dataset}_{category}").set(
+            thing_classes=list(elevator_datasets.CLASSES.keys()),
+            dataloader_type=dataloader_type,
+            evaluator_type="coco",
+        )
 
     iter_per_epoch = iters_per_epoch(
         trainset_len=len(datasets[0]), batch_size=args.batch_size
@@ -311,13 +268,16 @@ def setup(args):
         else args.path_to_weights
     )
 
-    # LOAD DATASETS and adjust ROI HEADS to match num classes
+    # assign datasets and adjust ROI HEADS to match num classes
     cfg.DATASETS.TRAIN = (f"{args.dataset}_train",)
     cfg.DATASETS.VAL = (f"{args.dataset}_val",)
     cfg.DATASETS.TEST = (f"{args.dataset}_test",)
-    cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(custom_datasets.CLASSES.keys())
+    cfg.DATALOADER.FILTER_EMPTY_ANNOTATIONS = False
+    cfg.INPUT.RANDOM_FLIP = "none"
+    cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(elevator_datasets.CLASSES.keys())
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.score_thresh
 
-    # TRAINING LOGIC
+    # Calculate training logic
     cfg.SOLVER.MAX_ITER = iter_per_epoch * args.epochs
     cfg.TEST.EVAL_PERIOD = iter_per_epoch * args.eval_period
     cfg.SOLVER.IMS_PER_BATCH = args.batch_size
@@ -337,21 +297,11 @@ def setup(args):
 
 def main(args):
     cfg = setup(args)
-    if args.eval_only:
-        model = Trainer.build_model(cfg)
-        DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
-            cfg.MODEL.WEIGHTS, resume=args.resume
-        )
-        results = Trainer.test(cfg, model)
-        print(results)
-        return
 
     # train model
     trainer = Trainer(cfg)
     trainer.resume_or_load(resume=args.resume)
     trainer.train()
-    print(trainer.test(cfg, trainer.model))
-    return
 
 
 if __name__ == "__main__":

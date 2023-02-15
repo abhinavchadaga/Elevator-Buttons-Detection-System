@@ -1,6 +1,5 @@
 from detectron2.data import (
     get_detection_dataset_dicts,
-    MetadataCatalog,
     build_detection_train_loader,
     build_detection_test_loader,
     DatasetMapper,
@@ -37,18 +36,6 @@ def build_coco_val_loader(cfg):
         dataset=get_detection_dataset_dicts(cfg.DATASETS.VAL[0], filter_empty=False),
         mapper=DatasetMapper(
             is_train=True,
-            augmentations=[T.ResizeShortestEdge(short_edge_length=1024, max_size=1024)],
-            image_format="BGR",
-            use_instance_mask=True,
-        ),
-    )
-
-
-def build_coco_test_loader(cfg):
-    return build_detection_test_loader(
-        dataset=get_detection_dataset_dicts(cfg.DATASETS.TEST[0], filter_empty=False),
-        mapper=DatasetMapper(
-            is_train=False,
             augmentations=[T.ResizeShortestEdge(short_edge_length=1024, max_size=1024)],
             image_format="BGR",
             use_instance_mask=True,
