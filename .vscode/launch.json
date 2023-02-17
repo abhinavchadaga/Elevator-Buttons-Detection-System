@@ -5,12 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug train_net.py",
+            "name": "detection_pipeline.py",
+            "type": "python",
+            "request": "launch",
+            "program": "detection_pipeline.py",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "train_net.py",
             "type": "python",
             "request": "launch",
             "program": "yacs_train_net.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "args": [
                 "--dataset",
                 "mixed",
