@@ -10195,7 +10195,7 @@
                 },
                 "region_attributes": {
                     "category_id": "label",
-                    "pair": "front door open"
+                    "pair": "front door close"
                 }
             },
             {
@@ -10972,7 +10972,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": "front door open"
+                    "pair": "front door close"
                 }
             },
             {
@@ -11174,7 +11174,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": ""
+                    "pair": "rear door open"
                 }
             },
             {
@@ -11192,7 +11192,7 @@
                         872,
                         870,
                         867,
-                        860,
+                        859,
                         851,
                         843,
                         837,
@@ -11212,7 +11212,7 @@
                         1946,
                         1953,
                         1958,
-                        1963,
+                        1964,
                         1966,
                         1965,
                         1961,
@@ -18415,7 +18415,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": "alarm"
+                    "pair": "stop"
                 }
             }
         ],
@@ -19000,7 +19000,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": ""
+                    "pair": "alarm"
                 }
             },
             {
@@ -23737,45 +23737,6 @@
             },
             {
                 "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        1827,
-                        2033,
-                        2047,
-                        2058,
-                        2057,
-                        2050,
-                        2041,
-                        1829,
-                        1820,
-                        1811,
-                        1811,
-                        1815,
-                        1823
-                    ],
-                    "all_points_y": [
-                        960,
-                        953,
-                        956,
-                        968,
-                        1182,
-                        1198,
-                        1206,
-                        1212,
-                        1208,
-                        1194,
-                        980,
-                        968,
-                        960
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": ""
-                }
-            },
-            {
-                "shape_attributes": {
                     "name": "ellipse",
                     "cx": 958,
                     "cy": 1103,
@@ -24114,14 +24075,55 @@
                 "shape_attributes": {
                     "name": "ellipse",
                     "cx": 2187,
-                    "cy": 1070,
-                    "rx": 108.07,
-                    "ry": 115.924,
-                    "theta": -2.608
+                    "cy": 1073,
+                    "rx": 109.708,
+                    "ry": 119.872,
+                    "theta": -2.705
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": ""
+                    "pair": "CALL CANCEL"
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polyline",
+                    "all_points_x": [
+                        1810,
+                        1812,
+                        1820,
+                        1844,
+                        2042,
+                        2054,
+                        2061,
+                        2057,
+                        2050,
+                        2039,
+                        1835,
+                        1820,
+                        1811,
+                        1809
+                    ],
+                    "all_points_y": [
+                        1000,
+                        979,
+                        963,
+                        957,
+                        951,
+                        958,
+                        973,
+                        1186,
+                        1201,
+                        1209,
+                        1216,
+                        1210,
+                        1194,
+                        1018
+                    ]
+                },
+                "region_attributes": {
+                    "category_id": "label",
+                    "pair": "CALL CANCEL"
                 }
             }
         ],
@@ -24718,212 +24720,6 @@
                 "shape_attributes": {
                     "name": "polyline",
                     "all_points_x": [
-                        506,
-                        470,
-                        461,
-                        452,
-                        440,
-                        437,
-                        433,
-                        432,
-                        431,
-                        431,
-                        431,
-                        432,
-                        435,
-                        439,
-                        445,
-                        450,
-                        457,
-                        463,
-                        507
-                    ],
-                    "all_points_y": [
-                        77,
-                        77,
-                        79,
-                        85,
-                        95,
-                        100,
-                        107,
-                        113,
-                        119,
-                        124,
-                        129,
-                        135,
-                        142,
-                        148,
-                        154,
-                        158,
-                        161,
-                        163,
-                        164
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "38"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        506,
-                        464,
-                        457,
-                        448,
-                        443,
-                        438,
-                        434,
-                        432,
-                        431,
-                        430,
-                        431,
-                        432,
-                        435,
-                        439,
-                        444,
-                        449,
-                        455,
-                        461,
-                        467,
-                        506
-                    ],
-                    "all_points_y": [
-                        180,
-                        181,
-                        183,
-                        189,
-                        194,
-                        202,
-                        209,
-                        215,
-                        220,
-                        226,
-                        231,
-                        237,
-                        244,
-                        250,
-                        254,
-                        259,
-                        263,
-                        265,
-                        266,
-                        266
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "34"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        506,
-                        462,
-                        452,
-                        444,
-                        438,
-                        435,
-                        432,
-                        430,
-                        430,
-                        431,
-                        434,
-                        438,
-                        443,
-                        451,
-                        460,
-                        466,
-                        506
-                    ],
-                    "all_points_y": [
-                        282,
-                        283,
-                        287,
-                        293,
-                        300,
-                        305,
-                        312,
-                        319,
-                        328,
-                        336,
-                        343,
-                        351,
-                        356,
-                        362,
-                        366,
-                        366,
-                        367
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "30"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        506,
-                        464,
-                        456,
-                        450,
-                        443,
-                        438,
-                        435,
-                        432,
-                        430,
-                        429,
-                        429,
-                        430,
-                        432,
-                        435,
-                        439,
-                        443,
-                        448,
-                        454,
-                        462,
-                        464,
-                        507
-                    ],
-                    "all_points_y": [
-                        383,
-                        383,
-                        385,
-                        388,
-                        393,
-                        398,
-                        402,
-                        408,
-                        415,
-                        420,
-                        427,
-                        433,
-                        439,
-                        447,
-                        452,
-                        456,
-                        461,
-                        464,
-                        466,
-                        467,
-                        467
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "26"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
                         274,
                         272,
                         270,
@@ -25131,57 +24927,6 @@
                 "region_attributes": {
                     "category_id": "label",
                     "pair": "41"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        437,
-                        435,
-                        434,
-                        433,
-                        433,
-                        433,
-                        434,
-                        435,
-                        437,
-                        440,
-                        443,
-                        447,
-                        451,
-                        455,
-                        459,
-                        462,
-                        467,
-                        507,
-                        507
-                    ],
-                    "all_points_y": [
-                        1,
-                        4,
-                        7,
-                        13,
-                        18,
-                        23,
-                        28,
-                        32,
-                        36,
-                        41,
-                        45,
-                        49,
-                        52,
-                        54,
-                        56,
-                        57,
-                        59,
-                        59,
-                        1
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "42"
                 }
             },
             {
@@ -31444,18 +31189,6 @@
                 "region_attributes": {
                     "category_id": "button",
                     "pair": ""
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "circle",
-                    "cx": 161,
-                    "cy": 1774,
-                    "r": 24.001
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "call received"
                 }
             }
         ],
@@ -38081,7 +37814,7 @@
                     ]
                 },
                 "region_attributes": {
-                    "category_id": "label",
+                    "category_id": "button",
                     "pair": "alarm"
                 }
             },
@@ -43075,7 +42808,7 @@
                 },
                 "region_attributes": {
                     "category_id": "label",
-                    "pair": "*!"
+                    "pair": "*1"
                 }
             },
             {
@@ -44327,7 +44060,7 @@
                     ]
                 },
                 "region_attributes": {
-                    "category_id": "button",
+                    "category_id": "label",
                     "pair": "6"
                 }
             },
@@ -51256,7 +50989,7 @@
                     "theta": -3.131
                 },
                 "region_attributes": {
-                    "category_id": "button",
+                    "category_id": "label",
                     "pair": "alarm"
                 }
             },
@@ -61270,61 +61003,6 @@
                 "region_attributes": {
                     "category_id": "button"
                 }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        1043,
-                        1297,
-                        1347,
-                        1393,
-                        1415,
-                        1429,
-                        1430,
-                        1416,
-                        1392,
-                        1363,
-                        1301,
-                        1079,
-                        1041,
-                        996,
-                        962,
-                        946,
-                        945,
-                        951,
-                        976,
-                        1002,
-                        1029
-                    ],
-                    "all_points_y": [
-                        3783,
-                        3765,
-                        3772,
-                        3796,
-                        3826,
-                        3858,
-                        3892,
-                        3932,
-                        3958,
-                        3978,
-                        3989,
-                        4004,
-                        3999,
-                        3978,
-                        3949,
-                        3916,
-                        3880,
-                        3847,
-                        3815,
-                        3799,
-                        3786
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "help"
-                }
             }
         ],
         "file_attributes": {
@@ -68369,7 +68047,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": "1"
+                    "pair": "12"
                 }
             },
             {
@@ -84762,7 +84440,7 @@
                 },
                 "region_attributes": {
                     "category_id": "label",
-                    "pair": "23"
+                    "pair": "24"
                 }
             },
             {
@@ -86502,47 +86180,6 @@
                 "shape_attributes": {
                     "name": "polyline",
                     "all_points_x": [
-                        830,
-                        978,
-                        985,
-                        990,
-                        991,
-                        987,
-                        981,
-                        970,
-                        830,
-                        824,
-                        821,
-                        822,
-                        823,
-                        827
-                    ],
-                    "all_points_y": [
-                        652,
-                        651,
-                        654,
-                        661,
-                        726,
-                        733,
-                        735,
-                        737,
-                        735,
-                        731,
-                        727,
-                        663,
-                        659,
-                        653
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "HELP"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
                         1104,
                         1179,
                         1184,
@@ -87886,84 +87523,6 @@
                 "shape_attributes": {
                     "name": "polyline",
                     "all_points_x": [
-                        1379,
-                        1099,
-                        1080,
-                        1060,
-                        1046,
-                        1040,
-                        1042,
-                        1047,
-                        1061,
-                        1075,
-                        1085,
-                        1343,
-                        1377
-                    ],
-                    "all_points_y": [
-                        3679,
-                        3686,
-                        3691,
-                        3713,
-                        3739,
-                        3773,
-                        3792,
-                        3815,
-                        3841,
-                        3857,
-                        3868,
-                        3861,
-                        3860
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "HELP"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        1552,
-                        1844,
-                        1861,
-                        1875,
-                        1884,
-                        1890,
-                        1892,
-                        1887,
-                        1879,
-                        1869,
-                        1855,
-                        1837,
-                        1558
-                    ],
-                    "all_points_y": [
-                        3674,
-                        3664,
-                        3673,
-                        3690,
-                        3710,
-                        3732,
-                        3757,
-                        3782,
-                        3802,
-                        3821,
-                        3839,
-                        3848,
-                        3858
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "help"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
                         1399,
                         1391,
                         1381,
@@ -88038,6 +87597,59 @@
                 },
                 "region_attributes": {
                     "category_id": "button"
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "polyline",
+                    "all_points_x": [
+                        1099,
+                        1844,
+                        1857,
+                        1875,
+                        1887,
+                        1892,
+                        1889,
+                        1874,
+                        1858,
+                        1840,
+                        1091,
+                        1076,
+                        1058,
+                        1046,
+                        1039,
+                        1040,
+                        1053,
+                        1070,
+                        1082,
+                        1092
+                    ],
+                    "all_points_y": [
+                        3686,
+                        3663,
+                        3670,
+                        3694,
+                        3720,
+                        3754,
+                        3782,
+                        3813,
+                        3835,
+                        3849,
+                        3874,
+                        3862,
+                        3840,
+                        3819,
+                        3789,
+                        3759,
+                        3723,
+                        3699,
+                        3688,
+                        3686
+                    ]
+                },
+                "region_attributes": {
+                    "category_id": "label",
+                    "pair": "HELP"
                 }
             }
         ],
@@ -90801,37 +90413,6 @@
                 "shape_attributes": {
                     "name": "polyline",
                     "all_points_x": [
-                        534,
-                        499,
-                        494,
-                        490,
-                        496,
-                        499,
-                        504,
-                        518,
-                        534
-                    ],
-                    "all_points_y": [
-                        95,
-                        95,
-                        98,
-                        105,
-                        183,
-                        191,
-                        196,
-                        197,
-                        197
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "44"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
                         49,
                         90,
                         98,
@@ -92902,7 +92483,7 @@
                 },
                 "region_attributes": {
                     "category_id": "button",
-                    "pair": "rear door close "
+                    "pair": "rear door close"
                 }
             }
         ],

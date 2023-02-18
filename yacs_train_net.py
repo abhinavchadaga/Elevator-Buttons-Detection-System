@@ -61,12 +61,6 @@ def custom_args(epilog=None):
     parser.add_argument(
         "--eval_period", type=int, default=2, help="number of epochs to eval after"
     )
-    parser.add_argument(
-        "--path_to_weights",
-        type=str,
-        help="path to trained weights, use this for eval only",
-    )
-    parser.add_argument("--score_thresh", type=float, default=0.7)
     parser.add_argument("--output_dir", type=str, default="./output")
     parser.add_argument(
         "--seed", type=int, default=10, help="seed for shuffling dataset splits"
@@ -262,11 +256,7 @@ def setup(args):
     )
 
     # start from pretrained weights or fine tuned weights if supplied
-    cfg.MODEL.WEIGHTS = (
-        model_zoo.get_checkpoint_url(model_cfg)
-        if not args.path_to_weights
-        else args.path_to_weights
-    )
+    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(model_cfg)
 
     # assign datasets and adjust ROI HEADS to match num classes
     cfg.DATASETS.TRAIN = (f"{args.dataset}_train",)
@@ -275,7 +265,6 @@ def setup(args):
     cfg.DATALOADER.FILTER_EMPTY_ANNOTATIONS = False
     cfg.INPUT.RANDOM_FLIP = "none"
     cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(elevator_datasets.CLASSES.keys())
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.score_thresh
 
     # Calculate training logic
     cfg.SOLVER.MAX_ITER = iter_per_epoch * args.epochs
