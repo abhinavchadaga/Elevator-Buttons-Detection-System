@@ -13,3 +13,6 @@ models/
 
 # ignore pycache
 __pycache__/*
+
+# don't include detectron2
+detectron2
