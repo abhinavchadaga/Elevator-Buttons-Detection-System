@@ -1,10 +1,10 @@
-from asyncio.log import logger
 import json
-import logging
+import random
 from typing import List, Tuple
 import math
 import os
 from copy import deepcopy
+from collections import defaultdict, deque
 
 import numpy as np
 from tqdm import tqdm
@@ -256,7 +256,9 @@ def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
     return dataset_dicts
 
 
-def generate_missed_detections_data(dataset_name: str, skip_no_pairs=True) -> None:
+def generate_missed_detections_data(
+    dataset_name: str, skip_no_pairs=True, verify=False
+) -> None:
     """Generate missed detections data from a pre-existing panels dataset
 
     Args:
@@ -275,27 +277,103 @@ def generate_missed_detections_data(dataset_name: str, skip_no_pairs=True) -> No
     save_dir = os.path.join("data/missed_detections", dataset_name)
     os.makedirs(save_dir, exist_ok=True)
 
+    def helper(k, id, remove="all"):
+        """generate permutations of k buttons and labels removed from an image
+
+        Args:
+            k (_type_): number of buttons or labels to remove from an image
+        """
+        pool = deepcopy(pairs)  # button label pairs to choose from
+        chosen = {}  # keep track of regions chosen so far
+        while pool:
+            out = base.copy()
+            if k <= len(pool):
+                selected_keys = random.sample(list(pool.keys()), k)
+            else:
+                # less than k pairs in the pool
+                # resample already chosen keys and add remaining keys in pool
+                selected_keys = random.sample(list(chosen.keys()), k - len(pool))
+                selected_keys.extend(list(pool.keys()))
+
+            regions = []
+            for s in selected_keys:
+                if s in pool:
+                    # remove from pool, add to chosen
+                    pair = pool.pop(s)
+                    chosen[s] = pair
+                else:
+                    # s is not in pool, resampling from chosen
+                    pair = chosen[s]
+
+                label, button = pair
+                if label is None or button is None:
+                    # DEBUGGING
+                    continue
+                if remove == "all":
+                    r = label if random.random() < 0.5 else button
+                elif remove == "label":
+                    r = label
+                elif remove == "button":
+                    r = button
+                else:
+                    raise Exception("remove must be one of all, label or button")
+
+                regions.append(r)
+                rr, cc = generate_gt_mask_opaque(
+                    region=r, im_height=height, im_width=width
+                )
+                out[rr, cc] = [0, 0, 0]
+
+            # kinda expensive
+            if verify:
+                unique = set()
+                for r in regions:
+                    if r["region_attributes"]["pair"] in unique:
+                        print([r["region_attributes"]["pair"] for r in regions])
+                        raise Exception("non unique pairs!!!")
+                    else:
+                        unique.add(r["region_attributes"]["pair"])
+
+            new_fname = f"{os.path.splitext(filename)[0]}_{id}.jpg"
+            gts[new_fname] = {
+                "filename": new_fname,
+                "original_image": filename,
+                "regions": regions,
+            }
+
+            save_path = os.path.join(save_dir, new_fname)
+            cv2.imwrite(save_path, out[:, :, ::-1])
+            spl.append(f"{save_path},{ds}")
+            id += 1
+        return id
+
+    # iterate over every image
     for l in tqdm(im_paths, desc="panel images"):
-        # original image loop
         im_path, ds = l.split(",")
         filename = os.path.basename(im_path)
         img_dict = annos[filename]
         im = cv2.imread(im_path)
         height, width = im.shape[:2]
-        all_regions = np.zeros_like(im, dtype=np.uint8)
-        i = 0
+
+        # base class map
+        id = 0
+        base = np.zeros_like(im, dtype=np.uint8)
+        pairs = defaultdict(lambda: [None] * 2)
         for r in img_dict["regions"]:
-            # build class map w all detections
             pair = r["region_attributes"].get("pair")
             if skip_no_pairs and (pair is None or pair == ""):
                 # skip features with no paired button or label
                 continue
             rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
             _class = r["region_attributes"]["category_id"]
+            if _class == "label":
+                pairs[pair][0] = r
+            else:
+                pairs[pair][1] = r
             # green for label, blue for button
-            all_regions[rr, cc] = [0, 255, 0] if _class == "label" else [0, 0, 255]
+            base[rr, cc] = [0, 255, 0] if _class == "label" else [0, 0, 255]
 
-        # save none missing first
+        # save base/none missing first
         new_fname = f"{os.path.splitext(filename)[0]}_none.jpg"
         gts[new_fname] = {
             "filename": new_fname,
@@ -303,32 +381,22 @@ def generate_missed_detections_data(dataset_name: str, skip_no_pairs=True) -> No
             "regions": [],
         }
         save_path = os.path.join(save_dir, new_fname)
-        cv2.imwrite(save_path, all_regions[:, :, ::-1])
+        cv2.imwrite(save_path, base[:, :, ::-1])
         spl.append(f"{save_path},{ds}")
 
-        for r in img_dict["regions"]:
-            pair = r["region_attributes"].get("pair")
-            if pair is None or pair == "":
-                # No need to guess buttons w no pairs
-                continue
-            rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
-            minus_one = all_regions.copy()
-            minus_one[rr, cc] = [0, 0, 0]
-
-            new_fname = f"{os.path.splitext(filename)[0]}_{i}.jpg"
-            gts[new_fname] = {
-                "filename": new_fname,
-                "original_image": filename,
-                "regions": [deepcopy(r)],
-            }
-
-            save_path = os.path.join(save_dir, new_fname)
-            cv2.imwrite(save_path, minus_one[:, :, ::-1])
-            spl.append(f"{save_path},{ds}")
-            i += 1
+        for k in range(1, math.ceil(0.25 * len(pairs) * 2)):
+            if k == 1:
+                id = helper(1, id, remove="button")
+                id = helper(1, id, remove="label")
+            else:
+                id = helper(k, id)
 
     with open(os.path.join(save_dir, "annotations.json"), "w") as f:
         json.dump(gts, f)
 
     with open(os.path.join(save_dir, "split.txt"), "w") as f:
         f.writelines(spl)
+
+
+if __name__ == "__main__":
+    generate_missed_detections_data("mixed")

@@ -194,7 +194,7 @@ class Trainer(DefaultTrainer):
 
 
 def iters_per_epoch(trainset_len: int, batch_size: int):
-    return math.ceil(trainset_len // batch_size)
+    return math.ceil(trainset_len / batch_size)
 
 
 def setup(args):
@@ -272,11 +272,11 @@ def setup(args):
     cfg.SOLVER.IMS_PER_BATCH = args.batch_size
     cfg.SOLVER.BASE_LR = args.base_lr
     cfg.SOLVER.STEPS = (
-        [int(0.8 * cfg.SOLVER.MAX_ITER), int(0.9 * cfg.SOLVER.MAX_ITER)]
+        [int(0.7 * cfg.SOLVER.MAX_ITER), int(0.8 * cfg.SOLVER.MAX_ITER)]
         if args.decay_lr
         else []
     )
-    cfg.SOLVER.WARMUP_ITERS = int(0.4 * cfg.SOLVER.MAX_ITER)
+    cfg.SOLVER.WARMUP_ITERS = int(0.067 * cfg.SOLVER.MAX_ITER)
 
     # SAVE DIR
     cfg.OUTPUT_DIR = args.output_dir

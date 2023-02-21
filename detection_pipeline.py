@@ -24,11 +24,7 @@ def load_inference_model(options: dict) -> nn.Module:
         nn.Module: model with weights loaded and appropriate parameters set
     """
     cfg = get_cfg()
-    base = (
-        "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"
-        if options.get("arch") == "mask_rcnn"
-        else "Misc/cascade_mask_rcnn_R_50_FPN_3x.yaml"
-    )
+    base = "COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml"
     cfg.merge_from_file(model_zoo.get_config_file(base))
     cfg.MODEL.WEIGHTS = options.get("weights")
     cfg.MODEL.DEVICE = options.get("device")

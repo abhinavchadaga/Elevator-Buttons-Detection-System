@@ -19,7 +19,7 @@ from detectron2.utils.visualizer import Visualizer, ColorMode
 
 from data_utils import read_split_file, register_dataset
 
-im_paths = "data/panels/mixed/split.txt"
+im_paths = "data/missed_detections/mixed/split.txt"
 datasets = read_split_file(im_paths)
 test_im_paths = datasets[-1]
 
@@ -37,10 +37,9 @@ cfg = get_cfg()
 cfg.merge_from_file(
     model_zoo.get_config_file("Misc/cascade_mask_rcnn_R_50_FPN_3x.yaml")
 )
-# cfg.MODEL.WEIGHTS = "models/recovery_v2/model_best.pth"
-# cfg.MODEL.WEIGHTS = "models/cascade_mask_rcnn_mixed/model_best.pth"
+cfg.MODEL.WEIGHTS = "models/cascade_mrcnn_recovery/model_best.pth"
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2
-cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.9
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
 cfg.DATALOADER.FILTER_EMPTY_ANNOTATIONS = False
 cfg.DATALOADER.NUM_WORKERS = 8
 cfg.INPUT.RANDOM_FLIP = "none"
@@ -49,9 +48,9 @@ cfg.DATASETS.TEST = ("test",)
 predictor = DefaultPredictor(cfg)
 
 
-save_dir = "test_images/recovery_v2"
+save_dir = "test_images/cascade_mrcnn_dect"
 os.makedirs(save_dir, exist_ok=True)
-for d in testset:
+for d in random.sample(testset, int(0.25 * len(testset))):
     im = cv2.imread(d["file_name"])
     outputs = predictor(im)
     v = Visualizer(

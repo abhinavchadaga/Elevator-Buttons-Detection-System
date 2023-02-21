@@ -1,0 +1,1178 @@
+[02/18 17:04:40] detectron2 INFO: Rank of current process: 0. World size: 1
+[02/18 17:04:40] detectron2 INFO: Environment info:
+----------------------  ---------------------------------------------------------------------------------------
+sys.platform            linux
+Python                  3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:21) [GCC 9.4.0]
+numpy                   1.21.6
+detectron2              0.6 @/home/abhinavchadaga/CS/fri_II_project/detectron2/detectron2
+Compiler                GCC 11.3
+CUDA compiler           CUDA 11.7
+detectron2 arch flags   8.6
+DETECTRON2_ENV_MODULE   <not set>
+PyTorch                 1.10.0 @/home/abhinavchadaga/miniforge3/envs/d2/lib/python3.7/site-packages/torch
+PyTorch debug build     False
+GPU available           Yes
+GPU 0                   NVIDIA GeForce RTX 3090 (arch=8.6)
+Driver version          515.86.01
+CUDA_HOME               /usr/local/cuda-11.7
+Pillow                  9.2.0
+torchvision             0.11.0 @/home/abhinavchadaga/miniforge3/envs/d2/lib/python3.7/site-packages/torchvision
+torchvision arch flags  3.5, 5.0, 6.0, 7.0, 7.5, 8.0, 8.6
+fvcore                  0.1.5.post20221221
+iopath                  0.1.9
+cv2                     4.5.5
+----------------------  ---------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) oneAPI Math Kernel Library Version 2022.1-Product Build 20220311 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.2.3 (Git Hash 7336ca9f055cf1bfa13efb658fe15dc9b41f0740)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 11.3
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.2
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.3, CUDNN_VERSION=8.2.0, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.10.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+[02/18 17:04:40] detectron2 INFO: Command line arguments: Namespace(arch='cascade_mask_rcnn', base_lr=0.00025, batch_size=4, config_file='', dataset='mixed', decay_lr=True, dist_url='tcp://127.0.0.1:50152', epochs=100, eval_only=False, eval_period=2, machine_rank=0, num_gpus=1, num_machines=1, opts=[], output_dir='./models/cascade_mrcnn_v2', resume=False, seed=10, skip_no_pairs=True)
+[02/18 17:04:40] detectron2 INFO: Running with full config:
+[38;5;197mCUDNN_BENCHMARK[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;197mDATALOADER[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mASPECT_RATIO_GROUPING[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m  [39m[38;5;197mFILTER_EMPTY_ANNOTATIONS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mNUM_WORKERS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4[39m
+[38;5;15m  [39m[38;5;197mREPEAT_THRESHOLD[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;15m  [39m[38;5;197mSAMPLER_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mTrainingSampler[39m
+[38;5;197mDATASETS[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mPRECOMPUTED_PROPOSAL_TOPK_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1000[39m
+[38;5;15m  [39m[38;5;197mPRECOMPUTED_PROPOSAL_TOPK_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2000[39m
+[38;5;15m  [39m[38;5;197mPROPOSAL_FILES_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m[[39m[38;5;15m][39m
+[38;5;15m  [39m[38;5;197mPROPOSAL_FILES_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m[[39m[38;5;15m][39m
+[38;5;15m  [39m[38;5;197mTEST[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mmixed_test[39m
+[38;5;15m  [39m[38;5;197mTRAIN[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mmixed_train[39m
+[38;5;15m  [39m[38;5;197mVAL[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mmixed_val[39m
+[38;5;197mGLOBAL[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mHACK[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;197mINPUT[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mCROP[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mSIZE[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.9[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.9[39m
+[38;5;15m    [39m[38;5;197mTYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mrelative_range[39m
+[38;5;15m  [39m[38;5;197mFORMAT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mBGR[39m
+[38;5;15m  [39m[38;5;197mMASK_FORMAT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mpolygon[39m
+[38;5;15m  [39m[38;5;197mMAX_SIZE_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1333[39m
+[38;5;15m  [39m[38;5;197mMAX_SIZE_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1333[39m
+[38;5;15m  [39m[38;5;197mMIN_SIZE_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m800[39m
+[38;5;15m  [39m[38;5;197mMIN_SIZE_TRAIN[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m640[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m672[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m704[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m736[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m768[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m800[39m
+[38;5;15m  [39m[38;5;197mMIN_SIZE_TRAIN_SAMPLING[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mchoice[39m
+[38;5;15m  [39m[38;5;197mRANDOM_FLIP[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mnone[39m
+[38;5;197mMODEL[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mANCHOR_GENERATOR[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mANGLES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m-90[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m90[39m
+[38;5;15m    [39m[38;5;197mASPECT_RATIOS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m2.0[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mDefaultAnchorGenerator[39m
+[38;5;15m    [39m[38;5;197mOFFSET[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;15m    [39m[38;5;197mSIZES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m32[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m64[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m128[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m  [39m[38;5;197mBACKBONE[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mFREEZE_AT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mbuild_resnet_fpn_backbone[39m
+[38;5;15m  [39m[38;5;197mDEVICE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mcuda[39m
+[38;5;15m  [39m[38;5;197mFPN[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mFUSE_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141msum[39m
+[38;5;15m    [39m[38;5;197mIN_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres2[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres5[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;186m'[39m[38;5;186m'[39m
+[38;5;15m    [39m[38;5;197mOUT_CHANNELS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m  [39m[38;5;197mKEYPOINT_ON[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mLOAD_PROPOSALS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mMASK_ON[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m  [39m[38;5;197mMETA_ARCHITECTURE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mGeneralizedRCNN[39m
+[38;5;15m  [39m[38;5;197mPANOPTIC_FPN[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mCOMBINE[39m[38;5;15m:[39m
+[38;5;15m      [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m      [39m[38;5;197mINSTANCES_CONFIDENCE_THRESH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m      [39m[38;5;197mOVERLAP_THRESH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m      [39m[38;5;197mSTUFF_AREA_LIMIT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4096[39m
+[38;5;15m    [39m[38;5;197mINSTANCE_LOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m  [39m[38;5;197mPIXEL_MEAN[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m103.53[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m116.28[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m123.675[39m
+[38;5;15m  [39m[38;5;197mPIXEL_STD[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m  [39m[38;5;197mPROPOSAL_GENERATOR[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mMIN_SIZE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mRPN[39m
+[38;5;15m  [39m[38;5;197mRESNETS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mDEFORM_MODULATED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mDEFORM_NUM_GROUPS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mDEFORM_ON_PER_STAGE[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mDEPTH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m50[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mFrozenBN[39m
+[38;5;15m    [39m[38;5;197mNUM_GROUPS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mOUT_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres2[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mres5[39m
+[38;5;15m    [39m[38;5;197mRES2_OUT_CHANNELS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m    [39m[38;5;197mRES5_DILATION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mSTEM_OUT_CHANNELS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m64[39m
+[38;5;15m    [39m[38;5;197mSTRIDE_IN_1X1[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m    [39m[38;5;197mWIDTH_PER_GROUP[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m64[39m
+[38;5;15m  [39m[38;5;197mRETINANET[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_LOSS_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141msmooth_l1[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_WEIGHTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m&id001[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mFOCAL_LOSS_ALPHA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.25[39m
+[38;5;15m    [39m[38;5;197mFOCAL_LOSS_GAMMA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2.0[39m
+[38;5;15m    [39m[38;5;197mIN_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp5[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp6[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp7[39m
+[38;5;15m    [39m[38;5;197mIOU_LABELS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m-1[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mIOU_THRESHOLDS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mNMS_THRESH_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;186m'[39m[38;5;186m'[39m
+[38;5;15m    [39m[38;5;197mNUM_CLASSES[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m80[39m
+[38;5;15m    [39m[38;5;197mNUM_CONVS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4[39m
+[38;5;15m    [39m[38;5;197mPRIOR_PROB[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.01[39m
+[38;5;15m    [39m[38;5;197mSCORE_THRESH_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.05[39m
+[38;5;15m    [39m[38;5;197mSMOOTH_L1_LOSS_BETA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.1[39m
+[38;5;15m    [39m[38;5;197mTOPK_CANDIDATES_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1000[39m
+[38;5;15m  [39m[38;5;197mROI_BOX_CASCADE_HEAD[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_WEIGHTS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m5.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m5.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m20.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m20.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m30.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m30.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m15.0[39m
+[38;5;15m      [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m15.0[39m
+[38;5;15m    [39m[38;5;197mIOUS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.6[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.7[39m
+[38;5;15m  [39m[38;5;197mROI_BOX_HEAD[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_LOSS_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141msmooth_l1[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_LOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_WEIGHTS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m10.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m5.0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m5.0[39m
+[38;5;15m    [39m[38;5;197mCLS_AGNOSTIC_BBOX_REG[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m    [39m[38;5;197mCONV_DIM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m    [39m[38;5;197mFC_DIM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1024[39m
+[38;5;15m    [39m[38;5;197mFED_LOSS_FREQ_WEIGHT_POWER[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mFED_LOSS_NUM_CLASSES[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m50[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mFastRCNNConvFCHead[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;186m'[39m[38;5;186m'[39m
+[38;5;15m    [39m[38;5;197mNUM_CONV[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;197mNUM_FC[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2[39m
+[38;5;15m    [39m[38;5;197mPOOLER_RESOLUTION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m7[39m
+[38;5;15m    [39m[38;5;197mPOOLER_SAMPLING_RATIO[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;197mPOOLER_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mROIAlignV2[39m
+[38;5;15m    [39m[38;5;197mSMOOTH_L1_BETA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;15m    [39m[38;5;197mTRAIN_ON_PRED_BOXES[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mUSE_FED_LOSS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mUSE_SIGMOID_CE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mROI_HEADS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mBATCH_SIZE_PER_IMAGE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;197mIN_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp2[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp5[39m
+[38;5;15m    [39m[38;5;197mIOU_LABELS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mIOU_THRESHOLDS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mCascadeROIHeads[39m
+[38;5;15m    [39m[38;5;197mNMS_THRESH_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mNUM_CLASSES[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2[39m
+[38;5;15m    [39m[38;5;197mPOSITIVE_FRACTION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.25[39m
+[38;5;15m    [39m[38;5;197mPROPOSAL_APPEND_GT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m    [39m[38;5;197mSCORE_THRESH_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.05[39m
+[38;5;15m  [39m[38;5;197mROI_KEYPOINT_HEAD[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mCONV_DIMS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m512[39m
+[38;5;15m    [39m[38;5;197mLOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mMIN_KEYPOINTS_PER_IMAGE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mKRCNNConvDeconvUpsampleHead[39m
+[38;5;15m    [39m[38;5;197mNORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m    [39m[38;5;197mNUM_KEYPOINTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m17[39m
+[38;5;15m    [39m[38;5;197mPOOLER_RESOLUTION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m14[39m
+[38;5;15m    [39m[38;5;197mPOOLER_SAMPLING_RATIO[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;197mPOOLER_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mROIAlignV2[39m
+[38;5;15m  [39m[38;5;197mROI_MASK_HEAD[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mCLS_AGNOSTIC_MASK[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mCONV_DIM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mMaskRCNNConvUpsampleHead[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;186m'[39m[38;5;186m'[39m
+[38;5;15m    [39m[38;5;197mNUM_CONV[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4[39m
+[38;5;15m    [39m[38;5;197mPOOLER_RESOLUTION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m14[39m
+[38;5;15m    [39m[38;5;197mPOOLER_SAMPLING_RATIO[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;197mPOOLER_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mROIAlignV2[39m
+[38;5;15m  [39m[38;5;197mRPN[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mBATCH_SIZE_PER_IMAGE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m256[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_LOSS_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141msmooth_l1[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_LOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mBBOX_REG_WEIGHTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m*id001[39m
+[38;5;15m    [39m[38;5;197mBOUNDARY_THRESH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m-1[39m
+[38;5;15m    [39m[38;5;197mCONV_DIMS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m-1[39m
+[38;5;15m    [39m[38;5;197mHEAD_NAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mStandardRPNHead[39m
+[38;5;15m    [39m[38;5;197mIN_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp2[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp5[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp6[39m
+[38;5;15m    [39m[38;5;197mIOU_LABELS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m-1[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1[39m
+[38;5;15m    [39m[38;5;197mIOU_THRESHOLDS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m0.7[39m
+[38;5;15m    [39m[38;5;197mLOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mNMS_THRESH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.7[39m
+[38;5;15m    [39m[38;5;197mPOSITIVE_FRACTION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.5[39m
+[38;5;15m    [39m[38;5;197mPOST_NMS_TOPK_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1000[39m
+[38;5;15m    [39m[38;5;197mPOST_NMS_TOPK_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2000[39m
+[38;5;15m    [39m[38;5;197mPRE_NMS_TOPK_TEST[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1000[39m
+[38;5;15m    [39m[38;5;197mPRE_NMS_TOPK_TRAIN[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2000[39m
+[38;5;15m    [39m[38;5;197mSMOOTH_L1_BETA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;15m  [39m[38;5;197mSEM_SEG_HEAD[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mCOMMON_STRIDE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4[39m
+[38;5;15m    [39m[38;5;197mCONVS_DIM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m128[39m
+[38;5;15m    [39m[38;5;197mIGNORE_VALUE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m255[39m
+[38;5;15m    [39m[38;5;197mIN_FEATURES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp2[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp3[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp4[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141mp5[39m
+[38;5;15m    [39m[38;5;197mLOSS_WEIGHT[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mNAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mSemSegFPNHead[39m
+[38;5;15m    [39m[38;5;197mNORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mGN[39m
+[38;5;15m    [39m[38;5;197mNUM_CLASSES[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m54[39m
+[38;5;15m  [39m[38;5;197mWEIGHTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mhttps://dl.fbaipublicfiles.com/detectron2/Misc/cascade_mask_rcnn_R_50_FPN_3x/144998488/model_final_480dd8.pkl[39m
+[38;5;197mOUTPUT_DIR[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m./models/cascade_mrcnn_v2[39m
+[38;5;197mSEED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m-1[39m
+[38;5;197mSOLVER[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mAMP[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mBASE_LR[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.00025[39m
+[38;5;15m  [39m[38;5;197mBASE_LR_END[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;15m  [39m[38;5;197mBIAS_LR_FACTOR[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m  [39m[38;5;197mCHECKPOINT_PERIOD[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m5000[39m
+[38;5;15m  [39m[38;5;197mCLIP_GRADIENTS[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mCLIP_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mvalue[39m
+[38;5;15m    [39m[38;5;197mCLIP_VALUE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1.0[39m
+[38;5;15m    [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mNORM_TYPE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2.0[39m
+[38;5;15m  [39m[38;5;197mGAMMA[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.1[39m
+[38;5;15m  [39m[38;5;197mIMS_PER_BATCH[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4[39m
+[38;5;15m  [39m[38;5;197mLR_SCHEDULER_NAME[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mWarmupMultiStepLR[39m
+[38;5;15m  [39m[38;5;197mMAX_ITER[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m1800[39m
+[38;5;15m  [39m[38;5;197mMOMENTUM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.9[39m
+[38;5;15m  [39m[38;5;197mNESTEROV[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mNUM_DECAYS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m3[39m
+[38;5;15m  [39m[38;5;197mREFERENCE_WORLD_SIZE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+[38;5;15m  [39m[38;5;197mRESCALE_INTERVAL[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m  [39m[38;5;197mSTEPS[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1260[39m
+[38;5;15m  [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1440[39m
+[38;5;15m  [39m[38;5;197mWARMUP_FACTOR[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.001[39m
+[38;5;15m  [39m[38;5;197mWARMUP_ITERS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m450[39m
+[38;5;15m  [39m[38;5;197mWARMUP_METHOD[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mlinear[39m
+[38;5;15m  [39m[38;5;197mWEIGHT_DECAY[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0001[39m
+[38;5;15m  [39m[38;5;197mWEIGHT_DECAY_BIAS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mnull[39m
+[38;5;15m  [39m[38;5;197mWEIGHT_DECAY_NORM[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0.0[39m
+[38;5;197mTEST[39m[38;5;15m:[39m
+[38;5;15m  [39m[38;5;197mAUG[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mFLIP[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mtrue[39m
+[38;5;15m    [39m[38;5;197mMAX_SIZE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m4000[39m
+[38;5;15m    [39m[38;5;197mMIN_SIZES[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m400[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m500[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m600[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m700[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m800[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m900[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1000[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1100[39m
+[38;5;15m    [39m[38;5;15m-[39m[38;5;15m [39m[38;5;141m1200[39m
+[38;5;15m  [39m[38;5;197mDETECTIONS_PER_IMAGE[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m100[39m
+[38;5;15m  [39m[38;5;197mEVAL_PERIOD[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m36[39m
+[38;5;15m  [39m[38;5;197mEXPECTED_RESULTS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m[[39m[38;5;15m][39m
+[38;5;15m  [39m[38;5;197mKEYPOINT_OKS_SIGMAS[39m[38;5;15m:[39m[38;5;15m [39m[38;5;15m[[39m[38;5;15m][39m
+[38;5;15m  [39m[38;5;197mPRECISE_BN[39m[38;5;15m:[39m
+[38;5;15m    [39m[38;5;197mENABLED[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141mfalse[39m
+[38;5;15m    [39m[38;5;197mNUM_ITER[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m200[39m
+[38;5;197mVERSION[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m2[39m
+[38;5;197mVIS_PERIOD[39m[38;5;15m:[39m[38;5;15m [39m[38;5;141m0[39m
+
+[02/18 17:04:40] detectron2 INFO: Full config saved to ./models/cascade_mrcnn_v2/config.yaml
+[02/18 17:04:40] d2.utils.env INFO: Using a generated random seed 42284924
+[02/18 17:04:43] d2.engine.defaults INFO: Model:
+GeneralizedRCNN(
+  (backbone): FPN(
+    (fpn_lateral2): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+    (fpn_output2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (fpn_lateral3): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+    (fpn_output3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (fpn_lateral4): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+    (fpn_output4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (fpn_lateral5): Conv2d(2048, 256, kernel_size=(1, 1), stride=(1, 1))
+    (fpn_output5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (top_block): LastLevelMaxPool()
+    (bottom_up): ResNet(
+      (stem): BasicStem(
+        (conv1): Conv2d(
+          3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False
+          (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+        )
+      )
+      (res2): Sequential(
+        (0): BottleneckBlock(
+          (shortcut): Conv2d(
+            64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv1): Conv2d(
+            64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+        )
+        (1): BottleneckBlock(
+          (conv1): Conv2d(
+            256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+        )
+        (2): BottleneckBlock(
+          (conv1): Conv2d(
+            256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+        )
+      )
+      (res3): Sequential(
+        (0): BottleneckBlock(
+          (shortcut): Conv2d(
+            256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv1): Conv2d(
+            256, 128, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+        )
+        (1): BottleneckBlock(
+          (conv1): Conv2d(
+            512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+        )
+        (2): BottleneckBlock(
+          (conv1): Conv2d(
+            512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+        )
+        (3): BottleneckBlock(
+          (conv1): Conv2d(
+            512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+        )
+      )
+      (res4): Sequential(
+        (0): BottleneckBlock(
+          (shortcut): Conv2d(
+            512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+          (conv1): Conv2d(
+            512, 256, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+        (1): BottleneckBlock(
+          (conv1): Conv2d(
+            1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+        (2): BottleneckBlock(
+          (conv1): Conv2d(
+            1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+        (3): BottleneckBlock(
+          (conv1): Conv2d(
+            1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+        (4): BottleneckBlock(
+          (conv1): Conv2d(
+            1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+        (5): BottleneckBlock(
+          (conv1): Conv2d(
+            1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+          )
+        )
+      )
+      (res5): Sequential(
+        (0): BottleneckBlock(
+          (shortcut): Conv2d(
+            1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+          )
+          (conv1): Conv2d(
+            1024, 512, kernel_size=(1, 1), stride=(2, 2), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+          )
+        )
+        (1): BottleneckBlock(
+          (conv1): Conv2d(
+            2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+          )
+        )
+        (2): BottleneckBlock(
+          (conv1): Conv2d(
+            2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv2): Conv2d(
+            512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+          )
+          (conv3): Conv2d(
+            512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+          )
+        )
+      )
+    )
+  )
+  (proposal_generator): RPN(
+    (rpn_head): StandardRPNHead(
+      (conv): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        (activation): ReLU()
+      )
+      (objectness_logits): Conv2d(256, 3, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(256, 12, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (anchor_generator): DefaultAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+  )
+  (roi_heads): CascadeROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlign(output_size=(7, 7), spatial_scale=0.25, sampling_ratio=0, aligned=True)
+        (1): ROIAlign(output_size=(7, 7), spatial_scale=0.125, sampling_ratio=0, aligned=True)
+        (2): ROIAlign(output_size=(7, 7), spatial_scale=0.0625, sampling_ratio=0, aligned=True)
+        (3): ROIAlign(output_size=(7, 7), spatial_scale=0.03125, sampling_ratio=0, aligned=True)
+      )
+    )
+    (box_head): ModuleList(
+      (0): FastRCNNConvFCHead(
+        (flatten): Flatten(start_dim=1, end_dim=-1)
+        (fc1): Linear(in_features=12544, out_features=1024, bias=True)
+        (fc_relu1): ReLU()
+        (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+        (fc_relu2): ReLU()
+      )
+      (1): FastRCNNConvFCHead(
+        (flatten): Flatten(start_dim=1, end_dim=-1)
+        (fc1): Linear(in_features=12544, out_features=1024, bias=True)
+        (fc_relu1): ReLU()
+        (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+        (fc_relu2): ReLU()
+      )
+      (2): FastRCNNConvFCHead(
+        (flatten): Flatten(start_dim=1, end_dim=-1)
+        (fc1): Linear(in_features=12544, out_features=1024, bias=True)
+        (fc_relu1): ReLU()
+        (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+        (fc_relu2): ReLU()
+      )
+    )
+    (box_predictor): ModuleList(
+      (0): FastRCNNOutputLayers(
+        (cls_score): Linear(in_features=1024, out_features=3, bias=True)
+        (bbox_pred): Linear(in_features=1024, out_features=4, bias=True)
+      )
+      (1): FastRCNNOutputLayers(
+        (cls_score): Linear(in_features=1024, out_features=3, bias=True)
+        (bbox_pred): Linear(in_features=1024, out_features=4, bias=True)
+      )
+      (2): FastRCNNOutputLayers(
+        (cls_score): Linear(in_features=1024, out_features=3, bias=True)
+        (bbox_pred): Linear(in_features=1024, out_features=4, bias=True)
+      )
+    )
+    (mask_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlign(output_size=(14, 14), spatial_scale=0.25, sampling_ratio=0, aligned=True)
+        (1): ROIAlign(output_size=(14, 14), spatial_scale=0.125, sampling_ratio=0, aligned=True)
+        (2): ROIAlign(output_size=(14, 14), spatial_scale=0.0625, sampling_ratio=0, aligned=True)
+        (3): ROIAlign(output_size=(14, 14), spatial_scale=0.03125, sampling_ratio=0, aligned=True)
+      )
+    )
+    (mask_head): MaskRCNNConvUpsampleHead(
+      (mask_fcn1): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        (activation): ReLU()
+      )
+      (mask_fcn2): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        (activation): ReLU()
+      )
+      (mask_fcn3): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        (activation): ReLU()
+      )
+      (mask_fcn4): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        (activation): ReLU()
+      )
+      (deconv): ConvTranspose2d(256, 256, kernel_size=(2, 2), stride=(2, 2))
+      (deconv_relu): ReLU()
+      (predictor): Conv2d(256, 2, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+[02/18 17:04:45] d2.data.build INFO: Distribution of instances among all 2 categories:
+[36m|  category  | #instances   |  category  | #instances   |
+|:----------:|:-------------|:----------:|:-------------|
+|   label    | 905          |   button   | 905          |
+|            |              |            |              |
+|   total    | 1810         |            |              |[0m
+[02/18 17:04:45] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeScale(min_scale=0.1, max_scale=2.0, target_height=1024, target_width=1024), FixedSizeCrop(crop_size=(1024, 1024), pad=False)]
+[02/18 17:04:45] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:04:45] d2.data.common INFO: Serializing 70 elements to byte tensors and concatenating them all ...
+[02/18 17:04:46] d2.data.common INFO: Serialized dataset takes 12.60 MiB
+[02/18 17:04:46] d2.checkpoint.detection_checkpoint INFO: [DetectionCheckpointer] Loading from https://dl.fbaipublicfiles.com/detectron2/Misc/cascade_mask_rcnn_R_50_FPN_3x/144998488/model_final_480dd8.pkl ...
+[02/18 17:04:46] fvcore.common.checkpoint INFO: [Checkpointer] Loading from /home/abhinavchadaga/.torch/iopath_cache/detectron2/Misc/cascade_mask_rcnn_R_50_FPN_3x/144998488/model_final_480dd8.pkl ...
+[02/18 17:04:46] fvcore.common.checkpoint INFO: Reading a file from 'Detectron2 Model Zoo'
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.0.cls_score.weight' to the model due to incompatible shapes: (81, 1024) in the checkpoint but (3, 1024) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.0.cls_score.bias' to the model due to incompatible shapes: (81,) in the checkpoint but (3,) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.1.cls_score.weight' to the model due to incompatible shapes: (81, 1024) in the checkpoint but (3, 1024) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.1.cls_score.bias' to the model due to incompatible shapes: (81,) in the checkpoint but (3,) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.2.cls_score.weight' to the model due to incompatible shapes: (81, 1024) in the checkpoint but (3, 1024) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.box_predictor.2.cls_score.bias' to the model due to incompatible shapes: (81,) in the checkpoint but (3,) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.mask_head.predictor.weight' to the model due to incompatible shapes: (80, 256, 1, 1) in the checkpoint but (2, 256, 1, 1) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Skip loading parameter 'roi_heads.mask_head.predictor.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (2,) in the model! You might want to double check if this is expected.
+[02/18 17:04:46] fvcore.common.checkpoint WARNING: Some model parameters or buffers are not found in the checkpoint:
+[34mroi_heads.box_predictor.0.cls_score.{bias, weight}[0m
+[34mroi_heads.box_predictor.1.cls_score.{bias, weight}[0m
+[34mroi_heads.box_predictor.2.cls_score.{bias, weight}[0m
+[34mroi_heads.mask_head.predictor.{bias, weight}[0m
+[02/18 17:04:46] d2.engine.train_loop INFO: Starting training from iteration 0
+[02/18 17:04:55] d2.utils.events INFO:  eta: 0:12:32  iter: 19  total_loss: 7.049  loss_cls_stage0: 1.09  loss_box_reg_stage0: 0.2911  loss_cls_stage1: 1.192  loss_box_reg_stage1: 0.5535  loss_cls_stage2: 1.23  loss_box_reg_stage2: 0.6648  loss_mask: 0.6908  loss_rpn_cls: 1.082  loss_rpn_loc: 0.115  time: 0.4179  last_time: 0.4471  data_time: 0.0367  last_data_time: 0.0225   lr: 1.0795e-05  max_mem: 5619M
+[02/18 17:05:02] d2.data.build INFO: Distribution of instances among all 2 categories:
+[36m|  category  | #instances   |  category  | #instances   |
+|:----------:|:-------------|:----------:|:-------------|
+|   label    | 180          |   button   | 180          |
+|            |              |            |              |
+|   total    | 360          |            |              |[0m
+[02/18 17:05:02] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:05:02] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:05:02] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:05:02] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:05:04] detectron2 INFO: VALIDATION_LOSS: 5.83191
+[02/18 17:05:04] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:05:04] d2.engine.hooks INFO: Saved first model at 5.83191 @ 35 steps
+[02/18 17:05:06] d2.utils.events INFO:  eta: 0:12:32  iter: 39  total_loss: 5.947  loss_cls_stage0: 1.01  loss_box_reg_stage0: 0.2622  loss_cls_stage1: 1.064  loss_box_reg_stage1: 0.5045  loss_cls_stage2: 1.103  loss_box_reg_stage2: 0.5984  loss_mask: 0.6693  loss_rpn_cls: 0.3595  loss_rpn_loc: 0.07881  validation_loss: 5.832  time: 0.4261  last_time: 0.4479  data_time: 0.0221  last_data_time: 0.0203   lr: 2.1895e-05  max_mem: 5619M
+[02/18 17:05:14] d2.utils.events INFO:  eta: 0:12:23  iter: 59  total_loss: 5.362  loss_cls_stage0: 0.8683  loss_box_reg_stage0: 0.2676  loss_cls_stage1: 0.925  loss_box_reg_stage1: 0.5157  loss_cls_stage2: 0.9521  loss_box_reg_stage2: 0.6381  loss_mask: 0.6217  loss_rpn_cls: 0.2412  loss_rpn_loc: 0.125  validation_loss: 5.832  time: 0.4240  last_time: 0.4204  data_time: 0.0163  last_data_time: 0.0006   lr: 3.2995e-05  max_mem: 5619M
+[02/18 17:05:20] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:05:20] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:05:20] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:05:20] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:05:21] detectron2 INFO: VALIDATION_LOSS: 4.85996
+[02/18 17:05:21] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:05:22] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 4.85996, better than last best score 5.83191 @ iteration 35.
+[02/18 17:05:26] d2.utils.events INFO:  eta: 0:12:17  iter: 79  total_loss: 4.669  loss_cls_stage0: 0.7594  loss_box_reg_stage0: 0.2555  loss_cls_stage1: 0.8271  loss_box_reg_stage1: 0.5415  loss_cls_stage2: 0.8431  loss_box_reg_stage2: 0.6642  loss_mask: 0.5696  loss_rpn_cls: 0.08839  loss_rpn_loc: 0.1163  validation_loss: 4.86  time: 0.4254  last_time: 0.3620  data_time: 0.0132  last_data_time: 0.0009   lr: 4.4095e-05  max_mem: 5619M
+[02/18 17:05:34] d2.utils.events INFO:  eta: 0:12:07  iter: 99  total_loss: 4.265  loss_cls_stage0: 0.6722  loss_box_reg_stage0: 0.2452  loss_cls_stage1: 0.7292  loss_box_reg_stage1: 0.4858  loss_cls_stage2: 0.7546  loss_box_reg_stage2: 0.6487  loss_mask: 0.5045  loss_rpn_cls: 0.06889  loss_rpn_loc: 0.1004  validation_loss: 4.86  time: 0.4257  last_time: 0.4192  data_time: 0.0126  last_data_time: 0.0028   lr: 5.5195e-05  max_mem: 5619M
+[02/18 17:05:38] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:05:38] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:05:38] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:05:38] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:05:39] detectron2 INFO: VALIDATION_LOSS: 4.26967
+[02/18 17:05:39] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:05:40] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 4.26967, better than last best score 4.85996 @ iteration 71.
+[02/18 17:05:45] d2.utils.events INFO:  eta: 0:11:59  iter: 119  total_loss: 4.21  loss_cls_stage0: 0.6177  loss_box_reg_stage0: 0.2821  loss_cls_stage1: 0.6571  loss_box_reg_stage1: 0.534  loss_cls_stage2: 0.6846  loss_box_reg_stage2: 0.7109  loss_mask: 0.4451  loss_rpn_cls: 0.0593  loss_rpn_loc: 0.1109  validation_loss: 4.27  time: 0.4254  last_time: 0.4144  data_time: 0.0191  last_data_time: 0.0038   lr: 6.6295e-05  max_mem: 5619M
+[02/18 17:05:54] d2.utils.events INFO:  eta: 0:11:50  iter: 139  total_loss: 3.71  loss_cls_stage0: 0.5612  loss_box_reg_stage0: 0.256  loss_cls_stage1: 0.6026  loss_box_reg_stage1: 0.4952  loss_cls_stage2: 0.6177  loss_box_reg_stage2: 0.6177  loss_mask: 0.3872  loss_rpn_cls: 0.02335  loss_rpn_loc: 0.0854  validation_loss: 4.27  time: 0.4252  last_time: 0.4263  data_time: 0.0152  last_data_time: 0.0018   lr: 7.7395e-05  max_mem: 5619M
+[02/18 17:05:56] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:05:56] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:05:56] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:05:56] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:05:57] detectron2 INFO: VALIDATION_LOSS: 3.81762
+[02/18 17:05:57] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:05:58] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 3.81762, better than last best score 4.26967 @ iteration 107.
+[02/18 17:06:05] d2.utils.events INFO:  eta: 0:11:42  iter: 159  total_loss: 3.714  loss_cls_stage0: 0.5452  loss_box_reg_stage0: 0.2335  loss_cls_stage1: 0.5769  loss_box_reg_stage1: 0.5426  loss_cls_stage2: 0.6011  loss_box_reg_stage2: 0.6783  loss_mask: 0.3412  loss_rpn_cls: 0.03076  loss_rpn_loc: 0.09286  validation_loss: 3.818  time: 0.4255  last_time: 0.4243  data_time: 0.0116  last_data_time: 0.0081   lr: 8.8495e-05  max_mem: 5619M
+[02/18 17:06:13] d2.utils.events INFO:  eta: 0:11:33  iter: 179  total_loss: 3.585  loss_cls_stage0: 0.4989  loss_box_reg_stage0: 0.2273  loss_cls_stage1: 0.5169  loss_box_reg_stage1: 0.4668  loss_cls_stage2: 0.5406  loss_box_reg_stage2: 0.6102  loss_mask: 0.3175  loss_rpn_cls: 0.03717  loss_rpn_loc: 0.1026  validation_loss: 3.818  time: 0.4245  last_time: 0.4366  data_time: 0.0124  last_data_time: 0.0231   lr: 9.9595e-05  max_mem: 5619M
+[02/18 17:06:14] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:06:14] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:06:14] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:06:14] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:06:15] detectron2 INFO: VALIDATION_LOSS: 3.56325
+[02/18 17:06:15] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:06:16] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 3.56325, better than last best score 3.81762 @ iteration 143.
+[02/18 17:06:24] d2.utils.events INFO:  eta: 0:11:25  iter: 199  total_loss: 3.376  loss_cls_stage0: 0.4745  loss_box_reg_stage0: 0.2456  loss_cls_stage1: 0.4845  loss_box_reg_stage1: 0.478  loss_cls_stage2: 0.5182  loss_box_reg_stage2: 0.6215  loss_mask: 0.2685  loss_rpn_cls: 0.02844  loss_rpn_loc: 0.1018  validation_loss: 3.563  time: 0.4251  last_time: 0.3589  data_time: 0.0172  last_data_time: 0.0251   lr: 0.0001107  max_mem: 5619M
+[02/18 17:06:31] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:06:31] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:06:31] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:06:31] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:06:33] detectron2 INFO: VALIDATION_LOSS: 3.24741
+[02/18 17:06:33] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:06:33] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 3.24741, better than last best score 3.56325 @ iteration 179.
+[02/18 17:06:35] d2.utils.events INFO:  eta: 0:11:15  iter: 219  total_loss: 3.241  loss_cls_stage0: 0.4383  loss_box_reg_stage0: 0.2323  loss_cls_stage1: 0.4485  loss_box_reg_stage1: 0.5042  loss_cls_stage2: 0.4752  loss_box_reg_stage2: 0.6859  loss_mask: 0.2668  loss_rpn_cls: 0.02137  loss_rpn_loc: 0.09491  validation_loss: 3.247  time: 0.4247  last_time: 0.4288  data_time: 0.0207  last_data_time: 0.0025   lr: 0.0001218  max_mem: 5619M
+[02/18 17:06:44] d2.utils.events INFO:  eta: 0:11:05  iter: 239  total_loss: 3.119  loss_cls_stage0: 0.4129  loss_box_reg_stage0: 0.2375  loss_cls_stage1: 0.4103  loss_box_reg_stage1: 0.4817  loss_cls_stage2: 0.4486  loss_box_reg_stage2: 0.632  loss_mask: 0.2547  loss_rpn_cls: 0.02228  loss_rpn_loc: 0.07066  validation_loss: 3.247  time: 0.4246  last_time: 0.4835  data_time: 0.0159  last_data_time: 0.0712   lr: 0.00013289  max_mem: 5619M
+[02/18 17:06:49] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:06:49] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:06:49] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:06:49] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:06:51] detectron2 INFO: VALIDATION_LOSS: 2.99541
+[02/18 17:06:51] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:06:51] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.99541, better than last best score 3.24741 @ iteration 215.
+[02/18 17:06:55] d2.utils.events INFO:  eta: 0:10:57  iter: 259  total_loss: 2.968  loss_cls_stage0: 0.3818  loss_box_reg_stage0: 0.2315  loss_cls_stage1: 0.3755  loss_box_reg_stage1: 0.5098  loss_cls_stage2: 0.419  loss_box_reg_stage2: 0.6862  loss_mask: 0.2198  loss_rpn_cls: 0.02891  loss_rpn_loc: 0.1132  validation_loss: 2.995  time: 0.4246  last_time: 0.4298  data_time: 0.0162  last_data_time: 0.0023   lr: 0.000144  max_mem: 5619M
+[02/18 17:07:03] d2.utils.events INFO:  eta: 0:10:48  iter: 279  total_loss: 2.828  loss_cls_stage0: 0.3635  loss_box_reg_stage0: 0.2072  loss_cls_stage1: 0.3512  loss_box_reg_stage1: 0.4644  loss_cls_stage2: 0.3868  loss_box_reg_stage2: 0.6591  loss_mask: 0.2041  loss_rpn_cls: 0.02398  loss_rpn_loc: 0.06982  validation_loss: 2.995  time: 0.4242  last_time: 0.4316  data_time: 0.0156  last_data_time: 0.0030   lr: 0.0001551  max_mem: 5619M
+[02/18 17:07:07] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:07:07] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:07:07] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:07:07] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:07:08] detectron2 INFO: VALIDATION_LOSS: 2.76959
+[02/18 17:07:08] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:07:09] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.76959, better than last best score 2.99541 @ iteration 251.
+[02/18 17:07:14] d2.utils.events INFO:  eta: 0:10:40  iter: 299  total_loss: 2.596  loss_cls_stage0: 0.3247  loss_box_reg_stage0: 0.1977  loss_cls_stage1: 0.3043  loss_box_reg_stage1: 0.4384  loss_cls_stage2: 0.3462  loss_box_reg_stage2: 0.6387  loss_mask: 0.1796  loss_rpn_cls: 0.02518  loss_rpn_loc: 0.05771  validation_loss: 2.77  time: 0.4241  last_time: 0.4291  data_time: 0.0156  last_data_time: 0.0063   lr: 0.00016619  max_mem: 5619M
+[02/18 17:07:23] d2.utils.events INFO:  eta: 0:10:32  iter: 319  total_loss: 2.511  loss_cls_stage0: 0.2949  loss_box_reg_stage0: 0.2095  loss_cls_stage1: 0.265  loss_box_reg_stage1: 0.4593  loss_cls_stage2: 0.3065  loss_box_reg_stage2: 0.6872  loss_mask: 0.1714  loss_rpn_cls: 0.02109  loss_rpn_loc: 0.07447  validation_loss: 2.77  time: 0.4249  last_time: 0.4273  data_time: 0.0172  last_data_time: 0.0058   lr: 0.0001773  max_mem: 5619M
+[02/18 17:07:25] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:07:25] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:07:25] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:07:25] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:07:26] detectron2 INFO: VALIDATION_LOSS: 2.58745
+[02/18 17:07:26] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:07:27] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.58745, better than last best score 2.76959 @ iteration 287.
+[02/18 17:07:34] d2.utils.events INFO:  eta: 0:10:23  iter: 339  total_loss: 2.539  loss_cls_stage0: 0.2767  loss_box_reg_stage0: 0.2043  loss_cls_stage1: 0.2481  loss_box_reg_stage1: 0.4453  loss_cls_stage2: 0.2738  loss_box_reg_stage2: 0.687  loss_mask: 0.1784  loss_rpn_cls: 0.01827  loss_rpn_loc: 0.07728  validation_loss: 2.587  time: 0.4257  last_time: 0.3953  data_time: 0.0254  last_data_time: 0.0159   lr: 0.00018839  max_mem: 5619M
+[02/18 17:07:43] d2.utils.events INFO:  eta: 0:10:15  iter: 359  total_loss: 2.25  loss_cls_stage0: 0.2666  loss_box_reg_stage0: 0.2093  loss_cls_stage1: 0.2367  loss_box_reg_stage1: 0.4369  loss_cls_stage2: 0.2586  loss_box_reg_stage2: 0.5763  loss_mask: 0.1577  loss_rpn_cls: 0.02654  loss_rpn_loc: 0.07601  validation_loss: 2.587  time: 0.4257  last_time: 0.4165  data_time: 0.0132  last_data_time: 0.0034   lr: 0.0001995  max_mem: 5619M
+[02/18 17:07:43] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:07:43] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:07:43] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:07:43] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:07:45] detectron2 INFO: VALIDATION_LOSS: 2.39919
+[02/18 17:07:45] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:07:45] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.39919, better than last best score 2.58745 @ iteration 323.
+[02/18 17:07:54] d2.utils.events INFO:  eta: 0:10:06  iter: 379  total_loss: 2.452  loss_cls_stage0: 0.2374  loss_box_reg_stage0: 0.2155  loss_cls_stage1: 0.2318  loss_box_reg_stage1: 0.486  loss_cls_stage2: 0.2459  loss_box_reg_stage2: 0.6478  loss_mask: 0.1718  loss_rpn_cls: 0.0186  loss_rpn_loc: 0.08094  validation_loss: 2.399  time: 0.4251  last_time: 0.4796  data_time: 0.0132  last_data_time: 0.0513   lr: 0.00021059  max_mem: 5619M
+[02/18 17:08:01] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:08:01] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:08:01] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:08:01] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:08:02] detectron2 INFO: VALIDATION_LOSS: 2.34111
+[02/18 17:08:02] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:08:03] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.34111, better than last best score 2.39919 @ iteration 359.
+[02/18 17:08:04] d2.utils.events INFO:  eta: 0:09:58  iter: 399  total_loss: 2.324  loss_cls_stage0: 0.2297  loss_box_reg_stage0: 0.208  loss_cls_stage1: 0.2019  loss_box_reg_stage1: 0.4373  loss_cls_stage2: 0.2243  loss_box_reg_stage2: 0.5771  loss_mask: 0.1597  loss_rpn_cls: 0.02041  loss_rpn_loc: 0.1046  validation_loss: 2.341  time: 0.4248  last_time: 0.4433  data_time: 0.0161  last_data_time: 0.0079   lr: 0.00022169  max_mem: 5619M
+[02/18 17:08:13] d2.utils.events INFO:  eta: 0:09:49  iter: 419  total_loss: 2.155  loss_cls_stage0: 0.2179  loss_box_reg_stage0: 0.2023  loss_cls_stage1: 0.2024  loss_box_reg_stage1: 0.4454  loss_cls_stage2: 0.2075  loss_box_reg_stage2: 0.6098  loss_mask: 0.1512  loss_rpn_cls: 0.0172  loss_rpn_loc: 0.06685  validation_loss: 2.341  time: 0.4248  last_time: 0.4002  data_time: 0.0123  last_data_time: 0.0019   lr: 0.00023279  max_mem: 5619M
+[02/18 17:08:18] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:08:18] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:08:18] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:08:18] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:08:20] detectron2 INFO: VALIDATION_LOSS: 2.19242
+[02/18 17:08:20] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:08:20] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.19242, better than last best score 2.34111 @ iteration 395.
+[02/18 17:08:24] d2.utils.events INFO:  eta: 0:09:40  iter: 439  total_loss: 2.046  loss_cls_stage0: 0.1887  loss_box_reg_stage0: 0.2023  loss_cls_stage1: 0.1557  loss_box_reg_stage1: 0.4328  loss_cls_stage2: 0.1755  loss_box_reg_stage2: 0.6149  loss_mask: 0.1443  loss_rpn_cls: 0.01889  loss_rpn_loc: 0.06993  validation_loss: 2.192  time: 0.4243  last_time: 0.3994  data_time: 0.0130  last_data_time: 0.0041   lr: 0.00024389  max_mem: 5619M
+[02/18 17:08:32] d2.utils.events INFO:  eta: 0:09:31  iter: 459  total_loss: 2.077  loss_cls_stage0: 0.1937  loss_box_reg_stage0: 0.216  loss_cls_stage1: 0.172  loss_box_reg_stage1: 0.4298  loss_cls_stage2: 0.1841  loss_box_reg_stage2: 0.6226  loss_mask: 0.1486  loss_rpn_cls: 0.01528  loss_rpn_loc: 0.08345  validation_loss: 2.192  time: 0.4241  last_time: 0.4237  data_time: 0.0212  last_data_time: 0.0005   lr: 0.00025  max_mem: 5619M
+[02/18 17:08:36] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:08:36] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:08:36] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:08:36] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:08:37] detectron2 INFO: VALIDATION_LOSS: 2.05142
+[02/18 17:08:37] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:08:38] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.05142, better than last best score 2.19242 @ iteration 431.
+[02/18 17:08:43] d2.utils.events INFO:  eta: 0:09:23  iter: 479  total_loss: 2.003  loss_cls_stage0: 0.1804  loss_box_reg_stage0: 0.19  loss_cls_stage1: 0.1564  loss_box_reg_stage1: 0.4348  loss_cls_stage2: 0.1639  loss_box_reg_stage2: 0.5706  loss_mask: 0.1557  loss_rpn_cls: 0.014  loss_rpn_loc: 0.0936  validation_loss: 2.051  time: 0.4240  last_time: 0.4222  data_time: 0.0163  last_data_time: 0.0129   lr: 0.00025  max_mem: 5619M
+[02/18 17:08:52] d2.utils.events INFO:  eta: 0:09:14  iter: 499  total_loss: 1.852  loss_cls_stage0: 0.1745  loss_box_reg_stage0: 0.1918  loss_cls_stage1: 0.1419  loss_box_reg_stage1: 0.3836  loss_cls_stage2: 0.154  loss_box_reg_stage2: 0.5527  loss_mask: 0.1337  loss_rpn_cls: 0.01113  loss_rpn_loc: 0.06298  validation_loss: 2.051  time: 0.4238  last_time: 0.4469  data_time: 0.0193  last_data_time: 0.0148   lr: 0.00025  max_mem: 5619M
+[02/18 17:08:54] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:08:54] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:08:54] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:08:54] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:08:55] detectron2 INFO: VALIDATION_LOSS: 2.11861
+[02/18 17:08:55] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.11861, not better than best score 2.05142 @ iteration 467.
+[02/18 17:09:02] d2.utils.events INFO:  eta: 0:09:06  iter: 519  total_loss: 1.876  loss_cls_stage0: 0.1534  loss_box_reg_stage0: 0.1835  loss_cls_stage1: 0.1357  loss_box_reg_stage1: 0.3921  loss_cls_stage2: 0.1429  loss_box_reg_stage2: 0.5816  loss_mask: 0.1471  loss_rpn_cls: 0.01454  loss_rpn_loc: 0.07034  validation_loss: 2.119  time: 0.4238  last_time: 0.3921  data_time: 0.0199  last_data_time: 0.0042   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:11] d2.utils.events INFO:  eta: 0:08:57  iter: 539  total_loss: 1.75  loss_cls_stage0: 0.1414  loss_box_reg_stage0: 0.1919  loss_cls_stage1: 0.1186  loss_box_reg_stage1: 0.384  loss_cls_stage2: 0.1328  loss_box_reg_stage2: 0.574  loss_mask: 0.1448  loss_rpn_cls: 0.01134  loss_rpn_loc: 0.05637  validation_loss: 2.119  time: 0.4240  last_time: 0.4047  data_time: 0.0140  last_data_time: 0.0010   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:11] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:09:11] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:09:11] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:09:11] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:09:12] detectron2 INFO: VALIDATION_LOSS: 2.19630
+[02/18 17:09:12] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.19630, not better than best score 2.05142 @ iteration 467.
+[02/18 17:09:21] d2.utils.events INFO:  eta: 0:08:48  iter: 559  total_loss: 1.839  loss_cls_stage0: 0.1517  loss_box_reg_stage0: 0.185  loss_cls_stage1: 0.1378  loss_box_reg_stage1: 0.3791  loss_cls_stage2: 0.1526  loss_box_reg_stage2: 0.5882  loss_mask: 0.1321  loss_rpn_cls: 0.011  loss_rpn_loc: 0.06121  validation_loss: 2.196  time: 0.4239  last_time: 0.4237  data_time: 0.0127  last_data_time: 0.0008   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:28] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:09:28] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:09:28] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:09:28] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:09:29] detectron2 INFO: VALIDATION_LOSS: 2.22929
+[02/18 17:09:29] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.22929, not better than best score 2.05142 @ iteration 467.
+[02/18 17:09:31] d2.utils.events INFO:  eta: 0:08:40  iter: 579  total_loss: 1.908  loss_cls_stage0: 0.1439  loss_box_reg_stage0: 0.1832  loss_cls_stage1: 0.1202  loss_box_reg_stage1: 0.405  loss_cls_stage2: 0.1304  loss_box_reg_stage2: 0.5823  loss_mask: 0.1347  loss_rpn_cls: 0.01091  loss_rpn_loc: 0.06358  validation_loss: 2.229  time: 0.4236  last_time: 0.4195  data_time: 0.0230  last_data_time: 0.0063   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:39] d2.utils.events INFO:  eta: 0:08:31  iter: 599  total_loss: 1.893  loss_cls_stage0: 0.1438  loss_box_reg_stage0: 0.202  loss_cls_stage1: 0.1166  loss_box_reg_stage1: 0.419  loss_cls_stage2: 0.1251  loss_box_reg_stage2: 0.5868  loss_mask: 0.1383  loss_rpn_cls: 0.01214  loss_rpn_loc: 0.073  validation_loss: 2.229  time: 0.4235  last_time: 0.4401  data_time: 0.0155  last_data_time: 0.0286   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:45] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:09:45] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:09:45] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:09:45] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:09:46] detectron2 INFO: VALIDATION_LOSS: 2.05367
+[02/18 17:09:46] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.05367, not better than best score 2.05142 @ iteration 467.
+[02/18 17:09:50] d2.utils.events INFO:  eta: 0:08:22  iter: 619  total_loss: 1.695  loss_cls_stage0: 0.1262  loss_box_reg_stage0: 0.1745  loss_cls_stage1: 0.1099  loss_box_reg_stage1: 0.3561  loss_cls_stage2: 0.1318  loss_box_reg_stage2: 0.555  loss_mask: 0.129  loss_rpn_cls: 0.01287  loss_rpn_loc: 0.06024  validation_loss: 2.054  time: 0.4237  last_time: 0.4245  data_time: 0.0225  last_data_time: 0.0005   lr: 0.00025  max_mem: 5619M
+[02/18 17:09:58] d2.utils.events INFO:  eta: 0:08:14  iter: 639  total_loss: 1.775  loss_cls_stage0: 0.134  loss_box_reg_stage0: 0.1907  loss_cls_stage1: 0.1223  loss_box_reg_stage1: 0.3874  loss_cls_stage2: 0.1345  loss_box_reg_stage2: 0.5437  loss_mask: 0.1412  loss_rpn_cls: 0.01658  loss_rpn_loc: 0.09261  validation_loss: 2.054  time: 0.4237  last_time: 0.4405  data_time: 0.0159  last_data_time: 0.0074   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:02] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:10:02] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:10:02] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:10:02] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:10:03] detectron2 INFO: VALIDATION_LOSS: 2.10859
+[02/18 17:10:03] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.10859, not better than best score 2.05142 @ iteration 467.
+[02/18 17:10:08] d2.utils.events INFO:  eta: 0:08:04  iter: 659  total_loss: 1.865  loss_cls_stage0: 0.131  loss_box_reg_stage0: 0.1998  loss_cls_stage1: 0.1107  loss_box_reg_stage1: 0.4013  loss_cls_stage2: 0.1155  loss_box_reg_stage2: 0.5749  loss_mask: 0.1243  loss_rpn_cls: 0.01295  loss_rpn_loc: 0.07702  validation_loss: 2.109  time: 0.4233  last_time: 0.4691  data_time: 0.0114  last_data_time: 0.0502   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:17] d2.utils.events INFO:  eta: 0:07:55  iter: 679  total_loss: 1.735  loss_cls_stage0: 0.1278  loss_box_reg_stage0: 0.1871  loss_cls_stage1: 0.1037  loss_box_reg_stage1: 0.4074  loss_cls_stage2: 0.1194  loss_box_reg_stage2: 0.5614  loss_mask: 0.1402  loss_rpn_cls: 0.01533  loss_rpn_loc: 0.07083  validation_loss: 2.109  time: 0.4231  last_time: 0.4269  data_time: 0.0165  last_data_time: 0.0009   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:19] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:10:19] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:10:19] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:10:19] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:10:20] detectron2 INFO: VALIDATION_LOSS: 2.07115
+[02/18 17:10:20] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.07115, not better than best score 2.05142 @ iteration 467.
+[02/18 17:10:27] d2.utils.events INFO:  eta: 0:07:46  iter: 699  total_loss: 1.671  loss_cls_stage0: 0.1315  loss_box_reg_stage0: 0.1697  loss_cls_stage1: 0.1023  loss_box_reg_stage1: 0.3603  loss_cls_stage2: 0.1114  loss_box_reg_stage2: 0.5121  loss_mask: 0.1329  loss_rpn_cls: 0.01475  loss_rpn_loc: 0.07122  validation_loss: 2.071  time: 0.4227  last_time: 0.3579  data_time: 0.0099  last_data_time: 0.0020   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:35] d2.utils.events INFO:  eta: 0:07:38  iter: 719  total_loss: 1.883  loss_cls_stage0: 0.1309  loss_box_reg_stage0: 0.2001  loss_cls_stage1: 0.1143  loss_box_reg_stage1: 0.4415  loss_cls_stage2: 0.1096  loss_box_reg_stage2: 0.6097  loss_mask: 0.1373  loss_rpn_cls: 0.0149  loss_rpn_loc: 0.07294  validation_loss: 2.071  time: 0.4226  last_time: 0.4898  data_time: 0.0168  last_data_time: 0.0695   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:36] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:10:36] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:10:36] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:10:36] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:10:37] detectron2 INFO: VALIDATION_LOSS: 2.11439
+[02/18 17:10:37] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.11439, not better than best score 2.05142 @ iteration 467.
+[02/18 17:10:46] d2.utils.events INFO:  eta: 0:07:30  iter: 739  total_loss: 1.484  loss_cls_stage0: 0.1277  loss_box_reg_stage0: 0.1617  loss_cls_stage1: 0.09788  loss_box_reg_stage1: 0.33  loss_cls_stage2: 0.1033  loss_box_reg_stage2: 0.4921  loss_mask: 0.1177  loss_rpn_cls: 0.01182  loss_rpn_loc: 0.06321  validation_loss: 2.114  time: 0.4229  last_time: 0.4407  data_time: 0.0180  last_data_time: 0.0147   lr: 0.00025  max_mem: 5619M
+[02/18 17:10:53] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:10:53] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:10:53] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:10:53] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:10:54] detectron2 INFO: VALIDATION_LOSS: 2.09216
+[02/18 17:10:54] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.09216, not better than best score 2.05142 @ iteration 467.
+[02/18 17:10:56] d2.utils.events INFO:  eta: 0:07:21  iter: 759  total_loss: 1.631  loss_cls_stage0: 0.1169  loss_box_reg_stage0: 0.1743  loss_cls_stage1: 0.09016  loss_box_reg_stage1: 0.3567  loss_cls_stage2: 0.09321  loss_box_reg_stage2: 0.5354  loss_mask: 0.1231  loss_rpn_cls: 0.01159  loss_rpn_loc: 0.06317  validation_loss: 2.092  time: 0.4228  last_time: 0.4566  data_time: 0.0105  last_data_time: 0.0333   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:05] d2.utils.events INFO:  eta: 0:07:13  iter: 779  total_loss: 1.742  loss_cls_stage0: 0.1179  loss_box_reg_stage0: 0.1945  loss_cls_stage1: 0.09178  loss_box_reg_stage1: 0.4031  loss_cls_stage2: 0.1119  loss_box_reg_stage2: 0.5494  loss_mask: 0.1422  loss_rpn_cls: 0.01557  loss_rpn_loc: 0.07794  validation_loss: 2.092  time: 0.4228  last_time: 0.4419  data_time: 0.0152  last_data_time: 0.0213   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:10] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:11:10] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:11:10] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:11:10] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:11:12] detectron2 INFO: VALIDATION_LOSS: 2.11878
+[02/18 17:11:12] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.11878, not better than best score 2.05142 @ iteration 467.
+[02/18 17:11:15] d2.utils.events INFO:  eta: 0:07:04  iter: 799  total_loss: 1.654  loss_cls_stage0: 0.1144  loss_box_reg_stage0: 0.1774  loss_cls_stage1: 0.1087  loss_box_reg_stage1: 0.3674  loss_cls_stage2: 0.1096  loss_box_reg_stage2: 0.5109  loss_mask: 0.1295  loss_rpn_cls: 0.01171  loss_rpn_loc: 0.07568  validation_loss: 2.119  time: 0.4227  last_time: 0.4190  data_time: 0.0144  last_data_time: 0.0240   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:23] d2.utils.events INFO:  eta: 0:06:56  iter: 819  total_loss: 1.765  loss_cls_stage0: 0.1145  loss_box_reg_stage0: 0.1933  loss_cls_stage1: 0.1005  loss_box_reg_stage1: 0.4145  loss_cls_stage2: 0.1166  loss_box_reg_stage2: 0.6065  loss_mask: 0.1363  loss_rpn_cls: 0.01276  loss_rpn_loc: 0.07071  validation_loss: 2.119  time: 0.4228  last_time: 0.4388  data_time: 0.0191  last_data_time: 0.0316   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:27] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:11:27] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:11:27] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:11:27] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:11:29] detectron2 INFO: VALIDATION_LOSS: 2.03659
+[02/18 17:11:29] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:11:29] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 2.03659, better than last best score 2.05142 @ iteration 467.
+[02/18 17:11:34] d2.utils.events INFO:  eta: 0:06:47  iter: 839  total_loss: 1.766  loss_cls_stage0: 0.1171  loss_box_reg_stage0: 0.2007  loss_cls_stage1: 0.1086  loss_box_reg_stage1: 0.3919  loss_cls_stage2: 0.1238  loss_box_reg_stage2: 0.5636  loss_mask: 0.1394  loss_rpn_cls: 0.01262  loss_rpn_loc: 0.0794  validation_loss: 2.037  time: 0.4228  last_time: 0.3879  data_time: 0.0187  last_data_time: 0.0017   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:43] d2.utils.events INFO:  eta: 0:06:39  iter: 859  total_loss: 1.609  loss_cls_stage0: 0.1098  loss_box_reg_stage0: 0.1676  loss_cls_stage1: 0.09716  loss_box_reg_stage1: 0.3444  loss_cls_stage2: 0.09896  loss_box_reg_stage2: 0.5244  loss_mask: 0.1284  loss_rpn_cls: 0.008249  loss_rpn_loc: 0.06383  validation_loss: 2.037  time: 0.4228  last_time: 0.4235  data_time: 0.0113  last_data_time: 0.0055   lr: 0.00025  max_mem: 5619M
+[02/18 17:11:45] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:11:45] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:11:45] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:11:45] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:11:47] detectron2 INFO: VALIDATION_LOSS: 2.04499
+[02/18 17:11:47] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.04499, not better than best score 2.03659 @ iteration 827.
+[02/18 17:11:53] d2.utils.events INFO:  eta: 0:06:30  iter: 879  total_loss: 1.75  loss_cls_stage0: 0.1181  loss_box_reg_stage0: 0.1844  loss_cls_stage1: 0.1017  loss_box_reg_stage1: 0.4287  loss_cls_stage2: 0.1102  loss_box_reg_stage2: 0.5734  loss_mask: 0.1304  loss_rpn_cls: 0.008418  loss_rpn_loc: 0.05221  validation_loss: 2.045  time: 0.4228  last_time: 0.4304  data_time: 0.0229  last_data_time: 0.0014   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:02] d2.utils.events INFO:  eta: 0:06:22  iter: 899  total_loss: 1.523  loss_cls_stage0: 0.102  loss_box_reg_stage0: 0.1661  loss_cls_stage1: 0.08863  loss_box_reg_stage1: 0.3563  loss_cls_stage2: 0.09215  loss_box_reg_stage2: 0.5434  loss_mask: 0.1182  loss_rpn_cls: 0.008568  loss_rpn_loc: 0.07108  validation_loss: 2.045  time: 0.4229  last_time: 0.3751  data_time: 0.0193  last_data_time: 0.0048   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:02] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:12:02] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:12:02] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:12:02] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:12:03] detectron2 INFO: VALIDATION_LOSS: 2.06299
+[02/18 17:12:03] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.06299, not better than best score 2.03659 @ iteration 827.
+[02/18 17:12:12] d2.utils.events INFO:  eta: 0:06:13  iter: 919  total_loss: 1.474  loss_cls_stage0: 0.1144  loss_box_reg_stage0: 0.1624  loss_cls_stage1: 0.09384  loss_box_reg_stage1: 0.3395  loss_cls_stage2: 0.09804  loss_box_reg_stage2: 0.5182  loss_mask: 0.1243  loss_rpn_cls: 0.008085  loss_rpn_loc: 0.0622  validation_loss: 2.063  time: 0.4229  last_time: 0.4010  data_time: 0.0160  last_data_time: 0.0071   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:19] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:12:19] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:12:19] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:12:19] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:12:20] detectron2 INFO: VALIDATION_LOSS: 1.99428
+[02/18 17:12:20] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:12:21] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 1.99428, better than last best score 2.03659 @ iteration 827.
+[02/18 17:12:23] d2.utils.events INFO:  eta: 0:06:05  iter: 939  total_loss: 1.581  loss_cls_stage0: 0.1139  loss_box_reg_stage0: 0.1699  loss_cls_stage1: 0.08973  loss_box_reg_stage1: 0.3529  loss_cls_stage2: 0.08768  loss_box_reg_stage2: 0.5174  loss_mask: 0.1153  loss_rpn_cls: 0.007934  loss_rpn_loc: 0.07109  validation_loss: 1.994  time: 0.4227  last_time: 0.4094  data_time: 0.0120  last_data_time: 0.0073   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:31] d2.utils.events INFO:  eta: 0:05:56  iter: 959  total_loss: 1.597  loss_cls_stage0: 0.1143  loss_box_reg_stage0: 0.1827  loss_cls_stage1: 0.0954  loss_box_reg_stage1: 0.3838  loss_cls_stage2: 0.1015  loss_box_reg_stage2: 0.5227  loss_mask: 0.1277  loss_rpn_cls: 0.01036  loss_rpn_loc: 0.08107  validation_loss: 1.994  time: 0.4227  last_time: 0.4373  data_time: 0.0140  last_data_time: 0.0067   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:37] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:12:37] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:12:37] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:12:37] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:12:38] detectron2 INFO: VALIDATION_LOSS: 2.03931
+[02/18 17:12:38] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.03931, not better than best score 1.99428 @ iteration 935.
+[02/18 17:12:42] d2.utils.events INFO:  eta: 0:05:48  iter: 979  total_loss: 1.526  loss_cls_stage0: 0.09924  loss_box_reg_stage0: 0.1696  loss_cls_stage1: 0.07664  loss_box_reg_stage1: 0.3656  loss_cls_stage2: 0.07948  loss_box_reg_stage2: 0.5245  loss_mask: 0.1243  loss_rpn_cls: 0.01372  loss_rpn_loc: 0.05865  validation_loss: 2.039  time: 0.4226  last_time: 0.4095  data_time: 0.0124  last_data_time: 0.0043   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:50] d2.utils.events INFO:  eta: 0:05:39  iter: 999  total_loss: 1.618  loss_cls_stage0: 0.1077  loss_box_reg_stage0: 0.1691  loss_cls_stage1: 0.09344  loss_box_reg_stage1: 0.3556  loss_cls_stage2: 0.09183  loss_box_reg_stage2: 0.5071  loss_mask: 0.1236  loss_rpn_cls: 0.01134  loss_rpn_loc: 0.06268  validation_loss: 2.039  time: 0.4228  last_time: 0.3806  data_time: 0.0231  last_data_time: 0.0076   lr: 0.00025  max_mem: 5619M
+[02/18 17:12:54] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:12:54] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:12:54] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:12:54] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:12:56] detectron2 INFO: VALIDATION_LOSS: 1.96469
+[02/18 17:12:56] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:12:56] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 1.96469, better than last best score 1.99428 @ iteration 935.
+[02/18 17:13:01] d2.utils.events INFO:  eta: 0:05:31  iter: 1019  total_loss: 1.456  loss_cls_stage0: 0.09878  loss_box_reg_stage0: 0.1572  loss_cls_stage1: 0.08048  loss_box_reg_stage1: 0.339  loss_cls_stage2: 0.08917  loss_box_reg_stage2: 0.5372  loss_mask: 0.1114  loss_rpn_cls: 0.008346  loss_rpn_loc: 0.04897  validation_loss: 1.965  time: 0.4230  last_time: 0.4082  data_time: 0.0193  last_data_time: 0.0021   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:10] d2.utils.events INFO:  eta: 0:05:22  iter: 1039  total_loss: 1.679  loss_cls_stage0: 0.09927  loss_box_reg_stage0: 0.166  loss_cls_stage1: 0.08576  loss_box_reg_stage1: 0.3624  loss_cls_stage2: 0.08441  loss_box_reg_stage2: 0.5448  loss_mask: 0.1175  loss_rpn_cls: 0.01234  loss_rpn_loc: 0.09097  validation_loss: 1.965  time: 0.4231  last_time: 0.4204  data_time: 0.0165  last_data_time: 0.0040   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:12] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:13:12] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:13:12] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:13:12] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:13:13] detectron2 INFO: VALIDATION_LOSS: 1.98366
+[02/18 17:13:13] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.98366, not better than best score 1.96469 @ iteration 1007.
+[02/18 17:13:20] d2.utils.events INFO:  eta: 0:05:14  iter: 1059  total_loss: 1.651  loss_cls_stage0: 0.1012  loss_box_reg_stage0: 0.1881  loss_cls_stage1: 0.08001  loss_box_reg_stage1: 0.3923  loss_cls_stage2: 0.08562  loss_box_reg_stage2: 0.5617  loss_mask: 0.1261  loss_rpn_cls: 0.009529  loss_rpn_loc: 0.06746  validation_loss: 1.984  time: 0.4228  last_time: 0.4161  data_time: 0.0165  last_data_time: 0.0075   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:29] d2.utils.events INFO:  eta: 0:05:05  iter: 1079  total_loss: 1.582  loss_cls_stage0: 0.1013  loss_box_reg_stage0: 0.176  loss_cls_stage1: 0.08489  loss_box_reg_stage1: 0.3588  loss_cls_stage2: 0.08887  loss_box_reg_stage2: 0.4829  loss_mask: 0.1206  loss_rpn_cls: 0.01117  loss_rpn_loc: 0.08729  validation_loss: 1.984  time: 0.4230  last_time: 0.3989  data_time: 0.0213  last_data_time: 0.0050   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:29] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:13:29] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:13:29] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:13:29] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:13:30] detectron2 INFO: VALIDATION_LOSS: 1.93859
+[02/18 17:13:30] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:13:31] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 1.93859, better than last best score 1.96469 @ iteration 1007.
+[02/18 17:13:40] d2.utils.events INFO:  eta: 0:04:57  iter: 1099  total_loss: 1.514  loss_cls_stage0: 0.09826  loss_box_reg_stage0: 0.1678  loss_cls_stage1: 0.07966  loss_box_reg_stage1: 0.3696  loss_cls_stage2: 0.08008  loss_box_reg_stage2: 0.4981  loss_mask: 0.1246  loss_rpn_cls: 0.008615  loss_rpn_loc: 0.04774  validation_loss: 1.939  time: 0.4231  last_time: 0.4088  data_time: 0.0119  last_data_time: 0.0074   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:47] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:13:47] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:13:47] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:13:47] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:13:48] detectron2 INFO: VALIDATION_LOSS: 2.05849
+[02/18 17:13:48] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.05849, not better than best score 1.93859 @ iteration 1079.
+[02/18 17:13:50] d2.utils.events INFO:  eta: 0:04:48  iter: 1119  total_loss: 1.582  loss_cls_stage0: 0.104  loss_box_reg_stage0: 0.1729  loss_cls_stage1: 0.08242  loss_box_reg_stage1: 0.3753  loss_cls_stage2: 0.08094  loss_box_reg_stage2: 0.5208  loss_mask: 0.1262  loss_rpn_cls: 0.007925  loss_rpn_loc: 0.0626  validation_loss: 2.058  time: 0.4228  last_time: 0.3986  data_time: 0.0144  last_data_time: 0.0027   lr: 0.00025  max_mem: 5619M
+[02/18 17:13:58] d2.utils.events INFO:  eta: 0:04:39  iter: 1139  total_loss: 1.554  loss_cls_stage0: 0.1027  loss_box_reg_stage0: 0.1772  loss_cls_stage1: 0.0884  loss_box_reg_stage1: 0.3708  loss_cls_stage2: 0.08281  loss_box_reg_stage2: 0.5313  loss_mask: 0.1255  loss_rpn_cls: 0.007607  loss_rpn_loc: 0.05286  validation_loss: 2.058  time: 0.4229  last_time: 0.4458  data_time: 0.0211  last_data_time: 0.0133   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:04] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:14:04] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:14:04] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:14:04] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:14:05] detectron2 INFO: VALIDATION_LOSS: 1.90993
+[02/18 17:14:05] fvcore.common.checkpoint INFO: Saving checkpoint to ./models/cascade_mrcnn_v2/model_best.pth
+[02/18 17:14:06] d2.engine.hooks INFO: Saved best model as latest eval score for validation_loss is 1.90993, better than last best score 1.93859 @ iteration 1079.
+[02/18 17:14:09] d2.utils.events INFO:  eta: 0:04:31  iter: 1159  total_loss: 1.634  loss_cls_stage0: 0.1053  loss_box_reg_stage0: 0.1842  loss_cls_stage1: 0.08451  loss_box_reg_stage1: 0.3778  loss_cls_stage2: 0.09219  loss_box_reg_stage2: 0.5403  loss_mask: 0.1262  loss_rpn_cls: 0.0136  loss_rpn_loc: 0.07297  validation_loss: 1.91  time: 0.4227  last_time: 0.4145  data_time: 0.0247  last_data_time: 0.0006   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:18] d2.utils.events INFO:  eta: 0:04:23  iter: 1179  total_loss: 1.448  loss_cls_stage0: 0.09755  loss_box_reg_stage0: 0.1654  loss_cls_stage1: 0.07915  loss_box_reg_stage1: 0.3455  loss_cls_stage2: 0.0792  loss_box_reg_stage2: 0.5119  loss_mask: 0.1231  loss_rpn_cls: 0.007179  loss_rpn_loc: 0.05017  validation_loss: 1.91  time: 0.4228  last_time: 0.4003  data_time: 0.0207  last_data_time: 0.0029   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:22] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:14:22] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:14:22] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:14:22] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:14:23] detectron2 INFO: VALIDATION_LOSS: 1.93828
+[02/18 17:14:23] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.93828, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:14:28] d2.utils.events INFO:  eta: 0:04:14  iter: 1199  total_loss: 1.356  loss_cls_stage0: 0.1033  loss_box_reg_stage0: 0.1547  loss_cls_stage1: 0.08382  loss_box_reg_stage1: 0.3245  loss_cls_stage2: 0.08913  loss_box_reg_stage2: 0.4726  loss_mask: 0.114  loss_rpn_cls: 0.006939  loss_rpn_loc: 0.05991  validation_loss: 1.938  time: 0.4229  last_time: 0.4401  data_time: 0.0170  last_data_time: 0.0078   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:37] d2.utils.events INFO:  eta: 0:04:06  iter: 1219  total_loss: 1.434  loss_cls_stage0: 0.09947  loss_box_reg_stage0: 0.1683  loss_cls_stage1: 0.07143  loss_box_reg_stage1: 0.3324  loss_cls_stage2: 0.07629  loss_box_reg_stage2: 0.4995  loss_mask: 0.1228  loss_rpn_cls: 0.005704  loss_rpn_loc: 0.05478  validation_loss: 1.938  time: 0.4229  last_time: 0.4999  data_time: 0.0147  last_data_time: 0.0766   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:39] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:14:39] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:14:39] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:14:39] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:14:40] detectron2 INFO: VALIDATION_LOSS: 2.03108
+[02/18 17:14:40] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.03108, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:14:47] d2.utils.events INFO:  eta: 0:03:57  iter: 1239  total_loss: 1.516  loss_cls_stage0: 0.08884  loss_box_reg_stage0: 0.17  loss_cls_stage1: 0.07837  loss_box_reg_stage1: 0.3468  loss_cls_stage2: 0.08298  loss_box_reg_stage2: 0.5186  loss_mask: 0.1111  loss_rpn_cls: 0.008915  loss_rpn_loc: 0.07326  validation_loss: 2.031  time: 0.4230  last_time: 0.4305  data_time: 0.0211  last_data_time: 0.0009   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:56] d2.utils.events INFO:  eta: 0:03:49  iter: 1259  total_loss: 1.562  loss_cls_stage0: 0.0888  loss_box_reg_stage0: 0.1727  loss_cls_stage1: 0.08092  loss_box_reg_stage1: 0.3416  loss_cls_stage2: 0.07795  loss_box_reg_stage2: 0.5047  loss_mask: 0.127  loss_rpn_cls: 0.008635  loss_rpn_loc: 0.0625  validation_loss: 2.031  time: 0.4230  last_time: 0.4376  data_time: 0.0200  last_data_time: 0.0083   lr: 0.00025  max_mem: 5619M
+[02/18 17:14:56] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:14:56] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:14:56] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:14:56] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:14:57] detectron2 INFO: VALIDATION_LOSS: 2.02152
+[02/18 17:14:57] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.02152, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:15:06] d2.utils.events INFO:  eta: 0:03:40  iter: 1279  total_loss: 1.422  loss_cls_stage0: 0.08784  loss_box_reg_stage0: 0.1551  loss_cls_stage1: 0.06995  loss_box_reg_stage1: 0.3414  loss_cls_stage2: 0.08216  loss_box_reg_stage2: 0.5281  loss_mask: 0.1089  loss_rpn_cls: 0.007914  loss_rpn_loc: 0.05636  validation_loss: 2.022  time: 0.4233  last_time: 0.4334  data_time: 0.0181  last_data_time: 0.0163   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:15:13] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:15:13] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:15:13] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:15:14] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:15:15] detectron2 INFO: VALIDATION_LOSS: 2.00161
+[02/18 17:15:15] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.00161, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:15:17] d2.utils.events INFO:  eta: 0:03:32  iter: 1299  total_loss: 1.356  loss_cls_stage0: 0.08983  loss_box_reg_stage0: 0.1482  loss_cls_stage1: 0.07068  loss_box_reg_stage1: 0.3149  loss_cls_stage2: 0.06835  loss_box_reg_stage2: 0.4439  loss_mask: 0.1071  loss_rpn_cls: 0.009833  loss_rpn_loc: 0.05539  validation_loss: 2.002  time: 0.4233  last_time: 0.4382  data_time: 0.0135  last_data_time: 0.0137   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:15:25] d2.utils.events INFO:  eta: 0:03:23  iter: 1319  total_loss: 1.681  loss_cls_stage0: 0.0947  loss_box_reg_stage0: 0.1734  loss_cls_stage1: 0.07767  loss_box_reg_stage1: 0.3655  loss_cls_stage2: 0.08974  loss_box_reg_stage2: 0.5183  loss_mask: 0.1211  loss_rpn_cls: 0.01048  loss_rpn_loc: 0.0657  validation_loss: 2.002  time: 0.4233  last_time: 0.4173  data_time: 0.0173  last_data_time: 0.0747   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:15:31] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:15:31] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:15:31] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:15:31] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:15:32] detectron2 INFO: VALIDATION_LOSS: 1.97358
+[02/18 17:15:32] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.97358, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:15:35] d2.utils.events INFO:  eta: 0:03:15  iter: 1339  total_loss: 1.563  loss_cls_stage0: 0.08933  loss_box_reg_stage0: 0.1699  loss_cls_stage1: 0.07105  loss_box_reg_stage1: 0.3721  loss_cls_stage2: 0.07731  loss_box_reg_stage2: 0.5096  loss_mask: 0.124  loss_rpn_cls: 0.008019  loss_rpn_loc: 0.05931  validation_loss: 1.974  time: 0.4231  last_time: 0.4274  data_time: 0.0188  last_data_time: 0.0057   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:15:44] d2.utils.events INFO:  eta: 0:03:06  iter: 1359  total_loss: 1.405  loss_cls_stage0: 0.08909  loss_box_reg_stage0: 0.1479  loss_cls_stage1: 0.07547  loss_box_reg_stage1: 0.3077  loss_cls_stage2: 0.07599  loss_box_reg_stage2: 0.4511  loss_mask: 0.1147  loss_rpn_cls: 0.006556  loss_rpn_loc: 0.05136  validation_loss: 1.974  time: 0.4231  last_time: 0.4261  data_time: 0.0186  last_data_time: 0.0062   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:15:47] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:15:47] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:15:47] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:15:47] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:15:49] detectron2 INFO: VALIDATION_LOSS: 2.04260
+[02/18 17:15:49] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.04260, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:15:54] d2.utils.events INFO:  eta: 0:02:58  iter: 1379  total_loss: 1.497  loss_cls_stage0: 0.09613  loss_box_reg_stage0: 0.1673  loss_cls_stage1: 0.07975  loss_box_reg_stage1: 0.3534  loss_cls_stage2: 0.08115  loss_box_reg_stage2: 0.5084  loss_mask: 0.1219  loss_rpn_cls: 0.00766  loss_rpn_loc: 0.05945  validation_loss: 2.043  time: 0.4231  last_time: 0.4052  data_time: 0.0111  last_data_time: 0.0011   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:16:03] d2.utils.events INFO:  eta: 0:02:49  iter: 1399  total_loss: 1.304  loss_cls_stage0: 0.08943  loss_box_reg_stage0: 0.1443  loss_cls_stage1: 0.07166  loss_box_reg_stage1: 0.3007  loss_cls_stage2: 0.07661  loss_box_reg_stage2: 0.4703  loss_mask: 0.1047  loss_rpn_cls: 0.01001  loss_rpn_loc: 0.0461  validation_loss: 2.043  time: 0.4232  last_time: 0.4048  data_time: 0.0206  last_data_time: 0.0005   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:16:05] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:16:05] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:16:05] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:16:05] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:16:06] detectron2 INFO: VALIDATION_LOSS: 1.99760
+[02/18 17:16:06] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.99760, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:16:13] d2.utils.events INFO:  eta: 0:02:41  iter: 1419  total_loss: 1.503  loss_cls_stage0: 0.1012  loss_box_reg_stage0: 0.1652  loss_cls_stage1: 0.07283  loss_box_reg_stage1: 0.3441  loss_cls_stage2: 0.0806  loss_box_reg_stage2: 0.5342  loss_mask: 0.1296  loss_rpn_cls: 0.01051  loss_rpn_loc: 0.06268  validation_loss: 1.998  time: 0.4232  last_time: 0.4384  data_time: 0.0124  last_data_time: 0.0073   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:16:21] d2.utils.events INFO:  eta: 0:02:32  iter: 1439  total_loss: 1.599  loss_cls_stage0: 0.1043  loss_box_reg_stage0: 0.1728  loss_cls_stage1: 0.09002  loss_box_reg_stage1: 0.3658  loss_cls_stage2: 0.09185  loss_box_reg_stage2: 0.5186  loss_mask: 0.1244  loss_rpn_cls: 0.008998  loss_rpn_loc: 0.06808  validation_loss: 1.998  time: 0.4232  last_time: 0.4074  data_time: 0.0154  last_data_time: 0.0023   lr: 2.5e-05  max_mem: 5619M
+[02/18 17:16:22] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:16:22] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:16:22] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:16:22] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:16:23] detectron2 INFO: VALIDATION_LOSS: 1.95212
+[02/18 17:16:23] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.95212, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:16:32] d2.utils.events INFO:  eta: 0:02:24  iter: 1459  total_loss: 1.423  loss_cls_stage0: 0.08523  loss_box_reg_stage0: 0.1553  loss_cls_stage1: 0.06428  loss_box_reg_stage1: 0.3275  loss_cls_stage2: 0.06048  loss_box_reg_stage2: 0.4732  loss_mask: 0.1122  loss_rpn_cls: 0.007502  loss_rpn_loc: 0.05944  validation_loss: 1.952  time: 0.4234  last_time: 0.4895  data_time: 0.0163  last_data_time: 0.0721   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:16:39] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:16:39] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:16:39] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:16:39] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:16:41] detectron2 INFO: VALIDATION_LOSS: 1.97966
+[02/18 17:16:41] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.97966, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:16:42] d2.utils.events INFO:  eta: 0:02:15  iter: 1479  total_loss: 1.423  loss_cls_stage0: 0.08813  loss_box_reg_stage0: 0.1618  loss_cls_stage1: 0.06962  loss_box_reg_stage1: 0.3396  loss_cls_stage2: 0.06867  loss_box_reg_stage2: 0.4944  loss_mask: 0.1174  loss_rpn_cls: 0.00929  loss_rpn_loc: 0.0454  validation_loss: 1.98  time: 0.4233  last_time: 0.4135  data_time: 0.0171  last_data_time: 0.0019   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:16:51] d2.utils.events INFO:  eta: 0:02:07  iter: 1499  total_loss: 1.426  loss_cls_stage0: 0.08625  loss_box_reg_stage0: 0.1593  loss_cls_stage1: 0.07033  loss_box_reg_stage1: 0.3355  loss_cls_stage2: 0.0765  loss_box_reg_stage2: 0.4997  loss_mask: 0.115  loss_rpn_cls: 0.008864  loss_rpn_loc: 0.05446  validation_loss: 1.98  time: 0.4235  last_time: 0.4514  data_time: 0.0242  last_data_time: 0.0225   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:16:56] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:16:56] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:16:56] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:16:57] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:16:58] detectron2 INFO: VALIDATION_LOSS: 2.00595
+[02/18 17:16:58] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.00595, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:17:01] d2.utils.events INFO:  eta: 0:01:58  iter: 1519  total_loss: 1.686  loss_cls_stage0: 0.08628  loss_box_reg_stage0: 0.188  loss_cls_stage1: 0.06906  loss_box_reg_stage1: 0.3636  loss_cls_stage2: 0.07421  loss_box_reg_stage2: 0.5042  loss_mask: 0.1374  loss_rpn_cls: 0.006824  loss_rpn_loc: 0.062  validation_loss: 2.006  time: 0.4235  last_time: 0.4143  data_time: 0.0164  last_data_time: 0.0259   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:10] d2.utils.events INFO:  eta: 0:01:50  iter: 1539  total_loss: 1.55  loss_cls_stage0: 0.095  loss_box_reg_stage0: 0.1676  loss_cls_stage1: 0.07648  loss_box_reg_stage1: 0.3506  loss_cls_stage2: 0.0728  loss_box_reg_stage2: 0.5245  loss_mask: 0.1242  loss_rpn_cls: 0.007769  loss_rpn_loc: 0.06388  validation_loss: 2.006  time: 0.4233  last_time: 0.4292  data_time: 0.0145  last_data_time: 0.0005   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:13] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:17:13] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:17:13] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:17:13] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:17:15] detectron2 INFO: VALIDATION_LOSS: 2.01026
+[02/18 17:17:15] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.01026, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:17:20] d2.utils.events INFO:  eta: 0:01:42  iter: 1559  total_loss: 1.344  loss_cls_stage0: 0.09683  loss_box_reg_stage0: 0.1496  loss_cls_stage1: 0.07506  loss_box_reg_stage1: 0.3158  loss_cls_stage2: 0.06655  loss_box_reg_stage2: 0.4642  loss_mask: 0.1067  loss_rpn_cls: 0.008448  loss_rpn_loc: 0.05323  validation_loss: 2.01  time: 0.4234  last_time: 0.4004  data_time: 0.0201  last_data_time: 0.0143   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:29] d2.utils.events INFO:  eta: 0:01:33  iter: 1579  total_loss: 1.525  loss_cls_stage0: 0.08642  loss_box_reg_stage0: 0.1672  loss_cls_stage1: 0.06631  loss_box_reg_stage1: 0.3719  loss_cls_stage2: 0.06698  loss_box_reg_stage2: 0.5237  loss_mask: 0.1117  loss_rpn_cls: 0.009784  loss_rpn_loc: 0.06605  validation_loss: 2.01  time: 0.4235  last_time: 0.4155  data_time: 0.0144  last_data_time: 0.0013   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:31] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:17:31] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:17:31] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:17:31] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:17:32] detectron2 INFO: VALIDATION_LOSS: 1.98474
+[02/18 17:17:32] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 1.98474, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:17:39] d2.utils.events INFO:  eta: 0:01:25  iter: 1599  total_loss: 1.519  loss_cls_stage0: 0.1053  loss_box_reg_stage0: 0.1684  loss_cls_stage1: 0.08914  loss_box_reg_stage1: 0.369  loss_cls_stage2: 0.08928  loss_box_reg_stage2: 0.5269  loss_mask: 0.1336  loss_rpn_cls: 0.00974  loss_rpn_loc: 0.07454  validation_loss: 1.985  time: 0.4235  last_time: 0.4239  data_time: 0.0126  last_data_time: 0.0072   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:48] d2.utils.events INFO:  eta: 0:01:16  iter: 1619  total_loss: 1.416  loss_cls_stage0: 0.09382  loss_box_reg_stage0: 0.1516  loss_cls_stage1: 0.07744  loss_box_reg_stage1: 0.3269  loss_cls_stage2: 0.06972  loss_box_reg_stage2: 0.4929  loss_mask: 0.117  loss_rpn_cls: 0.01112  loss_rpn_loc: 0.0584  validation_loss: 1.985  time: 0.4236  last_time: 0.5079  data_time: 0.0275  last_data_time: 0.0795   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:17:48] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:17:48] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:17:48] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:17:48] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:17:49] detectron2 INFO: VALIDATION_LOSS: 2.00048
+[02/18 17:17:49] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.00048, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:17:58] d2.utils.events INFO:  eta: 0:01:08  iter: 1639  total_loss: 1.389  loss_cls_stage0: 0.08823  loss_box_reg_stage0: 0.1585  loss_cls_stage1: 0.07225  loss_box_reg_stage1: 0.329  loss_cls_stage2: 0.07568  loss_box_reg_stage2: 0.4775  loss_mask: 0.115  loss_rpn_cls: 0.008271  loss_rpn_loc: 0.05348  validation_loss: 2  time: 0.4237  last_time: 0.3941  data_time: 0.0230  last_data_time: 0.0253   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:05] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:18:05] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:18:05] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:18:05] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:18:07] detectron2 INFO: VALIDATION_LOSS: 2.03121
+[02/18 17:18:07] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.03121, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:18:08] d2.utils.events INFO:  eta: 0:00:59  iter: 1659  total_loss: 1.502  loss_cls_stage0: 0.08694  loss_box_reg_stage0: 0.1594  loss_cls_stage1: 0.07505  loss_box_reg_stage1: 0.3676  loss_cls_stage2: 0.0745  loss_box_reg_stage2: 0.5677  loss_mask: 0.1194  loss_rpn_cls: 0.008838  loss_rpn_loc: 0.05229  validation_loss: 2.031  time: 0.4236  last_time: 0.4280  data_time: 0.0150  last_data_time: 0.0040   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:17] d2.utils.events INFO:  eta: 0:00:51  iter: 1679  total_loss: 1.279  loss_cls_stage0: 0.08289  loss_box_reg_stage0: 0.1447  loss_cls_stage1: 0.06261  loss_box_reg_stage1: 0.2998  loss_cls_stage2: 0.06522  loss_box_reg_stage2: 0.4544  loss_mask: 0.1105  loss_rpn_cls: 0.008  loss_rpn_loc: 0.04423  validation_loss: 2.031  time: 0.4237  last_time: 0.4383  data_time: 0.0102  last_data_time: 0.0020   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:22] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:18:22] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:18:22] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:18:22] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:18:24] detectron2 INFO: VALIDATION_LOSS: 2.01203
+[02/18 17:18:24] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.01203, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:18:27] d2.utils.events INFO:  eta: 0:00:42  iter: 1699  total_loss: 1.596  loss_cls_stage0: 0.09848  loss_box_reg_stage0: 0.1692  loss_cls_stage1: 0.07738  loss_box_reg_stage1: 0.385  loss_cls_stage2: 0.06866  loss_box_reg_stage2: 0.5217  loss_mask: 0.122  loss_rpn_cls: 0.008918  loss_rpn_loc: 0.05453  validation_loss: 2.012  time: 0.4237  last_time: 0.4378  data_time: 0.0133  last_data_time: 0.0174   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:36] d2.utils.events INFO:  eta: 0:00:34  iter: 1719  total_loss: 1.439  loss_cls_stage0: 0.09449  loss_box_reg_stage0: 0.152  loss_cls_stage1: 0.07192  loss_box_reg_stage1: 0.3289  loss_cls_stage2: 0.08283  loss_box_reg_stage2: 0.5084  loss_mask: 0.1131  loss_rpn_cls: 0.01147  loss_rpn_loc: 0.04981  validation_loss: 2.012  time: 0.4236  last_time: 0.4346  data_time: 0.0120  last_data_time: 0.0124   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:39] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:18:39] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:18:39] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:18:39] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:18:41] detectron2 INFO: VALIDATION_LOSS: 2.01686
+[02/18 17:18:41] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.01686, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:18:46] d2.utils.events INFO:  eta: 0:00:25  iter: 1739  total_loss: 1.568  loss_cls_stage0: 0.09614  loss_box_reg_stage0: 0.1635  loss_cls_stage1: 0.08242  loss_box_reg_stage1: 0.3723  loss_cls_stage2: 0.08519  loss_box_reg_stage2: 0.5361  loss_mask: 0.1183  loss_rpn_cls: 0.009551  loss_rpn_loc: 0.0802  validation_loss: 2.017  time: 0.4235  last_time: 0.2850  data_time: 0.0134  last_data_time: 0.0073   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:54] d2.utils.events INFO:  eta: 0:00:17  iter: 1759  total_loss: 1.42  loss_cls_stage0: 0.08436  loss_box_reg_stage0: 0.1596  loss_cls_stage1: 0.0664  loss_box_reg_stage1: 0.3357  loss_cls_stage2: 0.07346  loss_box_reg_stage2: 0.5111  loss_mask: 0.1166  loss_rpn_cls: 0.007247  loss_rpn_loc: 0.0478  validation_loss: 2.017  time: 0.4235  last_time: 0.4502  data_time: 0.0108  last_data_time: 0.0260   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:18:56] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:18:56] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:18:56] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:18:56] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:18:58] detectron2 INFO: VALIDATION_LOSS: 2.01195
+[02/18 17:18:58] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.01195, not better than best score 1.90993 @ iteration 1151.
+[02/18 17:19:04] d2.utils.events INFO:  eta: 0:00:08  iter: 1779  total_loss: 1.389  loss_cls_stage0: 0.08871  loss_box_reg_stage0: 0.1454  loss_cls_stage1: 0.06617  loss_box_reg_stage1: 0.3269  loss_cls_stage2: 0.07144  loss_box_reg_stage2: 0.4802  loss_mask: 0.1129  loss_rpn_cls: 0.006847  loss_rpn_loc: 0.06041  validation_loss: 2.012  time: 0.4233  last_time: 0.4270  data_time: 0.0126  last_data_time: 0.0026   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:19:13] d2.utils.events INFO:  eta: 0:00:00  iter: 1799  total_loss: 1.567  loss_cls_stage0: 0.09507  loss_box_reg_stage0: 0.1646  loss_cls_stage1: 0.08348  loss_box_reg_stage1: 0.3634  loss_cls_stage2: 0.08833  loss_box_reg_stage2: 0.5382  loss_mask: 0.1166  loss_rpn_cls: 0.006628  loss_rpn_loc: 0.05645  validation_loss: 2.012  time: 0.4233  last_time: 0.4410  data_time: 0.0096  last_data_time: 0.0070   lr: 2.5e-06  max_mem: 5619M
+[02/18 17:19:13] d2.engine.hooks INFO: Overall training speed: 1798 iterations in 0:12:41 (0.4234 s / it)
+[02/18 17:19:13] d2.engine.hooks INFO: Total training time: 0:14:25 (0:01:44 on hooks)
+[02/18 17:19:13] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in training: [ResizeShortestEdge(short_edge_length=(1024, 1024), max_size=1024)]
+[02/18 17:19:13] d2.data.common INFO: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[02/18 17:19:13] d2.data.common INFO: Serializing 10 elements to byte tensors and concatenating them all ...
+[02/18 17:19:13] d2.data.common INFO: Serialized dataset takes 2.11 MiB
+[02/18 17:19:15] detectron2 INFO: VALIDATION_LOSS: 2.04293
+[02/18 17:19:15] d2.engine.hooks INFO: Not saving as latest eval score for validation_loss is 2.04293, not better than best score 1.90993 @ iteration 1151.
