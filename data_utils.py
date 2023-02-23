@@ -6,6 +6,7 @@ import math
 import os
 from copy import deepcopy
 from collections import defaultdict, deque
+from detectron2.data.catalog import DatasetCatalog
 
 import numpy as np
 from tqdm import tqdm
@@ -231,32 +232,43 @@ def random_split_mixed_set(
             f.write(f"{im_paths[i]},{spl}\n")
 
 
-def random_split_buildings(
-    path_to_buildings: str, split_ratio: Tuple[float, float, float], seed: int
+def random_split_ut_west_campus_set(
+    img_dir: str, split_ratio: Tuple[float, float, float], seed: int
 ):
-    buildings = glob(os.path.join(path_to_buildings, "*"))
-    # shuffle image paths randomly
-    buildings = np.array(buildings)
+    """
+    Randomly split the ut_west_campus dataset ensuring that images of the same
+    building are placed in the same split
+
+    Args:
+        img_dir (str): path to images
+        split_ratio (Tuple[float, float, float]): ratio to split BUILDINGS
+        seed (int): for shuffle reproducibility
+    """
+    with open("data/panels/ut_west_campus/buildings.txt") as f:
+        buildings = np.array([l.rstrip() for l in f])
+
     rng = np.random.default_rng(seed=seed)
     rng.shuffle(buildings)
     trainset_size = int(len(buildings) * split_ratio[0])
     valset_size = int(len(buildings) * split_ratio[1])
-    extensions = [".jpg", ".JPG", ".JPEG", ".jpeg", ".png"]
-    with open(os.path.join(path_to_buildings, "split.txt"), "w") as f:
-        for i, b in enumerate(buildings):
-            im_paths = []
-            for e in extensions:
-                im_paths.extend(glob(os.path.join(b, f"*{e}")))
+    split = {}
+    for i, b in enumerate(buildings):
+        if i < trainset_size:
+            split[b] = "train"
+        elif i < trainset_size + valset_size:
+            split[b] = "val"
+        else:
+            split[b] = "test"
 
-            if i < trainset_size:
-                spl = "train"
-            elif i < trainset_size + valset_size:
-                spl = "val"
-            else:
-                spl = "test"
+    with open("data/panels/ut_west_campus/annotations.json") as f:
+        img_dicts = json.load(f)
 
-            for im_path in im_paths:
-                f.write(f"{im_path},{spl}\n")
+    im_paths = [os.path.join(img_dir, fname) for fname in img_dicts]
+    with open("data/panels/ut_west_campus/split.txt", "w") as f:
+        for im_path in im_paths:
+            bname = os.path.basename(im_path).split("_")[:-1]
+            bname = "_".join(bname)
+            f.write(f"{im_path},{split[bname]}\n")
 
 
 def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
@@ -278,10 +290,6 @@ def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
     for i in range(len(im_paths)):
         fname = os.path.basename(im_paths[i])
         img_dict = img_dicts[fname]
-        # img_dict = img_dicts.get(fname)
-        # if img_dict is None:
-        #     print(im_paths[i])
-        #     continue
         d = via_dict_to_d2_dict(
             img_dir=img_dir, img_dict=img_dict, img_id=i, skip_no_pairs=skip_no_pairs
         )
@@ -429,7 +437,3 @@ def generate_missed_detections_data(
 
     with open(os.path.join(save_dir, "split.txt"), "w") as f:
         f.writelines(spl)
-
-
-if __name__ == "__main__":
-    random_split_buildings("data/panels/ut_west_campus", (0.7, 0.1, 0.2), 10)
