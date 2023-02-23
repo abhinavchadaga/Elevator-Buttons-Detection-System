@@ -1,3 +1,4 @@
+from glob import glob
 import json
 import random
 from typing import List, Tuple
@@ -230,6 +231,34 @@ def random_split_mixed_set(
             f.write(f"{im_paths[i]},{spl}\n")
 
 
+def random_split_buildings(
+    path_to_buildings: str, split_ratio: Tuple[float, float, float], seed: int
+):
+    buildings = glob(os.path.join(path_to_buildings, "*"))
+    # shuffle image paths randomly
+    buildings = np.array(buildings)
+    rng = np.random.default_rng(seed=seed)
+    rng.shuffle(buildings)
+    trainset_size = int(len(buildings) * split_ratio[0])
+    valset_size = int(len(buildings) * split_ratio[1])
+    extensions = [".jpg", ".JPG", ".JPEG", ".jpeg", ".png"]
+    with open(os.path.join(path_to_buildings, "split.txt"), "w") as f:
+        for i, b in enumerate(buildings):
+            im_paths = []
+            for e in extensions:
+                im_paths.extend(glob(os.path.join(b, f"*{e}")))
+
+            if i < trainset_size:
+                spl = "train"
+            elif i < trainset_size + valset_size:
+                spl = "val"
+            else:
+                spl = "test"
+
+            for im_path in im_paths:
+                f.write(f"{im_path},{spl}\n")
+
+
 def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
     """from a list of paths to images, generate the dataset
 
@@ -249,6 +278,10 @@ def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
     for i in range(len(im_paths)):
         fname = os.path.basename(im_paths[i])
         img_dict = img_dicts[fname]
+        # img_dict = img_dicts.get(fname)
+        # if img_dict is None:
+        #     print(im_paths[i])
+        #     continue
         d = via_dict_to_d2_dict(
             img_dir=img_dir, img_dict=img_dict, img_id=i, skip_no_pairs=skip_no_pairs
         )
@@ -399,4 +432,4 @@ def generate_missed_detections_data(
 
 
 if __name__ == "__main__":
-    generate_missed_detections_data("mixed")
+    random_split_buildings("data/panels/ut_west_campus", (0.7, 0.1, 0.2), 10)

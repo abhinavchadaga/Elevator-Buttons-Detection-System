@@ -16,3 +16,4 @@ __pycache__/*
 
 # don't include detectron2
 detectron2
+.ipynb_checkpoints/*
