@@ -7,6 +7,7 @@ import os
 from copy import deepcopy
 from collections import defaultdict, deque
 from detectron2.data.catalog import DatasetCatalog
+from functools import cmp_to_key
 
 import numpy as np
 from tqdm import tqdm
@@ -15,7 +16,8 @@ import cv2
 from PIL import Image, ImageOps
 
 from detectron2.structures import BoxMode
-from elevator_datasets import CLASSES
+
+CLASSES = {"label": 0, "button": 1}
 
 
 def generate_bbox(
@@ -31,16 +33,17 @@ def generate_bbox(
         List[int]: list of length 4 with location of topleft and bottom right points of
             bounding box
     """
-    x, y, w, h = np.min(px), np.min(py), np.max(px), np.max(py)
-    w, h = min(im_width - x - 1, w), min(im_height - y - 1, h)
-    x, y = max(x, 0), max(y, 0)
-    return [np.min(px), np.min(py), np.max(px), np.max(py)]
+    x1, y1, x2, y2 = np.min(px), np.min(py), np.max(px), np.max(py)
+    x1, y1 = max(0, x1), max(0, y1)
+    x2, y2 = min(im_width - 1, x2), min(im_height - 1, y2)
+    return x1, y1, x2, y2
 
 
 def generate_gt_mask_coords(
     region: dict, im_height: int, im_width: int
 ) -> Tuple[List[int], List[int]]:
-    """generate list of x coordinates (px) and y coordinates (py) for ground truth mask
+    """
+    generate list of x coordinates (px) and y coordinates (py) for ground truth mask
     region format:
     {
         "shape_attributes": {
@@ -354,7 +357,6 @@ def generate_missed_detections_data(
 
                 label, button = pair
                 if label is None or button is None:
-                    # DEBUGGING
                     continue
                 if remove == "all":
                     r = label if random.random() < 0.5 else button
@@ -464,6 +466,7 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
     with open(annos_path) as f:
         annos = json.load(f)
 
+    gtfiles = {"train": [], "val": [], "test": []}
     save_dir = os.path.join("data/labels")
     for line in tqdm(lines, desc="images"):
         im_path, split = line.split(",")
@@ -477,6 +480,7 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
                 continue
 
             gt = r["region_attributes"]["pair"]
+            gt = gt.replace(" ", "_")
 
             # create binary mask of label
             binary_mask = np.zeros_like(img, dtype=np.uint8)
@@ -488,20 +492,111 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
 
             # use bbox to crop image
             bbox = generate_bbox(px=cc, py=rr, im_height=height, im_width=width)
-            x, y, w, h = bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]
-            label_img = label_img[y : y + h, x : x + w]
+            x1, y1, x2, y2 = bbox
+            label_img = label_img[y1:y2, x1:x2]
 
             # resize img to fixed height and width
-            try:
-                label_img = Image.fromarray(label_img[:, :, ::-1])
-                resized_img = ImageOps.pad(label_img, (save_width, save_height))
-            except:
-                print(filename)
+            label_img = Image.fromarray(label_img[:, :, ::-1])
+            resized_img = ImageOps.pad(label_img, (save_width, save_height))
 
             # save image into appropriate split
             save_path = os.path.join(save_dir, split)
+            save_filename = f"{os.path.splitext(img_dict['filename'])[0]}-{gt}.jpg"
             os.makedirs(save_path, exist_ok=True)
-            save_path = os.path.join(
-                save_path, f"{os.path.splitext(img_dict['filename'])[0]}_{gt}.jpg"
-            )
+            save_path = os.path.join(save_path, save_filename)
             resized_img.save(save_path)
+
+            # write to gt file
+            gtfiles[split].append(f"{save_filename} {gt}\n")
+
+    # write gt files
+    for k, v in gtfiles.items():
+        with open(os.path.join("data/labels", k, "gt.txt"), "w") as f:
+            f.writelines(v)
+
+
+def generate_button_label_association_imgs(dataset_name: str):
+    assert dataset_name in ("mixed", "ut_austin_west_campus")
+    split_file_path = f"data/panels/{dataset_name}/split.txt"
+    annos_path = f"data/panels/{dataset_name}/annotations.json"
+
+    with open(split_file_path) as f:
+        lines = [line.rstrip() for line in f]
+
+    with open(annos_path) as f:
+        annos = json.load(f)
+
+    save_dir = os.path.join("data/btn_label_assoc")
+    spl = []
+    for line in tqdm(lines, desc="images"):
+        im_path, split = line.split(",")
+        filename = os.path.basename(im_path)
+        img_dict = annos[filename]
+        img = cv2.imread(im_path)
+        height, width = img.shape[:2]
+
+        # grab all the buttons and centers, zip them together
+        all_buttons = [
+            r
+            for r in img_dict["regions"]
+            if r["region_attributes"]["category_id"] == "button"
+        ]
+        centers = []
+        for b in all_buttons:
+            bbox = generate_bbox(
+                *generate_gt_mask_coords(b, height, width), height, width
+            )
+            c = (bbox[0] + bbox[2]) // 2, (bbox[1] + bbox[3]) // 2
+            centers.append(c)
+
+        all_buttons = dict(zip(centers, all_buttons))
+        for r in img_dict["regions"]:
+            category_id = r["region_attributes"]["category_id"]
+            if category_id != "label":
+                continue
+
+            pair = r["region_attributes"]["pair"]
+            pair = pair.replace(" ", "_")
+
+            # find the four closest buttons
+            this_mask = generate_gt_mask_opaque(r, height, width)
+            this_bbox = generate_bbox(this_mask[1], this_mask[0], height, width)
+            this_center = (this_bbox[0] + this_bbox[2]) // 2, (
+                this_bbox[1] + this_bbox[3]
+            ) // 2
+
+            btn_distances = [math.dist(btn, this_center) for btn in all_buttons.keys()]
+            top_4_distances = sorted(
+                zip(all_buttons.keys(), btn_distances), key=lambda x: x[1]
+            )[:4]
+            top_4_btns = [all_buttons[k[0]] for k in top_4_distances]
+
+            # build image
+            assoc_img = np.zeros_like(img, dtype=np.uint8)
+            assoc_img[this_mask[0], this_mask[1]] = [0, 255, 0]
+
+            gt = None
+            for i, btn in enumerate(top_4_btns):
+                rr, cc = generate_gt_mask_opaque(btn, height, width)
+                assoc_img[rr, cc] = [0, 0, 255]
+                if btn["region_attributes"].get("pair") == pair:
+                    gt = i
+
+            assert gt is not None
+
+            save_path = os.path.join(save_dir, dataset_name)
+            os.makedirs(save_path, exist_ok=True)
+            save_filename = (
+                f"{os.path.splitext(img_dict['filename'])[0]}_{pair}-{gt}.jpg"
+            )
+            save_path = os.path.join(save_path, save_filename)
+            cv2.imwrite(save_path, assoc_img[:, :, ::-1])
+            spl.append(f"{save_path},{split}")
+
+    with open(os.path.join(save_dir, "split.txt"), "w") as f:
+        f.writelines(spl)
+
+
+if __name__ == "__main__":
+    generate_label_imgs("mixed", 32, 128)
+    # generate_button_label_association_imgs("mixed")
