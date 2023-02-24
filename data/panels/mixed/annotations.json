@@ -1,6 +1,6 @@
 {
-    "0.jpg": {
-        "filename": "0.jpg",
+    "mixed_0.jpg": {
+        "filename": "mixed_0.jpg",
         "size": 215906,
         "regions": [
             {
@@ -470,8 +470,8 @@
             "include": "yes"
         }
     },
-    "1.jpg": {
-        "filename": "1.jpg",
+    "mixed_1.jpg": {
+        "filename": "mixed_1.jpg",
         "size": 712168,
         "regions": [
             {
@@ -2199,8 +2199,8 @@
             "include": "yes"
         }
     },
-    "2.jpg": {
-        "filename": "2.jpg",
+    "mixed_2.jpg": {
+        "filename": "mixed_2.jpg",
         "size": 22087,
         "regions": [
             {
@@ -2656,8 +2656,8 @@
             "include": "yes"
         }
     },
-    "3.jpg": {
-        "filename": "3.jpg",
+    "mixed_3.jpg": {
+        "filename": "mixed_3.jpg",
         "size": 222163,
         "regions": [
             {
@@ -3106,8 +3106,8 @@
             "include": "yes"
         }
     },
-    "4.jpg": {
-        "filename": "4.jpg",
+    "mixed_4.jpg": {
+        "filename": "mixed_4.jpg",
         "size": 120315,
         "regions": [
             {
@@ -3646,8 +3646,8 @@
             "include": "yes"
         }
     },
-    "5.jpg": {
-        "filename": "5.jpg",
+    "mixed_5.jpg": {
+        "filename": "mixed_5.jpg",
         "size": 1573644,
         "regions": [
             {
@@ -4380,8 +4380,8 @@
             "include": "yes"
         }
     },
-    "6.jpg": {
-        "filename": "6.jpg",
+    "mixed_6.jpg": {
+        "filename": "mixed_6.jpg",
         "size": 1021750,
         "regions": [
             {
@@ -6682,8 +6682,8 @@
             "include": "yes"
         }
     },
-    "7.jpg": {
-        "filename": "7.jpg",
+    "mixed_7.jpg": {
+        "filename": "mixed_7.jpg",
         "size": 94280,
         "regions": [
             {
@@ -7126,8 +7126,8 @@
             "include": "yes"
         }
     },
-    "8.jpg": {
-        "filename": "8.jpg",
+    "mixed_8.jpg": {
+        "filename": "mixed_8.jpg",
         "size": 177026,
         "regions": [
             {
@@ -7766,8 +7766,8 @@
             "include": "yes"
         }
     },
-    "9.jpg": {
-        "filename": "9.jpg",
+    "mixed_9.jpg": {
+        "filename": "mixed_9.jpg",
         "size": 147624,
         "regions": [
             {
@@ -9553,8 +9553,8 @@
             "include": "yes"
         }
     },
-    "10.jpg": {
-        "filename": "10.jpg",
+    "mixed_10.jpg": {
+        "filename": "mixed_10.jpg",
         "size": 9031,
         "regions": [
             {
@@ -9814,8 +9814,8 @@
             "include": "yes"
         }
     },
-    "11.jpg": {
-        "filename": "11.jpg",
+    "mixed_11.jpg": {
+        "filename": "mixed_11.jpg",
         "size": 685802,
         "regions": [
             {
@@ -11400,8 +11400,8 @@
             "include": "yes"
         }
     },
-    "12.jpg": {
-        "filename": "12.jpg",
+    "mixed_12.jpg": {
+        "filename": "mixed_12.jpg",
         "size": 53576,
         "regions": [
             {
@@ -13162,8 +13162,8 @@
             "include": "yes"
         }
     },
-    "13.jpg": {
-        "filename": "13.jpg",
+    "mixed_13.jpg": {
+        "filename": "mixed_13.jpg",
         "size": 158966,
         "regions": [
             {
@@ -14403,8 +14403,8 @@
             "include": "yes"
         }
     },
-    "14.jpg": {
-        "filename": "14.jpg",
+    "mixed_14.jpg": {
+        "filename": "mixed_14.jpg",
         "size": 363667,
         "regions": [
             {
@@ -15378,8 +15378,8 @@
             "include": "yes"
         }
     },
-    "15.jpg": {
-        "filename": "15.jpg",
+    "mixed_15.jpg": {
+        "filename": "mixed_15.jpg",
         "size": 136615,
         "regions": [
             {
@@ -16570,8 +16570,8 @@
             "include": "yes"
         }
     },
-    "16.jpg": {
-        "filename": "16.jpg",
+    "mixed_16.jpg": {
+        "filename": "mixed_16.jpg",
         "size": 145615,
         "regions": [
             {
@@ -17754,8 +17754,8 @@
             "include": "yes"
         }
     },
-    "17.jpg": {
-        "filename": "17.jpg",
+    "mixed_17.jpg": {
+        "filename": "mixed_17.jpg",
         "size": 660250,
         "regions": [
             {
@@ -18423,8 +18423,8 @@
             "include": "yes"
         }
     },
-    "18.jpg": {
-        "filename": "18.jpg",
+    "mixed_18.jpg": {
+        "filename": "mixed_18.jpg",
         "size": 245029,
         "regions": [
             {
@@ -19022,8 +19022,8 @@
             "include": "yes"
         }
     },
-    "19.jpg": {
-        "filename": "19.jpg",
+    "mixed_19.jpg": {
+        "filename": "mixed_19.jpg",
         "size": 8638,
         "regions": [
             {
@@ -19507,8 +19507,8 @@
             "include": "yes"
         }
     },
-    "20.jpg": {
-        "filename": "20.jpg",
+    "mixed_20.jpg": {
+        "filename": "mixed_20.jpg",
         "size": 25687,
         "regions": [
             {
@@ -20168,8 +20168,8 @@
             "include": "yes"
         }
     },
-    "21.jpg": {
-        "filename": "21.jpg",
+    "mixed_21.jpg": {
+        "filename": "mixed_21.jpg",
         "size": 1105750,
         "regions": [
             {
@@ -20943,8 +20943,8 @@
             "include": "yes"
         }
     },
-    "22.jpg": {
-        "filename": "22.jpg",
+    "mixed_22.jpg": {
+        "filename": "mixed_22.jpg",
         "size": 208434,
         "regions": [
             {
@@ -22097,8 +22097,8 @@
             "include": "yes"
         }
     },
-    "23.jpg": {
-        "filename": "23.jpg",
+    "mixed_23.jpg": {
+        "filename": "mixed_23.jpg",
         "size": 146772,
         "regions": [
             {
@@ -22757,8 +22757,8 @@
             "include": "yes"
         }
     },
-    "24.jpg": {
-        "filename": "24.jpg",
+    "mixed_24.jpg": {
+        "filename": "mixed_24.jpg",
         "size": 1921374,
         "regions": [
             {
@@ -24131,8 +24131,8 @@
             "include": "yes"
         }
     },
-    "25.jpg": {
-        "filename": "25.jpg",
+    "mixed_25.jpg": {
+        "filename": "mixed_25.jpg",
         "size": 100167,
         "regions": [
             {
@@ -25070,8 +25070,8 @@
             "include": "yes"
         }
     },
-    "26.jpg": {
-        "filename": "26.jpg",
+    "mixed_26.jpg": {
+        "filename": "mixed_26.jpg",
         "size": 1035927,
         "regions": [
             {
@@ -25567,8 +25567,8 @@
             "include": "yes"
         }
     },
-    "27.jpg": {
-        "filename": "27.jpg",
+    "mixed_27.jpg": {
+        "filename": "mixed_27.jpg",
         "size": 1069880,
         "regions": [
             {
@@ -26094,8 +26094,8 @@
             "include": "yes"
         }
     },
-    "28.jpg": {
-        "filename": "28.jpg",
+    "mixed_28.jpg": {
+        "filename": "mixed_28.jpg",
         "size": 48068,
         "regions": [
             {
@@ -26738,8 +26738,8 @@
             "include": "yes"
         }
     },
-    "29.jpg": {
-        "filename": "29.jpg",
+    "mixed_29.jpg": {
+        "filename": "mixed_29.jpg",
         "size": 96123,
         "regions": [
             {
@@ -27033,8 +27033,8 @@
             "include": "yes"
         }
     },
-    "30.jpg": {
-        "filename": "30.jpg",
+    "mixed_30.jpg": {
+        "filename": "mixed_30.jpg",
         "size": 1176324,
         "regions": [
             {
@@ -27731,8 +27731,8 @@
             "include": "yes"
         }
     },
-    "31.jpg": {
-        "filename": "31.jpg",
+    "mixed_31.jpg": {
+        "filename": "mixed_31.jpg",
         "size": 77591,
         "regions": [
             {
@@ -28668,8 +28668,8 @@
             "include": "yes"
         }
     },
-    "32.jpg": {
-        "filename": "32.jpg",
+    "mixed_32.jpg": {
+        "filename": "mixed_32.jpg",
         "size": 1203709,
         "regions": [
             {
@@ -29138,8 +29138,8 @@
             "include": "yes"
         }
     },
-    "33.jpg": {
-        "filename": "33.jpg",
+    "mixed_33.jpg": {
+        "filename": "mixed_33.jpg",
         "size": 100621,
         "regions": [
             {
@@ -30060,8 +30060,8 @@
             "include": "yes"
         }
     },
-    "34.jpg": {
-        "filename": "34.jpg",
+    "mixed_34.jpg": {
+        "filename": "mixed_34.jpg",
         "size": 88369,
         "regions": [
             {
@@ -30629,8 +30629,8 @@
             "include": "yes"
         }
     },
-    "35.jpg": {
-        "filename": "35.jpg",
+    "mixed_35.jpg": {
+        "filename": "mixed_35.jpg",
         "size": 341997,
         "regions": [
             {
@@ -31196,8 +31196,8 @@
             "include": "yes"
         }
     },
-    "36.jpg": {
-        "filename": "36.jpg",
+    "mixed_36.jpg": {
+        "filename": "mixed_36.jpg",
         "size": 66113,
         "regions": [
             {
@@ -32031,8 +32031,8 @@
             "include": "yes"
         }
     },
-    "37.jpg": {
-        "filename": "37.jpg",
+    "mixed_37.jpg": {
+        "filename": "mixed_37.jpg",
         "size": 2133447,
         "regions": [
             {
@@ -32341,8 +32341,8 @@
             "include": "yes"
         }
     },
-    "38.jpg": {
-        "filename": "38.jpg",
+    "mixed_38.jpg": {
+        "filename": "mixed_38.jpg",
         "size": 132018,
         "regions": [
             {
@@ -33694,8 +33694,8 @@
             "include": "yes"
         }
     },
-    "39.jpg": {
-        "filename": "39.jpg",
+    "mixed_39.jpg": {
+        "filename": "mixed_39.jpg",
         "size": 835810,
         "regions": [
             {
@@ -34258,8 +34258,8 @@
             "include": "yes"
         }
     },
-    "40.jpg": {
-        "filename": "40.jpg",
+    "mixed_40.jpg": {
+        "filename": "mixed_40.jpg",
         "size": 1060813,
         "regions": [
             {
@@ -35146,8 +35146,8 @@
             "include": "yes"
         }
     },
-    "41.jpg": {
-        "filename": "41.jpg",
+    "mixed_41.jpg": {
+        "filename": "mixed_41.jpg",
         "size": 1282900,
         "regions": [
             {
@@ -36937,8 +36937,8 @@
             "include": "yes"
         }
     },
-    "42.jpg": {
-        "filename": "42.jpg",
+    "mixed_42.jpg": {
+        "filename": "mixed_42.jpg",
         "size": 40189,
         "regions": [
             {
@@ -37338,8 +37338,8 @@
             "include": "yes"
         }
     },
-    "43.jpg": {
-        "filename": "43.jpg",
+    "mixed_43.jpg": {
+        "filename": "mixed_43.jpg",
         "size": 49082,
         "regions": [
             {
@@ -37877,8 +37877,8 @@
             "include": "yes"
         }
     },
-    "44.jpg": {
-        "filename": "44.jpg",
+    "mixed_44.jpg": {
+        "filename": "mixed_44.jpg",
         "size": 1109875,
         "regions": [
             {
@@ -38237,8 +38237,8 @@
             "include": "yes"
         }
     },
-    "45.jpg": {
-        "filename": "45.jpg",
+    "mixed_45.jpg": {
+        "filename": "mixed_45.jpg",
         "size": 511384,
         "regions": [
             {
@@ -39225,8 +39225,8 @@
             "include": "yes"
         }
     },
-    "46.jpg": {
-        "filename": "46.jpg",
+    "mixed_46.jpg": {
+        "filename": "mixed_46.jpg",
         "size": 66278,
         "regions": [
             {
@@ -39936,8 +39936,8 @@
             "include": "yes"
         }
     },
-    "47.jpg": {
-        "filename": "47.jpg",
+    "mixed_47.jpg": {
+        "filename": "mixed_47.jpg",
         "size": 215735,
         "regions": [
             {
@@ -40555,8 +40555,8 @@
             "include": "yes"
         }
     },
-    "48.jpg": {
-        "filename": "48.jpg",
+    "mixed_48.jpg": {
+        "filename": "mixed_48.jpg",
         "size": 464026,
         "regions": [
             {
@@ -41732,8 +41732,8 @@
             "include": "yes"
         }
     },
-    "49.jpg": {
-        "filename": "49.jpg",
+    "mixed_49.jpg": {
+        "filename": "mixed_49.jpg",
         "size": 71358,
         "regions": [
             {
@@ -42336,403 +42336,10 @@
             "include": "yes"
         }
     },
-    "50.jpg": {
-        "filename": "50.jpg",
+    "mixed_50.jpg": {
+        "filename": "mixed_50.jpg",
         "size": 320739,
         "regions": [
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        321,
-                        434,
-                        442,
-                        448,
-                        450,
-                        444,
-                        438,
-                        326,
-                        319,
-                        312,
-                        311,
-                        305,
-                        307,
-                        315
-                    ],
-                    "all_points_y": [
-                        552,
-                        552,
-                        555,
-                        562,
-                        665,
-                        676,
-                        681,
-                        681,
-                        677,
-                        668,
-                        661,
-                        570,
-                        561,
-                        554
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "2"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        328,
-                        434,
-                        446,
-                        449,
-                        452,
-                        455,
-                        450,
-                        443,
-                        335,
-                        326,
-                        320,
-                        313,
-                        316,
-                        322
-                    ],
-                    "all_points_y": [
-                        722,
-                        721,
-                        725,
-                        733,
-                        748,
-                        823,
-                        833,
-                        840,
-                        843,
-                        838,
-                        830,
-                        737,
-                        729,
-                        724
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "door open"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        335,
-                        440,
-                        451,
-                        455,
-                        458,
-                        459,
-                        455,
-                        446,
-                        438,
-                        341,
-                        330,
-                        325,
-                        319,
-                        322,
-                        328
-                    ],
-                    "all_points_y": [
-                        884,
-                        882,
-                        889,
-                        900,
-                        917,
-                        980,
-                        991,
-                        997,
-                        1001,
-                        1002,
-                        994,
-                        986,
-                        902,
-                        893,
-                        886
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "alarm"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        868,
-                        967,
-                        979,
-                        983,
-                        983,
-                        974,
-                        963,
-                        861,
-                        849,
-                        844,
-                        844,
-                        848,
-                        856
-                    ],
-                    "all_points_y": [
-                        552,
-                        551,
-                        556,
-                        569,
-                        664,
-                        674,
-                        677,
-                        677,
-                        671,
-                        663,
-                        571,
-                        563,
-                        555
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "2"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        873,
-                        982,
-                        991,
-                        994,
-                        992,
-                        988,
-                        978,
-                        876,
-                        863,
-                        858,
-                        856,
-                        859,
-                        862,
-                        867
-                    ],
-                    "all_points_y": [
-                        712,
-                        713,
-                        718,
-                        728,
-                        823,
-                        832,
-                        838,
-                        837,
-                        829,
-                        820,
-                        810,
-                        734,
-                        722,
-                        716
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "label",
-                    "pair": "1"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 539,
-                    "cy": 607,
-                    "rx": 66,
-                    "ry": 61,
-                    "theta": 0
-                },
-                "region_attributes": {
-                    "category_id": "button",
-                    "pair": "2"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 540,
-                    "cy": 773,
-                    "rx": 64.174,
-                    "ry": 57.149,
-                    "theta": 0.089
-                },
-                "region_attributes": {
-                    "category_id": "button",
-                    "pair": "door open"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 548,
-                    "cy": 932,
-                    "rx": 62,
-                    "ry": 57,
-                    "theta": 0
-                },
-                "region_attributes": {
-                    "category_id": "button",
-                    "pair": "alarm"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 1062,
-                    "cy": 612,
-                    "rx": 64.668,
-                    "ry": 61.999,
-                    "theta": 0.124
-                },
-                "region_attributes": {
-                    "category_id": "button",
-                    "pair": "2"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 1056,
-                    "cy": 776,
-                    "rx": 60.939,
-                    "ry": 60.186,
-                    "theta": 0.113
-                },
-                "region_attributes": {
-                    "category_id": "button",
-                    "pair": "1"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 1045,
-                    "cy": 936,
-                    "rx": 68.887,
-                    "ry": 65.88,
-                    "theta": 3.053
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 530,
-                    "cy": 253,
-                    "rx": 70,
-                    "ry": 68,
-                    "theta": 0
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 533,
-                    "cy": 435,
-                    "rx": 75.561,
-                    "ry": 71.788,
-                    "theta": -3.079
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 800,
-                    "cy": 432,
-                    "rx": 73.963,
-                    "ry": 72.884,
-                    "theta": 0.015
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 1085,
-                    "cy": 257,
-                    "rx": 66.247,
-                    "ry": 66.712,
-                    "theta": -0.137
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "ellipse",
-                    "cx": 1076,
-                    "cy": 441,
-                    "rx": 69.251,
-                    "ry": 75.051,
-                    "theta": -2.056
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
-            {
-                "shape_attributes": {
-                    "name": "polyline",
-                    "all_points_x": [
-                        741,
-                        841,
-                        851,
-                        855,
-                        854,
-                        846,
-                        822,
-                        741,
-                        731,
-                        727,
-                        723,
-                        723,
-                        727,
-                        733
-                    ],
-                    "all_points_y": [
-                        714,
-                        713,
-                        716,
-                        723,
-                        827,
-                        835,
-                        836,
-                        836,
-                        831,
-                        823,
-                        815,
-                        734,
-                        724,
-                        718
-                    ]
-                },
-                "region_attributes": {
-                    "category_id": "button"
-                }
-            },
             {
                 "shape_attributes": {
                     "name": "polyline",
@@ -43191,8 +42798,8 @@
             "include": "yes"
         }
     },
-    "51.jpg": {
-        "filename": "51.jpg",
+    "mixed_51.jpg": {
+        "filename": "mixed_51.jpg",
         "size": 749166,
         "regions": [
             {
@@ -43466,8 +43073,8 @@
             "include": "yes"
         }
     },
-    "52.jpg": {
-        "filename": "52.jpg",
+    "mixed_52.jpg": {
+        "filename": "mixed_52.jpg",
         "size": 557317,
         "regions": [
             {
@@ -44211,8 +43818,8 @@
             "include": "yes"
         }
     },
-    "53.jpg": {
-        "filename": "53.jpg",
+    "mixed_53.jpg": {
+        "filename": "mixed_53.jpg",
         "size": 325740,
         "regions": [
             {
@@ -44460,8 +44067,8 @@
             "include": "yes"
         }
     },
-    "54.jpg": {
-        "filename": "54.jpg",
+    "mixed_54.jpg": {
+        "filename": "mixed_54.jpg",
         "size": 167459,
         "regions": [
             {
@@ -44526,8 +44133,8 @@
             "include": "yes"
         }
     },
-    "55.jpg": {
-        "filename": "55.jpg",
+    "mixed_55.jpg": {
+        "filename": "mixed_55.jpg",
         "size": 804978,
         "regions": [
             {
@@ -46436,8 +46043,8 @@
             "include": "yes"
         }
     },
-    "56.jpg": {
-        "filename": "56.jpg",
+    "mixed_56.jpg": {
+        "filename": "mixed_56.jpg",
         "size": 202327,
         "regions": [
             {
@@ -46678,8 +46285,8 @@
             "include": "yes"
         }
     },
-    "57.jpg": {
-        "filename": "57.jpg",
+    "mixed_57.jpg": {
+        "filename": "mixed_57.jpg",
         "size": 378638,
         "regions": [
             {
@@ -47349,8 +46956,8 @@
             "include": "yes"
         }
     },
-    "58.jpg": {
-        "filename": "58.jpg",
+    "mixed_58.jpg": {
+        "filename": "mixed_58.jpg",
         "size": 491458,
         "regions": [
             {
@@ -48036,8 +47643,8 @@
             "include": "yes"
         }
     },
-    "59.jpg": {
-        "filename": "59.jpg",
+    "mixed_59.jpg": {
+        "filename": "mixed_59.jpg",
         "size": 586411,
         "regions": [
             {
@@ -48427,8 +48034,8 @@
             "include": "yes"
         }
     },
-    "60.jpg": {
-        "filename": "60.jpg",
+    "mixed_60.jpg": {
+        "filename": "mixed_60.jpg",
         "size": 448676,
         "regions": [
             {
@@ -48580,8 +48187,8 @@
             "include": "yes"
         }
     },
-    "61.jpg": {
-        "filename": "61.jpg",
+    "mixed_61.jpg": {
+        "filename": "mixed_61.jpg",
         "size": 433219,
         "regions": [
             {
@@ -48728,8 +48335,8 @@
             "include": "yes"
         }
     },
-    "62.jpg": {
-        "filename": "62.jpg",
+    "mixed_62.jpg": {
+        "filename": "mixed_62.jpg",
         "size": 206577,
         "regions": [
             {
@@ -50723,8 +50330,8 @@
             "include": "yes"
         }
     },
-    "63.jpg": {
-        "filename": "63.jpg",
+    "mixed_63.jpg": {
+        "filename": "mixed_63.jpg",
         "size": 64743,
         "regions": [
             {
@@ -51074,8 +50681,8 @@
             "include": "yes"
         }
     },
-    "64.jpg": {
-        "filename": "64.jpg",
+    "mixed_64.jpg": {
+        "filename": "mixed_64.jpg",
         "size": 385676,
         "regions": [
             {
@@ -52317,8 +51924,8 @@
             "include": "yes"
         }
     },
-    "65.jpg": {
-        "filename": "65.jpg",
+    "mixed_65.jpg": {
+        "filename": "mixed_65.jpg",
         "size": 120532,
         "regions": [
             {
@@ -53285,8 +52892,8 @@
             "include": "yes"
         }
     },
-    "66.jpg": {
-        "filename": "66.jpg",
+    "mixed_66.jpg": {
+        "filename": "mixed_66.jpg",
         "size": 156722,
         "regions": [
             {
@@ -53996,8 +53603,8 @@
             "include": "yes"
         }
     },
-    "67.jpg": {
-        "filename": "67.jpg",
+    "mixed_67.jpg": {
+        "filename": "mixed_67.jpg",
         "size": 390977,
         "regions": [
             {
@@ -54425,8 +54032,8 @@
             "include": "yes"
         }
     },
-    "68.jpg": {
-        "filename": "68.jpg",
+    "mixed_68.jpg": {
+        "filename": "mixed_68.jpg",
         "size": 549774,
         "regions": [
             {
@@ -55453,8 +55060,8 @@
             "include": "yes"
         }
     },
-    "69.jpg": {
-        "filename": "69.jpg",
+    "mixed_69.jpg": {
+        "filename": "mixed_69.jpg",
         "size": 292253,
         "regions": [
             {
@@ -55759,8 +55366,8 @@
             "include": "yes"
         }
     },
-    "70.jpg": {
-        "filename": "70.jpg",
+    "mixed_70.jpg": {
+        "filename": "mixed_70.jpg",
         "size": 712488,
         "regions": [
             {
@@ -56656,8 +56263,8 @@
             "include": "yes"
         }
     },
-    "71.jpg": {
-        "filename": "71.jpg",
+    "mixed_71.jpg": {
+        "filename": "mixed_71.jpg",
         "size": 384577,
         "regions": [
             {
@@ -57003,8 +56610,8 @@
             "include": "yes"
         }
     },
-    "73.jpg": {
-        "filename": "73.jpg",
+    "mixed_72.jpg": {
+        "filename": "mixed_72.jpg",
         "size": 184407,
         "regions": [
             {
@@ -57403,8 +57010,8 @@
             "include": "yes"
         }
     },
-    "74.jpg": {
-        "filename": "74.jpg",
+    "mixed_73.jpg": {
+        "filename": "mixed_73.jpg",
         "size": 35612,
         "regions": [
             {
@@ -57773,8 +57380,8 @@
             "include": "yes"
         }
     },
-    "75.jpg": {
-        "filename": "75.jpg",
+    "mixed_74.jpg": {
+        "filename": "mixed_74.jpg",
         "size": 188776,
         "regions": [
             {
@@ -58980,8 +58587,8 @@
             "include": "yes"
         }
     },
-    "76.jpg": {
-        "filename": "76.jpg",
+    "mixed_75.jpg": {
+        "filename": "mixed_75.jpg",
         "size": 73434,
         "regions": [
             {
@@ -59815,8 +59422,8 @@
             "include": "yes"
         }
     },
-    "77.jpg": {
-        "filename": "77.jpg",
+    "mixed_76.jpg": {
+        "filename": "mixed_76.jpg",
         "size": 30658,
         "regions": [
             {
@@ -60138,8 +59745,8 @@
             "include": "yes"
         }
     },
-    "78.jpg": {
-        "filename": "78.jpg",
+    "mixed_77.jpg": {
+        "filename": "mixed_77.jpg",
         "size": 202876,
         "regions": [
             {
@@ -60709,8 +60316,8 @@
             "include": "yes"
         }
     },
-    "79.jpg": {
-        "filename": "79.jpg",
+    "mixed_78.jpg": {
+        "filename": "mixed_78.jpg",
         "size": 3630320,
         "regions": [
             {
@@ -61009,8 +60616,8 @@
             "include": "yes"
         }
     },
-    "80.jpg": {
-        "filename": "80.jpg",
+    "mixed_79.jpg": {
+        "filename": "mixed_79.jpg",
         "size": 107752,
         "regions": [
             {
@@ -61638,8 +61245,8 @@
             "include": "yes"
         }
     },
-    "81.jpg": {
-        "filename": "81.jpg",
+    "mixed_80.jpg": {
+        "filename": "mixed_80.jpg",
         "size": 153453,
         "regions": [
             {
@@ -64434,8 +64041,8 @@
             "include": "yes"
         }
     },
-    "82.jpg": {
-        "filename": "82.jpg",
+    "mixed_81.jpg": {
+        "filename": "mixed_81.jpg",
         "size": 72302,
         "regions": [
             {
@@ -66353,7 +65960,7 @@
                     ]
                 },
                 "region_attributes": {
-                    "category_id": "label"
+                    "category_id": "button"
                 }
             }
         ],
@@ -66361,8 +65968,8 @@
             "include": "yes"
         }
     },
-    "83.jpg": {
-        "filename": "83.jpg",
+    "mixed_82.jpg": {
+        "filename": "mixed_82.jpg",
         "size": 412144,
         "regions": [
             {
@@ -67104,8 +66711,8 @@
             "include": "yes"
         }
     },
-    "84.jpg": {
-        "filename": "84.jpg",
+    "mixed_83.jpg": {
+        "filename": "mixed_83.jpg",
         "size": 738459,
         "regions": [
             {
@@ -69665,8 +69272,8 @@
             "include": "yes"
         }
     },
-    "85.jpg": {
-        "filename": "85.jpg",
+    "mixed_84.jpg": {
+        "filename": "mixed_84.jpg",
         "size": 64187,
         "regions": [
             {
@@ -70043,8 +69650,8 @@
             "include": "yes"
         }
     },
-    "86.jpg": {
-        "filename": "86.jpg",
+    "mixed_85.jpg": {
+        "filename": "mixed_85.jpg",
         "size": 102587,
         "regions": [
             {
@@ -74902,8 +74509,8 @@
             "include": "yes"
         }
     },
-    "87.jpg": {
-        "filename": "87.jpg",
+    "mixed_86.jpg": {
+        "filename": "mixed_86.jpg",
         "size": 105866,
         "regions": [
             {
@@ -78293,8 +77900,8 @@
             "include": "yes"
         }
     },
-    "88.jpg": {
-        "filename": "88.jpg",
+    "mixed_87.jpg": {
+        "filename": "mixed_87.jpg",
         "size": 123857,
         "regions": [
             {
@@ -79638,8 +79245,8 @@
             "include": "yes"
         }
     },
-    "89.jpg": {
-        "filename": "89.jpg",
+    "mixed_88.jpg": {
+        "filename": "mixed_88.jpg",
         "size": 257669,
         "regions": [
             {
@@ -80640,8 +80247,8 @@
             "include": "yes"
         }
     },
-    "90.jpg": {
-        "filename": "90.jpg",
+    "mixed_89.jpg": {
+        "filename": "mixed_89.jpg",
         "size": 94700,
         "regions": [
             {
@@ -82603,8 +82210,8 @@
             "include": "yes"
         }
     },
-    "91.jpg": {
-        "filename": "91.jpg",
+    "mixed_90.jpg": {
+        "filename": "mixed_90.jpg",
         "size": 1897118,
         "regions": [
             {
@@ -83266,8 +82873,8 @@
             "include": "yes"
         }
     },
-    "92.jpg": {
-        "filename": "92.jpg",
+    "mixed_91.jpg": {
+        "filename": "mixed_91.jpg",
         "size": 162950,
         "regions": [
             {
@@ -85211,8 +84818,8 @@
             "include": "yes"
         }
     },
-    "93.jpg": {
-        "filename": "93.jpg",
+    "mixed_92.jpg": {
+        "filename": "mixed_92.jpg",
         "size": 346785,
         "regions": [
             {
@@ -86577,8 +86184,8 @@
             "include": "yes"
         }
     },
-    "94.jpg": {
-        "filename": "94.jpg",
+    "mixed_93.jpg": {
+        "filename": "mixed_93.jpg",
         "size": 2886460,
         "regions": [
             {
@@ -87657,8 +87264,8 @@
             "include": "yes"
         }
     },
-    "96.jpg": {
-        "filename": "96.jpg",
+    "mixed_94.jpg": {
+        "filename": "mixed_94.jpg",
         "size": 808349,
         "regions": [
             {
@@ -89098,8 +88705,8 @@
             "include": "yes"
         }
     },
-    "97.jpg": {
-        "filename": "97.jpg",
+    "mixed_95.jpg": {
+        "filename": "mixed_95.jpg",
         "size": 155408,
         "regions": [
             {
@@ -89915,8 +89522,8 @@
             "include": "yes"
         }
     },
-    "98.jpg": {
-        "filename": "98.jpg",
+    "mixed_96.jpg": {
+        "filename": "mixed_96.jpg",
         "size": 68764,
         "regions": [
             {
@@ -90157,8 +89764,8 @@
             "include": "yes"
         }
     },
-    "99.jpg": {
-        "filename": "99.jpg",
+    "mixed_97.jpg": {
+        "filename": "mixed_97.jpg",
         "size": 2300837,
         "regions": [
             {
@@ -90453,8 +90060,8 @@
             "include": "yes"
         }
     },
-    "72.jpg": {
-        "filename": "72.jpg",
+    "mixed_98.jpg": {
+        "filename": "mixed_98.jpg",
         "size": 1019770,
         "regions": [
             {
@@ -91476,8 +91083,8 @@
         ],
         "file_attributes": {}
     },
-    "95.jpg": {
-        "filename": "95.jpg",
+    "mixed_99.jpg": {
+        "filename": "mixed_99.jpg",
         "size": 104562,
         "regions": [
             {
