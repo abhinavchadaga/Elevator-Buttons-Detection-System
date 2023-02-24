@@ -12,12 +12,15 @@ import numpy as np
 from tqdm import tqdm
 from skimage.draw import ellipse_perimeter, circle_perimeter, polygon
 import cv2
+from PIL import Image, ImageOps
 
 from detectron2.structures import BoxMode
 from elevator_datasets import CLASSES
 
 
-def generate_bbox(px: List[int], py: List[int]) -> List[int]:
+def generate_bbox(
+    px: List[int], py: List[int], im_height: int, im_width: int
+) -> List[int]:
     """Generate smallest possible bounding box from segmentation mask x and y coords.
 
     Args:
@@ -28,6 +31,9 @@ def generate_bbox(px: List[int], py: List[int]) -> List[int]:
         List[int]: list of length 4 with location of topleft and bottom right points of
             bounding box
     """
+    x, y, w, h = np.min(px), np.min(py), np.max(px), np.max(py)
+    w, h = min(im_width - x - 1, w), min(im_height - y - 1, h)
+    x, y = max(x, 0), max(y, 0)
     return [np.min(px), np.min(py), np.max(px), np.max(py)]
 
 
@@ -71,7 +77,7 @@ def generate_gt_mask_coords(
             c=int(s_attr["cx"]),
             r_radius=int(s_attr["ry"]),
             c_radius=int(s_attr["rx"]),
-            orientation=math.radians(s_attr["theta"]),  # type: ignore
+            orientation=s_attr["theta"],
         )
     elif shape_type == "circle":
         rr, cc = circle_perimeter(
@@ -160,7 +166,7 @@ def via_dict_to_d2_dict(
         px, py = generate_gt_mask_coords(region=r, im_height=height, im_width=width)
         poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
         poly = [p for x in poly for p in x]
-        bbox = generate_bbox(px=px, py=py)
+        bbox = generate_bbox(px=px, py=py, im_height=height, im_width=width)
 
         anno = {
             "bbox": bbox,
@@ -437,3 +443,65 @@ def generate_missed_detections_data(
 
     with open(os.path.join(save_dir, "split.txt"), "w") as f:
         f.writelines(spl)
+
+
+def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
+    """
+    generate label images and contain in an image size of save_height x save_width
+
+    Args:
+        dataset_name (str): _description_
+        save_height (int): _description_
+        save_width (int): _description_
+    """
+    assert dataset_name in ("mixed", "ut_austin_west_campus")
+    split_file_path = f"data/panels/{dataset_name}/split.txt"
+    annos_path = f"data/panels/{dataset_name}/annotations.json"
+
+    with open(split_file_path) as f:
+        lines = [line.rstrip() for line in f]
+
+    with open(annos_path) as f:
+        annos = json.load(f)
+
+    save_dir = os.path.join("data/labels")
+    for line in tqdm(lines, desc="images"):
+        im_path, split = line.split(",")
+        filename = os.path.basename(im_path)
+        img_dict = annos[filename]
+        img = cv2.imread(im_path)
+        height, width = img.shape[:2]
+        for r in img_dict["regions"]:
+            category_id = r["region_attributes"]["category_id"]
+            if category_id != "label":
+                continue
+
+            gt = r["region_attributes"]["pair"]
+
+            # create binary mask of label
+            binary_mask = np.zeros_like(img, dtype=np.uint8)
+            rr, cc = generate_gt_mask_opaque(r, height, width)
+            binary_mask[rr, cc, :] = 255
+
+            # only keep pixels that correspond to label
+            label_img = cv2.bitwise_and(img, binary_mask)
+
+            # use bbox to crop image
+            bbox = generate_bbox(px=cc, py=rr, im_height=height, im_width=width)
+            x, y, w, h = bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]
+            label_img = label_img[y : y + h, x : x + w]
+
+            # resize img to fixed height and width
+            try:
+                label_img = Image.fromarray(label_img[:, :, ::-1])
+                resized_img = ImageOps.pad(label_img, (save_width, save_height))
+            except:
+                print(filename)
+
+            # save image into appropriate split
+            save_path = os.path.join(save_dir, split)
+            os.makedirs(save_path, exist_ok=True)
+            save_path = os.path.join(
+                save_path, f"{os.path.splitext(img_dict['filename'])[0]}_{gt}.jpg"
+            )
+            resized_img.save(save_path)
