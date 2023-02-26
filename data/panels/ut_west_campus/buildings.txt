@@ -8,6 +8,7 @@ eeb
 eer
 etc
 gdc
+holiday_inn
 inspire_on_22nd
 jester_east
 jester_west

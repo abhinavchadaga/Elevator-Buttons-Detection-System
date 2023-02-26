@@ -1,15 +1,16 @@
-from glob import glob
+from functools import cmp_to_key
+from itertools import repeat
 import json
 import random
 from typing import List, Tuple
 import math
 import os
 from copy import deepcopy
-from collections import defaultdict, deque
-from detectron2.data.catalog import DatasetCatalog
-from functools import cmp_to_key
+from collections import defaultdict
 
+from multiprocessing import Pool
 import numpy as np
+from termcolor import cprint
 from tqdm import tqdm
 from skimage.draw import ellipse_perimeter, circle_perimeter, polygon
 import cv2
@@ -166,6 +167,7 @@ def via_dict_to_d2_dict(
         pair = r["region_attributes"].get("pair")
         if skip_no_pairs and (pair is None or pair == ""):
             continue
+        pair = pair.rstrip()
         px, py = generate_gt_mask_coords(region=r, im_height=height, im_width=width)
         poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
         poly = [p for x in poly for p in x]
@@ -296,7 +298,9 @@ def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
 
     dataset_dicts = []
     # add dicts to appropriate dataset
-    for i in range(len(im_paths)):
+    for i in tqdm(
+        range(len(im_paths)), desc=f"registering {os.path.basename(img_dir)} dataset"
+    ):
         fname = os.path.basename(im_paths[i])
         img_dict = img_dicts[fname]
         d = via_dict_to_d2_dict(
@@ -306,26 +310,51 @@ def register_dataset(im_paths: List[str], skip_no_pairs=True) -> List[dict]:
     return dataset_dicts
 
 
-def generate_missed_detections_data(
-    dataset_name: str, skip_no_pairs=True, verify=False
-) -> None:
-    """Generate missed detections data from a pre-existing panels dataset
+### MISSED DETECTIONS DATA GENERATION
 
-    Args:
-        dataset_name (str): name of the panels dataset to use
-        skip_no_pairs (bool, optional): ignore buttons with no pairs when
-            constructing full class map. Defaults to True.
-    """
-    with open(os.path.join("data/panels/", dataset_name, "split.txt")) as f:
-        im_paths = f.readlines()
 
-    with open(os.path.join("data/panels", dataset_name, "annotations.json")) as f:
-        annos = json.load(f)
+def per_image(
+    line: str, img_dict: dict, save_dir: str, skip_no_pairs: bool, verify: bool
+):
+    im_path, ds = line.split(",")
+    filename = os.path.basename(im_path)
+    im = cv2.imread(im_path)
+    height, width = im.shape[:2]
 
     gts = {}
     spl = []
-    save_dir = os.path.join("data/missed_detections", dataset_name)
-    os.makedirs(save_dir, exist_ok=True)
+
+    # base class map
+    id = 0
+    base = np.zeros_like(im, dtype=np.uint8)
+    pairs = defaultdict(lambda: [None] * 2)
+    for r in img_dict["regions"]:
+        pair = r["region_attributes"].get("pair")
+        if skip_no_pairs and (pair is None or pair == ""):
+            # skip features with no paired button or label
+            continue
+
+        pair = pair.rstrip()
+
+        rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
+        _class = r["region_attributes"]["category_id"]
+        if _class == "label":
+            pairs[pair][0] = r
+        else:
+            pairs[pair][1] = r
+        # green for label, blue for button
+        base[rr, cc] = [0, 255, 0] if _class == "label" else [0, 0, 255]
+
+    # save base/none missing first
+    new_fname = f"{os.path.splitext(filename)[0]}_none.jpg"
+    gts[new_fname] = {
+        "filename": new_fname,
+        "original_image": filename,
+        "regions": [],
+    }
+    save_path = os.path.join(save_dir, new_fname)
+    cv2.imwrite(save_path, base[:, :, ::-1])
+    spl.append(f"{save_path},{ds}")
 
     def helper(k, id, remove="all"):
         """generate permutations of k buttons and labels removed from an image
@@ -375,6 +404,7 @@ def generate_missed_detections_data(
 
             # kinda expensive
             if verify:
+                print("here!!")
                 unique = set()
                 for r in regions:
                     if r["region_attributes"]["pair"] in unique:
@@ -394,57 +424,69 @@ def generate_missed_detections_data(
             cv2.imwrite(save_path, out[:, :, ::-1])
             spl.append(f"{save_path},{ds}")
             id += 1
+
         return id
 
-    # iterate over every image
-    for l in tqdm(im_paths, desc="panel images"):
-        im_path, ds = l.split(",")
-        filename = os.path.basename(im_path)
-        img_dict = annos[filename]
-        im = cv2.imread(im_path)
-        height, width = im.shape[:2]
-
-        # base class map
-        id = 0
-        base = np.zeros_like(im, dtype=np.uint8)
-        pairs = defaultdict(lambda: [None] * 2)
-        for r in img_dict["regions"]:
-            pair = r["region_attributes"].get("pair")
-            if skip_no_pairs and (pair is None or pair == ""):
-                # skip features with no paired button or label
-                continue
-            rr, cc = generate_gt_mask_opaque(region=r, im_height=height, im_width=width)
-            _class = r["region_attributes"]["category_id"]
-            if _class == "label":
-                pairs[pair][0] = r
-            else:
-                pairs[pair][1] = r
-            # green for label, blue for button
-            base[rr, cc] = [0, 255, 0] if _class == "label" else [0, 0, 255]
-
-        # save base/none missing first
-        new_fname = f"{os.path.splitext(filename)[0]}_none.jpg"
-        gts[new_fname] = {
-            "filename": new_fname,
-            "original_image": filename,
-            "regions": [],
-        }
-        save_path = os.path.join(save_dir, new_fname)
-        cv2.imwrite(save_path, base[:, :, ::-1])
-        spl.append(f"{save_path},{ds}")
-
-        for k in range(1, math.ceil(0.25 * len(pairs) * 2)):
+    for k in range(1, max(2, math.ceil(0.2 * len(pairs) * 2))):
+        try:
             if k == 1:
                 id = helper(1, id, remove="button")
                 id = helper(1, id, remove="label")
             else:
-                id = helper(k, id)
+                id = helper(k, id, remove="all")
+        except:
+            cprint(f"error!!! {filename}", "red")
 
+    cprint(f"successfully finished {filename}!!!", "green")
+    return gts, spl
+
+
+def generate_missed_detections_data(
+    dataset_name: str, skip_no_pairs=True, verify=False
+) -> None:
+    """Generate missed detections data from a pre-existing panels dataset
+
+    Args:
+        dataset_name (str): name of the panels dataset to use
+        skip_no_pairs (bool, optional): ignore buttons with no pairs when
+            constructing full class map. Defaults to True.
+    """
+    with open(os.path.join("data/panels/", dataset_name, "split.txt")) as f:
+        im_paths = f.readlines()
+
+    with open(os.path.join("data/panels", dataset_name, "annotations.json")) as f:
+        annos = json.load(f)
+
+    all_gts, all_spl = {}, []
+    save_dir = os.path.join("data/missed_detections", dataset_name)
+    os.makedirs(save_dir, exist_ok=True)
+
+    pool = Pool(processes=32)
+
+    # gather args
+    img_dicts = [annos[os.path.basename(l.split(",")[0])] for l in im_paths]
+    args = zip(
+        im_paths, img_dicts, repeat(save_dir), repeat(skip_no_pairs), repeat(verify)
+    )
+    results = pool.starmap(per_image, args)
+    pool.close()
+    pool.join()
+
+    for x in results:
+        all_gts.update(x[0])
+        all_spl.extend(x[1])
+
+    cprint("dumping data", "blue")
     with open(os.path.join(save_dir, "annotations.json"), "w") as f:
-        json.dump(gts, f)
+        json.dump(all_gts, f)
 
     with open(os.path.join(save_dir, "split.txt"), "w") as f:
-        f.writelines(spl)
+        f.writelines(all_spl)
+
+    cprint("success!!", "green", attrs=["bold"])
+
+
+######## GENERATE CROPPED LABEL IMAGES ########
 
 
 def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
@@ -456,7 +498,7 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
         save_height (int): _description_
         save_width (int): _description_
     """
-    assert dataset_name in ("mixed", "ut_austin_west_campus")
+    assert dataset_name in ("mixed", "ut_west_campus")
     split_file_path = f"data/panels/{dataset_name}/split.txt"
     annos_path = f"data/panels/{dataset_name}/annotations.json"
 
@@ -475,12 +517,26 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
         img = cv2.imread(im_path)
         height, width = img.shape[:2]
         for r in img_dict["regions"]:
-            category_id = r["region_attributes"]["category_id"]
+            category_id = r["region_attributes"].get("category_id")
+
+            ## ERROR CHECKING ##
+            if category_id is None:
+                print("missing category id: ", filename)
+                continue
+            ####################
+
             if category_id != "label":
                 continue
 
-            gt = r["region_attributes"]["pair"]
-            gt = gt.replace(" ", "_")
+            gt = r["region_attributes"].get("pair")
+
+            ## ERROR CHECKING ##
+            if gt is None:
+                print("missing pair attribute: ", filename)
+                continue
+            ####################
+
+            gt = gt.rstrip().replace(" ", "_")
 
             # create binary mask of label
             binary_mask = np.zeros_like(img, dtype=np.uint8)
@@ -511,12 +567,92 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
 
     # write gt files
     for k, v in gtfiles.items():
-        with open(os.path.join("data/labels", k, "gt.txt"), "w") as f:
+        with open(os.path.join("data/labels", k, "gt.txt"), "a") as f:
             f.writelines(v)
 
 
-def generate_button_label_association_imgs(dataset_name: str):
-    assert dataset_name in ("mixed", "ut_austin_west_campus")
+## LABEL BUTTON ASSOCIATION DATA GENERATION
+
+
+def per_image_2(line, img_dict, save_dir):
+    im_path, split = line.split(",")
+    filename = os.path.basename(im_path)
+    img = cv2.imread(im_path)
+    height, width = img.shape[:2]
+
+    # GENERATE PAIRS DICT
+    # pair -> label, button, pair_x_center, pair_y_center
+    pairs = defaultdict(lambda: {"label": None, "button": None})
+    for r in img_dict["regions"]:
+        pair = r["region_attributes"].get("pair")
+        if pair is None or pair == "":
+            # skip features with no paired button or label
+            continue
+
+        pair = pair.rstrip()
+
+        category_id = r["region_attributes"]["category_id"]
+        # generate mask
+        mask = generate_gt_mask_opaque(r, height, width)
+        # calculate center
+        bbox = generate_bbox(mask[1], mask[0], height, width)
+        center = (bbox[0] + bbox[2]) // 2, (bbox[1] + bbox[3]) // 2
+        # update pairs dict
+        pairs[pair][category_id] = {"mask": mask, "center": center}
+
+    #### ERROR CHECKING!!!! ###############
+    skip = False
+    for k, v in pairs.items():
+        if v["label"] is None or v["button"] is None:
+            print(filename, " ", k)
+            skip = True
+
+    if skip:
+        return [None]
+    #######################################
+
+    ret = []
+    # GENERATE TRAINING DATA FOR EACH LABEL
+    for pair, tgt in pairs.items():
+        out = np.zeros_like(img, dtype=np.uint8)
+        label = tgt["label"]
+
+        # mark label to associate with as red
+        out[label["mask"]] = [255, 0, 0]
+
+        def compare(a, b):
+            return math.dist(label["center"], a["button"]["center"]) - math.dist(
+                label["center"], b["button"]["center"]
+            )
+
+        nearest_4 = sorted(list(pairs.values()), key=cmp_to_key(compare))[:4]
+
+        # assign gt index
+        gt = None
+        for i, p in enumerate(nearest_4):
+            if p["label"]["center"] == label["center"]:
+                # tgt pair
+                gt = i
+            else:
+                # non-tgt pair
+                out[p["label"]["mask"]] = [0, 255, 0]  # non-tgt labels are green
+
+            out[p["button"]["mask"]] = [0, 0, 255]  # buttons are blue
+
+        assert gt is not None
+        pair = pair.replace(" ", "_")
+        save_path = os.path.join(
+            save_dir, f"{os.path.splitext(filename)[0]}-{pair}-{gt}.jpg"
+        )
+        cv2.imwrite(save_path, out[:, :, ::-1])
+        ret.append(f"{save_path},{split}\n")
+
+    cprint(f"finished {filename}!!!", "green")
+    return ret
+
+
+def generate_button_label_association_imgs(dataset_name: str) -> None:
+    assert dataset_name in ("mixed", "ut_west_campus")
     split_file_path = f"data/panels/{dataset_name}/split.txt"
     annos_path = f"data/panels/{dataset_name}/annotations.json"
 
@@ -526,77 +662,24 @@ def generate_button_label_association_imgs(dataset_name: str):
     with open(annos_path) as f:
         annos = json.load(f)
 
-    save_dir = os.path.join("data/btn_label_assoc")
-    spl = []
-    for line in tqdm(lines, desc="images"):
-        im_path, split = line.split(",")
-        filename = os.path.basename(im_path)
-        img_dict = annos[filename]
-        img = cv2.imread(im_path)
-        height, width = img.shape[:2]
+    save_dir = f"data/btn_label_assoc/{dataset_name}"
+    os.makedirs(save_dir, exist_ok=True)
+    pool = Pool(processes=32)
 
-        # grab all the buttons and centers, zip them together
-        all_buttons = [
-            r
-            for r in img_dict["regions"]
-            if r["region_attributes"]["category_id"] == "button"
-        ]
-        centers = []
-        for b in all_buttons:
-            bbox = generate_bbox(
-                *generate_gt_mask_coords(b, height, width), height, width
-            )
-            c = (bbox[0] + bbox[2]) // 2, (bbox[1] + bbox[3]) // 2
-            centers.append(c)
-
-        all_buttons = dict(zip(centers, all_buttons))
-        for r in img_dict["regions"]:
-            category_id = r["region_attributes"]["category_id"]
-            if category_id != "label":
-                continue
-
-            pair = r["region_attributes"]["pair"]
-            pair = pair.replace(" ", "_")
-
-            # find the four closest buttons
-            this_mask = generate_gt_mask_opaque(r, height, width)
-            this_bbox = generate_bbox(this_mask[1], this_mask[0], height, width)
-            this_center = (this_bbox[0] + this_bbox[2]) // 2, (
-                this_bbox[1] + this_bbox[3]
-            ) // 2
-
-            btn_distances = [math.dist(btn, this_center) for btn in all_buttons.keys()]
-            top_4_distances = sorted(
-                zip(all_buttons.keys(), btn_distances), key=lambda x: x[1]
-            )[:4]
-            top_4_btns = [all_buttons[k[0]] for k in top_4_distances]
-
-            # build image
-            assoc_img = np.zeros_like(img, dtype=np.uint8)
-            assoc_img[this_mask[0], this_mask[1]] = [0, 255, 0]
-
-            gt = None
-            for i, btn in enumerate(top_4_btns):
-                rr, cc = generate_gt_mask_opaque(btn, height, width)
-                assoc_img[rr, cc] = [0, 0, 255]
-                if btn["region_attributes"].get("pair") == pair:
-                    gt = i
-
-            assert gt is not None
-
-            save_path = os.path.join(save_dir, dataset_name)
-            os.makedirs(save_path, exist_ok=True)
-            save_filename = (
-                f"{os.path.splitext(img_dict['filename'])[0]}_{pair}-{gt}.jpg"
-            )
-            save_path = os.path.join(save_path, save_filename)
-            cv2.imwrite(save_path, assoc_img[:, :, ::-1])
-            spl.append(f"{save_path},{split}")
+    # gather args
+    img_dicts = [annos[os.path.basename(l.split(",")[0])] for l in lines]
+    args = zip(lines, img_dicts, repeat(save_dir))
+    result = pool.starmap(per_image_2, args)
 
     with open(os.path.join(save_dir, "split.txt"), "w") as f:
-        f.writelines(spl)
+        for l in result:
+            if l[0] is not None:
+                f.writelines(l)
+
+    cprint("done!!", "green", attrs=["bold"])
 
 
 if __name__ == "__main__":
-    generate_label_imgs("mixed", 32, 128)
     # generate_button_label_association_imgs("mixed")
+    # generate_label_imgs("ut_west_campus", 32, 128)
+    generate_missed_detections_data("ut_west_campus", True)
