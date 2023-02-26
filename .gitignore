@@ -7,8 +7,8 @@
 # ignore model weights
 *.pkl
 *.pth
+.ckpt
 
-# ignore output directories
 models/
 
 # ignore pycache
@@ -16,4 +16,7 @@ __pycache__/*
 
 # don't include detectron2
 detectron2
+parseq
 .ipynb_checkpoints/*
+
+.old_git/

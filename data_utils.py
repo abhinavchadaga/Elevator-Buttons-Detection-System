@@ -680,6 +680,6 @@ def generate_button_label_association_imgs(dataset_name: str) -> None:
 
 
 if __name__ == "__main__":
-    # generate_button_label_association_imgs("mixed")
+    generate_button_label_association_imgs("ut_west_campus")
     # generate_label_imgs("ut_west_campus", 32, 128)
-    generate_missed_detections_data("ut_west_campus", True)
+    # generate_missed_detections_data("ut_west_campus", True)

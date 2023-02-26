@@ -1,8 +1,0 @@
-{
-    "python.formatting.provider": "black",
-    "python.linting.enabled": true,
-    "python.analysis.typeCheckingMode": "off",
-    "editor.rulers": [
-        88
-    ]
-}
