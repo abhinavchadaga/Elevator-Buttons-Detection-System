@@ -72,7 +72,7 @@ data/panels/mixed/mixed_41.jpg,train
 data/panels/mixed/mixed_18.jpg,train
 data/panels/mixed/mixed_35.jpg,train
 data/panels/mixed/mixed_79.jpg,train
-data/panels/mixed/mixed_102.jpg,train
+data/panels/mixed/mixed_51.jpg,train
 data/panels/mixed/mixed_65.jpg,train
 data/panels/mixed/mixed_84.jpg,val
 data/panels/mixed/mixed_21.jpg,val
@@ -84,7 +84,7 @@ data/panels/mixed/mixed_62.jpg,val
 data/panels/mixed/mixed_52.jpg,val
 data/panels/mixed/mixed_101.jpg,val
 data/panels/mixed/mixed_6.jpg,val
-data/panels/mixed/mixed_51.jpg,test
+data/panels/mixed/mixed_102.jpg,test
 data/panels/mixed/mixed_99.jpg,test
 data/panels/mixed/mixed_55.jpg,test
 data/panels/mixed/mixed_19.jpg,test
