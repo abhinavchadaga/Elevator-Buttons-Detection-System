@@ -106,4 +106,3 @@ data/panels/mixed/mixed_85.jpg,test
 data/panels/mixed/mixed_22.jpg,test
 data/panels/mixed/mixed_64.jpg,test
 data/panels/mixed/mixed_45.jpg,test
-data/panels/mixed/mixed_24.jpg,test
