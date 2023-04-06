@@ -510,6 +510,7 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
 
     gtfiles = {"train": [], "val": [], "test": []}
     save_dir = os.path.join("data/labels")
+    os.makedirs(save_dir, exist_ok=True)
     for line in tqdm(lines, desc="images"):
         im_path, split = line.split(",")
         filename = os.path.basename(im_path)
@@ -544,12 +545,12 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
             binary_mask[rr, cc, :] = 255
 
             # only keep pixels that correspond to label
-            label_img = cv2.bitwise_and(img, binary_mask)
+            # label_img = cv2.bitwise_and(img, binary_mask)
 
             # use bbox to crop image
             bbox = generate_bbox(px=cc, py=rr, im_height=height, im_width=width)
             x1, y1, x2, y2 = bbox
-            label_img = label_img[y1:y2, x1:x2]
+            label_img = img[y1:y2, x1:x2]
 
             # resize img to fixed height and width
             label_img = Image.fromarray(label_img[:, :, ::-1])
@@ -569,6 +570,44 @@ def generate_label_imgs(dataset_name: str, save_height: int, save_width: int):
     for k, v in gtfiles.items():
         with open(os.path.join("data/labels", k, "gt.txt"), "a") as f:
             f.writelines(v)
+
+
+def generate_pipeline_gt(dataset_name: str):
+    assert dataset_name in ("mixed", "ut_west_campus")
+    split_file_path = f"data/panels/{dataset_name}/split.txt"
+    annos_path = f"data/panels/{dataset_name}/annotations.json"
+
+    _, _, testlines = read_split_file(split_file_path)
+
+    with open(annos_path) as f:
+        annos = json.load(f)
+
+    gts = {}
+    for l in tqdm(testlines, desc="reading images"):
+        filename = os.path.basename(l)
+        height, width = cv2.imread(l).shape[:2]
+        img_dict = annos[filename]
+        gt = {}
+        for r in img_dict["regions"]:
+            pair = r["region_attributes"].get("pair")
+            if pair is None or pair == "":
+                # skip features with no paired button or label
+                continue
+
+            pair = pair.rstrip()
+            category_id = r["region_attributes"].get("category_id")
+            if category_id != "button":
+                continue
+
+            gt_bbox = generate_bbox(
+                *generate_gt_mask_coords(r, height, width), height, width
+            )
+            gt[pair] = [int(x) for x in gt_bbox]
+
+        gts[filename] = gt
+
+    with open(f"data/panels/{dataset_name}/pipeline_gt.json", "w") as f:
+        json.dump(gts, f)
 
 
 ## LABEL BUTTON ASSOCIATION DATA GENERATION
@@ -680,6 +719,7 @@ def generate_button_label_association_imgs(dataset_name: str) -> None:
 
 
 if __name__ == "__main__":
-    generate_button_label_association_imgs("ut_west_campus")
-    # generate_label_imgs("ut_west_campus", 32, 128)
+    # generate_button_label_association_imgs("ut_west_campus")
+    generate_label_imgs("mixed", 64, 64)
     # generate_missed_detections_data("ut_west_campus", True)
+    # generate_pipeline_gt(dataset_name="mixed")

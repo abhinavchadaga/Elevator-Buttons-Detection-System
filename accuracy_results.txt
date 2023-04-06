@@ -1,0 +1,335 @@
+mixed, vit, use_recovery=False, iou=0.4
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 406 / 423 => 95.98%
+total accuracy :  827 / 846 =>  97.75%
+
+mixed, vit, use_recovery=False, iou=0.5
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 406 / 423 => 95.98%
+total accuracy :  827 / 846 =>  97.75%
+
+mixed, vit, use_recovery=False, iou=0.6
+
+label accuracy  :  417 / 423 => 98.58%
+button accuracy : 406 / 423 => 95.98%
+total accuracy :  823 / 846 =>  97.28%
+
+mixed, vit, use_recovery=False, iou=0.7
+
+label accuracy  :  407 / 423 => 96.22%
+button accuracy : 401 / 423 => 94.80%
+total accuracy :  808 / 846 =>  95.51%
+
+mixed, vit, use_recovery=False, iou=0.75
+
+label accuracy  :  404 / 423 => 95.51%
+button accuracy : 387 / 423 => 91.49%
+total accuracy :  791 / 846 =>  93.50%
+
+mixed, vit, use_recovery=False, iou=0.8
+
+label accuracy  :  400 / 423 => 94.56%
+button accuracy : 371 / 423 => 87.71%
+total accuracy :  771 / 846 =>  91.13%
+
+mixed, vit, use_recovery=False, iou=0.9
+
+label accuracy  :  312 / 423 => 73.76%
+button accuracy : 284 / 423 => 67.14%
+total accuracy :  596 / 846 =>  70.45%
+___________________________________________
+mixed, vit, use_recovery=True, iou=0.4
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 416 / 423 => 98.35%
+total accuracy :  837 / 846 =>  98.94%
+
+mixed, vit, use_recovery=True, iou=0.5
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 416 / 423 => 98.35%
+total accuracy :  837 / 846 =>  98.94%
+
+mixed, vit, use_recovery=True, iou=0.6
+
+label accuracy  :  417 / 423 => 98.58%
+button accuracy : 416 / 423 => 98.35%
+total accuracy :  833 / 846 =>  98.46%
+
+mixed, vit, use_recovery=True, iou=0.7
+
+label accuracy  :  407 / 423 => 96.22%
+button accuracy : 411 / 423 => 97.16%
+total accuracy :  818 / 846 =>  96.69%
+
+mixed, vit, use_recovery=True, iou=0.75
+
+label accuracy  :  404 / 423 => 95.51%
+button accuracy : 397 / 423 => 93.85%
+total accuracy :  801 / 846 =>  94.68%
+
+mixed, vit, use_recovery=True, iou=0.8
+
+label accuracy  :  400 / 423 => 94.56%
+button accuracy : 380 / 423 => 89.83%
+total accuracy :  780 / 846 =>  92.20%
+
+mixed, vit, use_recovery=True, iou=0.9
+
+label accuracy  :  312 / 423 => 73.76%
+button accuracy : 289 / 423 => 68.32%
+total accuracy :  601 / 846 =>  71.04%
+___________________________________________
+ut_west_campus, vit, use_recovery=False, iou=0.4
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.5
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.6
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.7
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.75
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.8
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=False, iou=0.9
+
+label accuracy  :  963 / 982 => 98.07%
+button accuracy : 881 / 982 => 89.71%
+total accuracy :  1844 / 1964 =>  93.89%
+___________________________________________
+ut_west_campus, vit, use_recovery=True, iou=0.4
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.5
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.6
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.7
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.75
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.8
+
+label accuracy  :  981 / 982 => 99.90%
+button accuracy : 979 / 982 => 99.69%
+total accuracy :  1960 / 1964 =>  99.80%
+
+ut_west_campus, vit, use_recovery=True, iou=0.9
+
+label accuracy  :  963 / 982 => 98.07%
+button accuracy : 881 / 982 => 89.71%
+total accuracy :  1844 / 1964 =>  93.89%
+___________________________________________
+mixed, resnet, use_recovery=False, iou=0.4
+
+label accuracy  :  406 / 423 => 95.98%
+button accuracy : 409 / 423 => 96.69%
+total accuracy :  815 / 846 =>  96.34%
+
+mixed, resnet, use_recovery=False, iou=0.5
+
+label accuracy  :  403 / 423 => 95.27%
+button accuracy : 409 / 423 => 96.69%
+total accuracy :  812 / 846 =>  95.98%
+
+mixed, resnet, use_recovery=False, iou=0.6
+
+label accuracy  :  400 / 423 => 94.56%
+button accuracy : 408 / 423 => 96.45%
+total accuracy :  808 / 846 =>  95.51%
+
+mixed, resnet, use_recovery=False, iou=0.7
+
+label accuracy  :  385 / 423 => 91.02%
+button accuracy : 402 / 423 => 95.04%
+total accuracy :  787 / 846 =>  93.03%
+
+mixed, resnet, use_recovery=False, iou=0.75
+
+label accuracy  :  382 / 423 => 90.31%
+button accuracy : 393 / 423 => 92.91%
+total accuracy :  775 / 846 =>  91.61%
+
+mixed, resnet, use_recovery=False, iou=0.8
+
+label accuracy  :  376 / 423 => 88.89%
+button accuracy : 374 / 423 => 88.42%
+total accuracy :  750 / 846 =>  88.65%
+
+mixed, resnet, use_recovery=False, iou=0.9
+
+label accuracy  :  298 / 423 => 70.45%
+button accuracy : 263 / 423 => 62.17%
+total accuracy :  561 / 846 =>  66.31%
+___________________________________________
+mixed, resnet, use_recovery=True, iou=0.4
+
+label accuracy  :  407 / 423 => 96.22%
+button accuracy : 415 / 423 => 98.11%
+total accuracy :  822 / 846 =>  97.16%
+
+mixed, resnet, use_recovery=True, iou=0.5
+
+label accuracy  :  404 / 423 => 95.51%
+button accuracy : 415 / 423 => 98.11%
+total accuracy :  819 / 846 =>  96.81%
+
+mixed, resnet, use_recovery=True, iou=0.6
+
+label accuracy  :  401 / 423 => 94.80%
+button accuracy : 413 / 423 => 97.64%
+total accuracy :  814 / 846 =>  96.22%
+
+mixed, resnet, use_recovery=True, iou=0.7
+
+label accuracy  :  386 / 423 => 91.25%
+button accuracy : 407 / 423 => 96.22%
+total accuracy :  793 / 846 =>  93.74%
+
+mixed, resnet, use_recovery=True, iou=0.75
+
+label accuracy  :  383 / 423 => 90.54%
+button accuracy : 398 / 423 => 94.09%
+total accuracy :  781 / 846 =>  92.32%
+
+mixed, resnet, use_recovery=True, iou=0.8
+
+label accuracy  :  377 / 423 => 89.13%
+button accuracy : 380 / 423 => 89.83%
+total accuracy :  757 / 846 =>  89.48%
+
+mixed, resnet, use_recovery=True, iou=0.9
+
+label accuracy  :  298 / 423 => 70.45%
+button accuracy : 269 / 423 => 63.59%
+total accuracy :  567 / 846 =>  67.02%
+___________________________________________
+ut_west_campus, resnet, use_recovery=False, iou=0.4
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.5
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.6
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.7
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.75
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.8
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=False, iou=0.9
+
+label accuracy  :  933 / 982 => 95.01%
+button accuracy : 927 / 982 => 94.40%
+total accuracy :  1860 / 1964 =>  94.70%
+___________________________________________
+ut_west_campus, resnet, use_recovery=True, iou=0.4
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.5
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.6
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.7
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.75
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.8
+
+label accuracy  :  973 / 982 => 99.08%
+button accuracy : 981 / 982 => 99.90%
+total accuracy :  1954 / 1964 =>  99.49%
+
+ut_west_campus, resnet, use_recovery=True, iou=0.9
+
+label accuracy  :  933 / 982 => 95.01%
+button accuracy : 927 / 982 => 94.40%
+total accuracy :  1860 / 1964 =>  94.70%

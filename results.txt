@@ -1,0 +1,114 @@
+ViTDet
+
+MIXED w/o Recovery Model
+
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: 80.2245,96.9279,91.0549,72.5987,80.5361,85.4075
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:57:13 d2.evaluation.testing]: copypaste: 82.6635,96.9279,92.5283,72.9604,82.6083,89.0425
+
+MIXED w/ Recovery Model
+
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: 81.3103,98.4015,92.4735,72.5987,81.6670,85.3918
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:58:01 d2.evaluation.testing]: copypaste: 83.6223,98.4015,93.4930,72.9604,83.6619,89.0262
+
+UT-WEST-CAMPUS w/o Recovery Model
+
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: 89.8268,99.0063,99.0063,nan,84.5233,90.2335
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:03:24 d2.evaluation.testing]: copypaste: 93.5719,99.0063,99.0063,nan,83.2700,94.0054
+
+
+UT-WEST-CAMPUS w/ Recovery Model
+
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: 89.8268,99.0063,99.0063,nan,84.5233,90.2335
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:05:40 d2.evaluation.testing]: copypaste: 93.5719,99.0063,99.0063,nan,83.2700,94.0054
+
+
+RESNET
+
+MIXED w/o Recovery Model
+
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: 77.9410,94.7412,89.4893,73.9676,77.4452,82.7665
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 15:59:13 d2.evaluation.testing]: copypaste: 78.3251,94.6724,90.0633,68.7734,77.9329,84.9427
+
+
+MIXED w/ Recovery Model
+
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: 78.1425,95.1708,89.7774,73.9676,77.6620,82.7665
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:00:18 d2.evaluation.testing]: copypaste: 78.4467,95.1096,89.9125,68.7734,78.0035,84.9427
+
+
+UT-WEST-CAMPUS w/o Recovery Model
+
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: 92.2667,98.8831,98.8831,nan,84.0217,92.6529
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:08:21 d2.evaluation.testing]: copypaste: 92.5949,98.8831,98.8831,nan,87.4105,93.0065
+
+UT-WEST-CAMPUS w Recovery Model
+
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: Task: bbox
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: 92.2658,98.8821,98.8821,nan,83.5481,92.6529
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: Task: segm
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[02/27 16:10:54 d2.evaluation.testing]: copypaste: 92.5939,98.8821,98.8821,nan,87.2955,93.0065
+
+
+PIPELINE ACCURACY
+
+VIT
+
+mixed
+
+[02/27 14:06:17 detectron2]: correct: 388
+[02/27 14:06:17 detectron2]: total: 423
+[02/27 14:06:17 detectron2]: final accuracy: 91.73%
+[02/27 14:06:17 detectron2]: avg inference speed: 0.38 seconds per image
+
+ut-west-campus
+
+correct: 965
+total: 982
+final accuracy: 98.27%
+avg inference speed: 0.64 seconds per image
+
+RESNET
+
+mixed
+
+[02/27 15:13:15 detectron2]: correct: 379
+[02/27 15:13:15 detectron2]: total: 423
+[02/27 15:13:15 detectron2]: final accuracy: 89.60%
+[02/27 15:13:15 detectron2]: avg inference speed: 0.38 seconds per image
+
+ut-west-campus
+
+[02/27 17:00:24 detectron2]: correct: 955
+[02/27 17:00:24 detectron2]: total: 982
+[02/27 17:00:24 detectron2]: final accuracy: 97.25%
+[02/27 17:00:24 detectron2]: avg inference speed: 0.58 seconds per image

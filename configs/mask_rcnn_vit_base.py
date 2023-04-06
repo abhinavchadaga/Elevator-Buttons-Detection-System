@@ -53,7 +53,7 @@ model.backbone = L(SimpleFeaturePyramid)(
         ],
         residual_block_indexes=[],
         use_rel_pos=True,
-        out_feature="last_feat",
+        out_feature="last_feat",  # use the last single scale feature map as input for the FPN
     ),
     in_feature="${.net.out_feature}",
     out_channels=256,
@@ -75,7 +75,7 @@ model.roi_heads.box_head.fc_dims = [1024]
 
 # change number of roi heads to match classes in elevator dataset
 model.roi_heads.num_classes = 2
-model.roi_heads.box_predictor.test_score_thresh = 0.7
+model.roi_heads.box_predictor.test_score_thresh = 0.9
 
 # configure training params
 train = model_zoo.get_config("common/train.py").train

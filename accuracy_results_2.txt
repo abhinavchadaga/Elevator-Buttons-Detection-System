@@ -1,0 +1,18 @@
+mixed, vit, use_recovery=False, iou=0.5
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 406 / 423 => 95.98%
+total accuracy :  827 / 846 =>  97.75%
+
+mixed, vit, use_recovery=True, iou=0.5
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 416 / 423 => 98.35%
+total accuracy :  837 / 846 =>  98.94%
+
+mixed, vit, use_recovery=True, iou=0.5
+
+label accuracy  :  421 / 423 => 99.53%
+button accuracy : 416 / 423 => 98.35%
+total accuracy :  837 / 846 =>  98.94%
+
